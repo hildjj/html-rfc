@@ -1,26 +1,32 @@
 var fs = require('fs');
 var jsdom = require('jsdom');
 
-var runNits = function(environment, nitDir, files) {
+var runNits = function(environment, nitDir, files, onSuccess) {
     // TODO Windows support
     var pathsep = '/';
 
-    files.forEach(function(nitFile) { 
-        // only run js files -- allows README.md etc.
-        if (!nitFile.match(/.*\.js$/))
+    var nitHelper = function(environment, nitDir, files, index) {
+        if (index >= files.length) {
+            onSuccess();
             return;
-
-        nitFile = fs.realpathSync(nitDir + pathsep + nitFile);
-        var nit = require(nitFile);
-        var result = nit.nit(environment);
-        var result = null;
-        if (result) {
-            process.stderr.write('Error while running through ' 
-                                 + nitFile + '!\n');
-            process.stderr.write(result + '\n');
-            process.exit(-3);
         }
-    });
+
+        var nitFile = files[index];
+
+        var next = function() {
+            nitHelper(environment, nitDir, files, index+1)
+        };
+
+        // only run js files -- allows README.md etc.
+        if (!nitFile.match(/.*\.js$/)) {
+            next();
+        } else {
+            nitFile = fs.realpathSync(nitDir + pathsep + nitFile);
+            var nit = require(nitFile);
+            nit.nit(environment, next);
+        }
+    };
+    nitHelper(environment, nitDir, files, 0);
 };
 
 var writeOutput = function(document, outputFile) {
@@ -54,8 +60,8 @@ var lint = function(nitDir, inputFile, outputFile) {
                 enumerable: true
             });
 
-            runNits(environment, nitDir, files);
-            writeOutput(document, outputFile);
+            runNits(environment, nitDir, files,
+                    function() { writeOutput(document, outputFile) });
         }
     });
 };
