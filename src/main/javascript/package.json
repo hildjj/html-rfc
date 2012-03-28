@@ -2,6 +2,7 @@
     "name": "HTML RFC Lint",
     "main": "./html-rfc-lint.js",
     "dependencies": {
-        "jquery": "1.6+"
+        "jquery": "1.6+",
+        "jsdom": "0.2+"
     }
 }

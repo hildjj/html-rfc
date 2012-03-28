@@ -1,6 +1,7 @@
 var fs = require('fs');
+var jsdom = require('jsdom');
 
-var lint = function(nitdir) {
+var lint = function(nitdir, inputFile, outputFile) {
 
     // TODO Windows support
     var pathsep = '/';
@@ -13,7 +14,17 @@ var lint = function(nitdir) {
         } else {
             // capture the start time so it's the same for all nits
             var environment = {};
-            Object.defineProperty(environment, 'timestamp', { value: new Date() });
+            Object.defineProperty(environment, 'timestamp', {
+                value: new Date(), 
+                enumerable: true
+            });
+
+            var input = fs.readFileSync(inputFile);
+            var doc = jsdom.jsdom(input);
+            Object.defineProperty(environment, 'document', {
+                value: doc,
+                enumerable: true
+            });
 
             files.forEach(function(nitFile) { 
                 // only run js files -- allows README.md etc.
@@ -37,17 +48,37 @@ var cmdlineInvoke = function() {
     console.log('IETF RFC Lint for HTML');
 
     var nitdir;
-    if (process.argv.length == 2) {
-        var basedir = process.mainModule.filename.replace(/(^.*[\/\\])[^\/\\]*/, '$1');
-        nitdir = basedir + 'nits';
-    } else if (process.argv.length == 3) {
-        nitdir = process.argv[2];
+    var showUsage = false;
+    var inputIndex;
+    if (process.argv.length >= 4) {
+        if (process.argv[2] == '--nitdir') {
+            if (process.argv.length != 6) {
+                showUsage = true;
+            } else {
+                nitdir = process.argv[3];
+                inputIndex = 4;
+            }
+        } else {
+            var basedir = process.mainModule.filename.replace(
+                /(^.*[\/\\])[^\/\\]*/, '$1');
+            nitdir = basedir + 'nits';
+            inputIndex = 2;
+        }
     } else {
-        stderr('Usage: ' + process.argv[0] + ' ' + process.argv[1] + ' [nitdir]');
-        process.exit(-1);
+        showUsage = true;
     }
 
-    lint(nitdir);
+    if (inputIndex && process.argv.length != inputIndex + 2)
+        showUsage = true;
+
+    if (showUsage) {
+        console.log('Usage: ' + process.argv[0] + ' ' + process.argv[1] + ' [--nitdir dir] <input> <output>');
+        process.exit(-1);
+    } else {
+        var input = process.argv[inputIndex];
+        var output = process.argv[inputIndex+1];
+        lint(nitdir, input, output);
+    }
 };
 
 cmdlineInvoke();
