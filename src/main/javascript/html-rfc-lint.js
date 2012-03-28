@@ -1,12 +1,34 @@
 var fs = require('fs');
 var jsdom = require('jsdom');
 
-var lint = function(nitdir, inputFile, outputFile) {
-
+var runNits = function(environment, nitDir, files) {
     // TODO Windows support
     var pathsep = '/';
 
-    fs.readdir(nitdir, function(err, files) {
+    files.forEach(function(nitFile) { 
+        // only run js files -- allows README.md etc.
+        if (!nitFile.match(/.*\.js$/))
+            return;
+
+        nitFile = fs.realpathSync(nitDir + pathsep + nitFile);
+        var nit = require(nitFile);
+        var result = nit.nit(environment);
+        var result = null;
+        if (result) {
+            console.log('Error while running through ' + nitFile + '!');
+            console.log(result);
+            process.exit(-3);
+        }
+    });
+};
+
+var writeOutput = function(document, outputFile) {
+    
+};
+
+var lint = function(nitDir, inputFile, outputFile) {
+
+    fs.readdir(nitDir, function(err, files) {
         if (err) {
             console.log('Argh! Errors!');
             console.log(err);
@@ -20,26 +42,14 @@ var lint = function(nitdir, inputFile, outputFile) {
             });
 
             var input = fs.readFileSync(inputFile);
-            var doc = jsdom.jsdom(input);
+            var document = jsdom.jsdom(input);
             Object.defineProperty(environment, 'document', {
-                value: doc,
+                value: document,
                 enumerable: true
             });
 
-            files.forEach(function(nitFile) { 
-                // only run js files -- allows README.md etc.
-                if (!nitFile.match(/.*\.js$/))
-                    return;
-
-                var nit = require(fs.realpathSync(nitdir + pathsep + nitFile));
-                var result = nit.nit(environment);
-                var result = null;
-                if (result) {
-                    console.log('Error while running through ' + nitFile + '!');
-                    console.log(result);
-                    process.exit(-3);
-                }
-            });
+            runNits(environment, nitDir, files);
+            writeOutput(document, outputFile);
         }
     });
 };
@@ -47,7 +57,7 @@ var lint = function(nitdir, inputFile, outputFile) {
 var cmdlineInvoke = function() {
     console.log('IETF RFC Lint for HTML');
 
-    var nitdir;
+    var nitDir;
     var showUsage = false;
     var inputIndex;
     if (process.argv.length >= 4) {
@@ -55,13 +65,13 @@ var cmdlineInvoke = function() {
             if (process.argv.length != 6) {
                 showUsage = true;
             } else {
-                nitdir = process.argv[3];
+                nitDir = process.argv[3];
                 inputIndex = 4;
             }
         } else {
             var basedir = process.mainModule.filename.replace(
                 /(^.*[\/\\])[^\/\\]*/, '$1');
-            nitdir = basedir + 'nits';
+            nitDir = basedir + 'nits';
             inputIndex = 2;
         }
     } else {
@@ -77,7 +87,7 @@ var cmdlineInvoke = function() {
     } else {
         var input = process.argv[inputIndex];
         var output = process.argv[inputIndex+1];
-        lint(nitdir, input, output);
+        lint(nitDir, input, output);
     }
 };
 
