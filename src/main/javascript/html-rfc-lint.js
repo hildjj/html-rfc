@@ -15,7 +15,8 @@ var runNits = function(environment, nitDir, files) {
         var result = nit.nit(environment);
         var result = null;
         if (result) {
-            process.stderr.write('Error while running through ' + nitFile + '!\n');
+            process.stderr.write('Error while running through ' 
+                                 + nitFile + '!\n');
             process.stderr.write(result + '\n');
             process.exit(-3);
         }
@@ -87,7 +88,8 @@ var cmdlineInvoke = function() {
         showUsage = true;
 
     if (showUsage) {
-        process.stderr.write('Usage: ' + process.argv[0] + ' ' + process.argv[1] + ' [--nitdir dir] <input> <output>\n');
+        process.stderr.write('Usage: ' + process.argv[0] + ' ' + process.argv[1]
+                             + ' [--nitdir dir] <input> <output>\n');
         process.exit(-1);
     } else {
         var input = process.argv[inputIndex];
