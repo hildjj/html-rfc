@@ -15,3 +15,4 @@ $("#toc").text() = "Table of Contents"
 insert TOC after #toc, with .toc
 .section insert anchor
 .section check header depth vs. h\d number OR re-nest based on h\d
+replace CSS
