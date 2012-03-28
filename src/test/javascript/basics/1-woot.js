@@ -1,4 +1,4 @@
 $ = require('jquery');
 exports.nit = function(environment) { 
-    console.log('w00t!');
+    process.stderr.write('w00t!\n');
 };

@@ -1,3 +1,3 @@
 exports.nit = function(environment) {
-    console.log('more goodness');
+    process.stderr.write('more goodness\n');
 };

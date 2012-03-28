@@ -15,23 +15,28 @@ var runNits = function(environment, nitDir, files) {
         var result = nit.nit(environment);
         var result = null;
         if (result) {
-            console.log('Error while running through ' + nitFile + '!');
-            console.log(result);
+            process.stderr.write('Error while running through ' + nitFile + '!\n');
+            process.stderr.write(result + '\n');
             process.exit(-3);
         }
     });
 };
 
 var writeOutput = function(document, outputFile) {
-    fs.writeFileSync(outputFile, document.innerHTML);
+    var output = document.innerHTML;
+
+    if (outputFile == '-')
+        process.stdout.write(output);
+    else
+        fs.writeFileSync(outputFile, output);
 };
 
 var lint = function(nitDir, inputFile, outputFile) {
 
     fs.readdir(nitDir, function(err, files) {
         if (err) {
-            console.log('Argh! Errors!');
-            console.log(err);
+            process.stderr.write('Argh! Errors!\n');
+            process.stderr.write(err + '\n');
             process.exit(-2);
         } else {
             // capture the start time so it's the same for all nits
@@ -55,7 +60,7 @@ var lint = function(nitDir, inputFile, outputFile) {
 };
 
 var cmdlineInvoke = function() {
-    console.log('IETF RFC Lint for HTML');
+    process.stderr.write('IETF RFC Lint for HTML\n');
 
     var nitDir;
     var showUsage = false;
@@ -82,7 +87,7 @@ var cmdlineInvoke = function() {
         showUsage = true;
 
     if (showUsage) {
-        console.log('Usage: ' + process.argv[0] + ' ' + process.argv[1] + ' [--nitdir dir] <input> <output>');
+        process.stderr.write('Usage: ' + process.argv[0] + ' ' + process.argv[1] + ' [--nitdir dir] <input> <output>\n');
         process.exit(-1);
     } else {
         var input = process.argv[inputIndex];
