@@ -2,9 +2,13 @@ IETF RFCs with the authoring, archival, and reading formats all being HTML.
 
 A prototype, for now.
 
-### Lint Usage
-    node src/main/javascript --nitdir src/test/javascript/basics src/test/resources/test-basics.html /tmp/out.html
 
+### Lint Usage
+Write output to a named file (can be the same as input file):
+    node src/main/javascript input.html output.html
+
+Write output to stdout:
+    node src/main/javascript input.html -
 
 
 ### Testing changes to lint program
