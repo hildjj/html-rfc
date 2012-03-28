@@ -10,4 +10,8 @@ ipr .ipr = "appropriate IPR statement"
 (#copyright + .copyright).text() = "Copyright © The Internet Society (2006). All Rights Reserved."
 #abstract.text() = "Abstract"
 (#abstract + .abstract).text() exists
-if rfc.editor, $(".rfceditor-remove").remove()
+if rfc.editor, $(".rfceditor-remove").remove
+$("#toc").text() = "Table of Contents"
+insert TOC after #toc, with .toc
+.section insert anchor
+.section check header depth vs. h\d number OR re-nest based on h\d
