@@ -3,4 +3,11 @@ published ~= now
 expires = published + 6months
 head title = .title
 IPR current
-rfc.status.text() = "Status of this Memo"
+status.text() = "Status of this Memo"
+ipr[title] = [full3978, (etc)]
+ipr .ipr = "appropriate IPR statement"
+#copyright.text() = "Copyright Notice"
+(#copyright + .copyright).text() = "Copyright © The Internet Society (2006). All Rights Reserved."
+#abstract.text() = "Abstract"
+(#abstract + .abstract).text() exists
+if rfc.editor, $(".rfceditor-remove").remove()
