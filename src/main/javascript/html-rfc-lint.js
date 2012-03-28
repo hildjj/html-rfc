@@ -1,7 +1,7 @@
 var fs = require('fs');
 var jsdom = require('jsdom');
 
-var runNits = function(environment, nitDir, files, onSuccess) {
+var runNits = function(environment, nitDir, files, onSuccess, onError) {
     // TODO Windows support
     var pathsep = '/';
 
@@ -13,8 +13,12 @@ var runNits = function(environment, nitDir, files, onSuccess) {
 
         var nitFile = files[index];
 
-        var next = function() {
-            nitHelper(environment, nitDir, files, index+1)
+        var next = function(err) {
+            if (err) {
+                onError.apply(null, arguments);
+            } else {
+                nitHelper(environment, nitDir, files, index+1)
+            }
         };
 
         // only run js files -- allows README.md etc.
@@ -38,7 +42,7 @@ var writeOutput = function(document, outputFile) {
         fs.writeFileSync(outputFile, output);
 };
 
-var lint = function(nitDir, inputFile, outputFile) {
+var lint = function(nitDir, inputFile, outputFile, callback) {
 
     fs.readdir(nitDir, function(err, files) {
         if (err) {
@@ -61,7 +65,8 @@ var lint = function(nitDir, inputFile, outputFile) {
             });
 
             runNits(environment, nitDir, files,
-                    function() { writeOutput(document, outputFile) });
+                    function() { writeOutput(document, outputFile) },
+                    callback);
         }
     });
 };
@@ -100,7 +105,14 @@ var cmdlineInvoke = function() {
     } else {
         var input = process.argv[inputIndex];
         var output = process.argv[inputIndex+1];
-        lint(nitDir, input, output);
+        lint(nitDir, input, output, 
+             function(err) {
+                 if (err) {
+                     process.stderr.write('Argh! Processing error!\n' 
+                         + Array.prototype.slice.call(arguments, 0) + '\n');
+                     process.exit(-2);
+                 }
+             });
     }
 };
 
