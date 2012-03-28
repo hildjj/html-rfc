@@ -5,9 +5,11 @@ A prototype, for now.
 
 ### Lint Usage
 Write output to a named file (can be the same as input file):
+
     node src/main/javascript input.html output.html
 
 Write output to stdout:
+
     node src/main/javascript input.html -
 
 
