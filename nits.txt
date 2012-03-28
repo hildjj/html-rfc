@@ -1,0 +1,6 @@
+count(authors) > 0
+published ~= now
+expires = published + 6months
+head title = .title
+IPR current
+rfc.status.text() = "Status of this Memo"
