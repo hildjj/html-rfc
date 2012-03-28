@@ -3,7 +3,7 @@ IETF RFCs with the authoring, archival, and reading formats all being HTML.
 A prototype, for now.
 
 ### Lint Usage
-  node src/main/javascript --nitdir src/test/javascript/basics src/test/resources/test-basics.html /tmp/out.html
+    node src/main/javascript --nitdir src/test/javascript/basics src/test/resources/test-basics.html /tmp/out.html
 
 
 
@@ -15,4 +15,4 @@ tests to automated ones.
 
 To run tests:
 
-  node src/main/javascript --nitdir src/test/javascript/basics src/test/resources/test-basics.html /tmp/out.html
+    node src/main/javascript --nitdir src/test/javascript/basics src/test/resources/test-basics.html /tmp/out.html
