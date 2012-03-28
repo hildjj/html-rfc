@@ -23,7 +23,7 @@ var runNits = function(environment, nitDir, files) {
 };
 
 var writeOutput = function(document, outputFile) {
-    
+    fs.writeFileSync(outputFile, document.innerHTML);
 };
 
 var lint = function(nitDir, inputFile, outputFile) {
