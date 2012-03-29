@@ -34,7 +34,8 @@ var runNits = function(environment, nitDir, files, onSuccess, onError) {
 };
 
 var writeOutput = function(document, outputFile) {
-    var output = document.innerHTML;
+    var pretty = require('pretty-data');
+    var output = pretty.pd.xml(document.innerHTML);
 
     if (outputFile == '-')
         process.stdout.write(output);
