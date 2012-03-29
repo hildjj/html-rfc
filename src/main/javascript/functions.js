@@ -5,6 +5,9 @@ var runNits = function(environment, nitDir, files, onSuccess, onError) {
     // TODO Windows support
     var pathsep = '/';
 
+    // runs recursively so that we can use the node continuation
+    // pattern to ensure that the nit plugins each complete their work
+    // before iterating to the next.
     var nitHelper = function(environment, nitDir, files, index) {
         if (index >= files.length) {
             onSuccess();
