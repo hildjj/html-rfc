@@ -6,8 +6,10 @@ if [ $# -ne 1 ]; then
     exit -1
 fi
 
+dirname="$(dirname $0)"
+
 outputdir="$1"
-[ -d "$outputdir" ] && rm -r "$outputdir"/*
+[ -d "$outputdir" ] && rm -rf "$outputdir"/*
 mkdir -p "$outputdir"
 
 run_test() {
@@ -20,7 +22,7 @@ run_test_that_should_pass() {
     mkdir -p "$out"
 
     set +e
-    node src/main/javascript --nitdir "$1/nits" "$1/input.html" "$out/results" >"$out/stdout" 2>"$out/stderr"
+    node "$dirname/../../main/javascript" --nitdir "$1/nits" "$1/input.html" "$out/results" >"$out/stdout" 2>"$out/stderr"
     set -e
     
     if [ $(cat "$out/stdout" | wc -c) -ne 0 ]; then
@@ -39,7 +41,6 @@ run_test_that_should_pass() {
 }
 
 failures=()
-dirname="$(dirname $0)"
 for test in "$dirname"/*/; do
     run_test "$test" || failures[${#failures[@]}]="$(basename $test)"
 done
