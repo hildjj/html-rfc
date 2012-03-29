@@ -22,7 +22,11 @@ run_test_that_should_pass() {
     mkdir -p "$out"
 
     set +e
-    node "$dirname/../../main/javascript" --nitdir "$1/nits" "$1/input.html" "$out/results" >"$out/stdout" 2>"$out/stderr"
+    local nitargs=()
+    if [ -d "$1/nits" ]; then
+        nitargs=(--nitdir "$1/nits")
+    fi
+    node "$dirname/../../main/javascript" "${nitargs[@]}" "$1/input.html" "$out/results" >"$out/stdout" 2>"$out/stderr"
     set -e
     
     if [ $(cat "$out/stdout" | wc -c) -ne 0 ]; then
