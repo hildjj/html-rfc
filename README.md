@@ -22,3 +22,7 @@ tests to automated ones.
 To run tests:
 
     node src/main/javascript --nitdir src/test/javascript/basics src/test/resources/test-basics.html /tmp/out.html
+
+
+### License
+This code is licensed under the [Apache Software License, 2.0](http://www.apache.org/licenses/LICENSE-2.0)
