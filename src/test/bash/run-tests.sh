@@ -51,4 +51,7 @@ done
 
 if [ ${#failures[@]} -ne 0 ]; then
     echo "$((${#failures[@]})) tests failed! Failures: ${failures[@]}"
+    exit -1
+else
+    echo "Tests passed! Woot!"
 fi
