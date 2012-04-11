@@ -1,5 +1,9 @@
-var fs = require('fs');
+var fs    = require('fs');
+var path  = require('path');
 var jsdom = require('jsdom');
+
+var jquery_path = path.join(path.dirname(require.main.filename), "jquery-1.7.2.min.js");
+var jquery = fs.readFileSync(jquery_path).toString();
 
 var runNits = function(environment, nitDir, files, onSuccess, onError) {
     // TODO Windows support
@@ -38,7 +42,7 @@ var runNits = function(environment, nitDir, files, onSuccess, onError) {
 
 var writeOutput = function(document, outputFile) {
     var pretty = require('pretty-data');
-    var output = pretty.pd.xml(document.innerHTML);
+    var output = pretty.pd.xml("<!DOCTYPE HTML>\n" + document.outerHTML);
 
     if (outputFile == '-')
         process.stdout.write(output);
@@ -62,15 +66,23 @@ exports.lint = function(nitDir, inputFile, outputFile, callback) {
             });
 
             var input = fs.readFileSync(inputFile);
-            var document = jsdom.jsdom(input);
-            Object.defineProperty(environment, 'document', {
-                value: document,
-                enumerable: true
+            jsdom.env({
+                html: input,
+                src: [ jquery ],
+                done: function(errors, window) {
+                    Object.defineProperty(environment, '$', {
+                        value: window.$,
+                        enumerable: true
+                    });
+                    Object.defineProperty(environment, 'document', {
+                        value: window.Document,
+                        enumerable: true
+                    });
+                    runNits(environment, nitDir, files,
+                            function() { writeOutput(window.document, outputFile) },
+                            callback);
+                }
             });
-
-            runNits(environment, nitDir, files,
-                    function() { writeOutput(document, outputFile) },
-                    callback);
         }
     });
 };
