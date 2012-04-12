@@ -5,4 +5,8 @@ environment and the document to process. Return a non-null value to
 communicate an error.
 
 Example: 
-    exports.nit = function(env) { console.log('Hello, IETF!'); };
+
+exports.nit = function(env, onCompletion) { 
+    console.log('Hello, IETF!'); 
+    onCompletion();
+};
