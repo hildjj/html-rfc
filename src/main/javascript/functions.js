@@ -41,13 +41,15 @@ var runNits = function(environment, nitDir, files, onSuccess, onError) {
 };
 
 var writeOutput = function(document, outputFile) {
-    var pretty = require('pretty-data');
-    var output = pretty.pd.xml("<!DOCTYPE HTML>\n" + document.outerHTML);
+    var pretty = require('./html-pretty').pretty;
+    var f;
 
-    if (outputFile == '-')
-        process.stdout.write(output);
-    else
-        fs.writeFileSync(outputFile, output);
+    if (!outputFile || (outputFile == '-')) {
+        f = process.stdout;
+    } else {
+        f = fs.createWriteStream(outputFile);
+    }
+    pretty(document, f);
 };
 
 exports.lint = function(nitDir, inputFile, outputFile, callback) {
