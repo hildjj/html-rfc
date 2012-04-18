@@ -67,22 +67,25 @@ exports.lint = function(nitDir, inputFile, outputFile, callback) {
                 enumerable: true
             });
 
-            var input = fs.readFileSync(inputFile);
             jsdom.env({
-                html: input,
+                html: inputFile,
                 src: [ jquery ],
                 done: function(errors, window) {
-                    Object.defineProperty(environment, '$', {
-                        value: window.$,
-                        enumerable: true
-                    });
-                    Object.defineProperty(environment, 'document', {
-                        value: window.Document,
-                        enumerable: true
-                    });
-                    runNits(environment, nitDir, files,
-                            function() { writeOutput(window.document, outputFile) },
-                            callback);
+                    if (errors) {
+                        process.stderr.write(errors);
+                    } else {
+                        Object.defineProperty(environment, '$', {
+                            value: window.$,
+                            enumerable: true
+                        });
+                        Object.defineProperty(environment, 'document', {
+                            value: window.Document,
+                            enumerable: true
+                        });
+                        runNits(environment, nitDir, files,
+                                function() { writeOutput(window.document, outputFile) },
+                                callback);
+                    }
                 }
             });
         }
