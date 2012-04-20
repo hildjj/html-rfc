@@ -27,7 +27,7 @@ function f($, divs, depth, parnum) {
     return ul;
 }
 
-exports.nit = function(env, onCompletion) {
+function toc_nit(env) {
     var $ = env.$
     var toc = $("div#toc");
     if (!toc.length) {
@@ -37,6 +37,7 @@ exports.nit = function(env, onCompletion) {
     toc.empty();
     toc.append($("<h2>").text("Table of Contents"));
     toc.append(f($, $("body > div.section"), 2, ""));
-
-    onCompletion();
 }
+
+toc_nit.requires = ["div-number.js"];
+exports.nit = toc_nit;

@@ -34,10 +34,10 @@ var cmdlineInvoke = function() {
     } else {
         var input = process.argv[inputIndex];
         var output = process.argv[inputIndex+1];
-        functions.lint(nitDir, input, output, 
+        functions.lint(nitDir, input, output,
              function(err) {
                  if (err) {
-                     process.stderr.write('Argh! Processing error!\n' 
+                     process.stderr.write('Argh! Processing error!\n'
                          + Array.prototype.slice.call(arguments, 0) + '\n');
                      process.exit(-2);
                  }

@@ -1,4 +1,4 @@
-exports.nit = function(env, onCompletion) {
+exports.nit = function(env) {
     var $ = env.$;
     var i = 0;
     $("p").each(function() {
@@ -9,5 +9,4 @@ exports.nit = function(env, onCompletion) {
             i++;
         }
     });
-    onCompletion();
 };

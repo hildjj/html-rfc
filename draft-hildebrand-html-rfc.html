@@ -21,6 +21,9 @@ body {
 .hidden {
     display: none;
 }
+ul.toc {
+  list-style-type: none;
+}
 -->
   </style>
 </head>
@@ -96,17 +99,20 @@ body {
         <li>HTML SHALL be pretty-printed, using spaces only (not tabs)</li>
         <li>Two (2) spaces used for each level of indentation</li>
       </ul>
+      <div id='test' class='section'>
+        <h4>a test section</h4>
+      </div>
     </div>
   </div>
 
-  <div id='examples'>
+  <div class='section'>
     <h2>Examples</h2>
     <div id='self-example' class='section'>
       <h3>Self</h3>
       <p>This draft itself is a good example of how to use the format.  Please view-source.</p>
     </div>
 
-    <div id='ascii-art-example' class='section'>
+    <div class='section'>
       <h3>ASCII Art, code samples</h3>
       <pre class='code'>
 #include &lt;stdio.h&gt;
@@ -118,30 +124,28 @@ int main(int argc, char **argv)
     </div>
   </div>
 
-  <div id='workflow'>
+  <div id='workflow' class='section'>
     <h2>Workflow</h2>
 
   </div>
 
-  <div id='references'>
+  <div id='references' class='section'>
     <h2>References</h2>
-    <div id='normative'>
+    <div id='normative' class='section'>
       <h3>Normative References</h3>
-      <div class='ref rfc-2119'>
-        <span id='RFC2119'>[RFC2119]</span>
-        <span class='author'><a href="mailto:-" title="Harvard University">Bradner, S.</a></span>,
-        <span class='title'>"<a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>"</span>,
-        <span class='series-info'>BCP&#xa0;14, RFC&#xa0;2119</span>, 
-        <span class='date'>March&#xa0;1997</span>.
-      </div>
+      <div id='rfc:2119' class='ref'/>
+      <div id='w3c:WD-html5-20120329' class='ref'/>
     </div>
 
-    <div id='informative'>
+    <div id='informative' class='section'>
       <h3>Informative References</h3>
     </div>
   </div>
+  <div id='another-test' class='section'>
+    <p> something informative</p>
+  </div>
 
-  <div id="authors">
+  <div id='authors' class='section'>
     <h2>Authors' Addresses</h2>
 
     <address class='vcard' id='jhildebr@cisco.com'>

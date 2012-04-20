@@ -1,4 +1,4 @@
-exports.nit = function(env, onCompletion) { 
+exports.nit = function(env) {
     var $ = env.$
     $.fn.extend({
         textNodes: function() {
@@ -25,5 +25,4 @@ exports.nit = function(env, onCompletion) {
             $(this).replaceWith(val);
         }
     });
-    onCompletion();
 };
