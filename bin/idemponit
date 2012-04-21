@@ -1,0 +1,98 @@
+#!/usr/bin/env node
+// -*- js -*-
+
+var rfc = require('../lib/html-rfc');
+var opt = require('optimist');
+var path = require('path');
+var fs = require('fs');
+
+var nit_path = path.resolve(path.dirname(module.filename),
+                            "../nits")
+
+var argv = opt
+    .usage('Update an HTML I-D or RFC\n' +
+           'Usage: $0 [input] [output]\n\n' +
+           'input defaults to stdin\n' +
+           'output defaults to stdout')
+    .boolean('h')
+    .describe('h', 'Show help')
+    .string('nitdir')
+    .default('nitdir', nit_path)
+    .describe('nitdir', 'A directory of modification scripts')
+    .argv;
+
+if (argv['h']) {
+    opt.showHelp();
+    process.exit(64);
+}
+
+var input = argv._.shift()
+var output = argv._.shift()
+
+if (input) {
+    input = fs.createReadStream(input);
+} else {
+    input = process.stdin;
+}
+
+if (output) {
+    output = fs.createWriteStream(output);
+} else {
+    output = process.stdout;
+}
+
+function readStream(s, cb) {
+    var buffers = [];
+    var nread = 0;
+    var error;
+
+    s.on('data', function(chunk) {
+        buffers.push(chunk);
+        nread += chunk.length;
+    });
+
+    s.on('error', function(er) {
+        error = er;
+        s.destroy();
+    });
+
+    s.on('close', function() {
+        if (error) {
+          return cb(error);
+        }
+
+        var buffer;
+        switch (buffers.length) {
+        case 0:
+            buffer = new Buffer(0);
+            break;
+        case 1:
+            buffer = buffers[0];
+            break;
+        default: // glue all into one
+            buffer = new Buffer(nread);
+            var n = 0;
+            buffers.forEach(function(b) {
+                var l = b.length;
+                b.copy(buffer, n, 0, l);
+                n += l;
+            });
+            break;
+        }
+        buffer = buffer.toString('utf-8');
+        cb(null, buffer);
+    });
+}
+
+readStream(input, function(err, s) {
+    if (err) {
+        console.warn(err);
+        return;
+    }
+    rfc.lint(argv.nitdir, s, output, function(err) {
+        if (err) {
+            console.warn(err.toString());
+        }
+    });
+})
+

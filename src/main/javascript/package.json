@@ -1,9 +1,0 @@
-{
-    "name": "HTML RFC Lint",
-    "main": "./html-rfc-lint.js",
-    "dependencies": {
-        "jquery": "1.6+",
-        "jsdom": "0.2+",
-        "pretty-data": "0.30+"
-    }
-}

@@ -1,0 +1,20 @@
+{
+  "author": "Joe Hildebrand <joe-formatters@cursive.net>",
+  "name": "html-rfc",
+  "description": "Format IETF RFCs and Internet-Drafts as HTML",
+  "version": "0.0.1",
+  "homepage": "https://github.com/IETF-Formatters/html-rfc",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:IETF-Formatters/html-rfc.git"
+  },
+  "engines": {
+    "node": "~0.6.15"
+  },
+  "dependencies": {
+    "jsdom": "~0.2.14",
+    "xmlhttprequest": "~1.3",
+    "optimist": "~0.3",
+    "log4js": "~0.4.3"
+  }
+}

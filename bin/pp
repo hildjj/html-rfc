@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+// -*- js -*-
+
+var fs = require('fs');
+var jsdom = require('jsdom');
+var hp = require('../lib/html-pretty');
+
+for (var i=2; i<process.argv.length; i++) {
+    jsdom.env({
+        html:process.argv[i],
+        done: function(errors, window) {
+            if (errors) {
+                console.log(errors);
+            } else {
+                hp.pretty(window.document);
+            }
+        }})
+}
