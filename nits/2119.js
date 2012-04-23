@@ -2,7 +2,7 @@ exports.nit = function(env) {
     var $ = env.$
     $.fn.extend({
         textNodes: function() {
-            return $($.map(this, function(n){
+            return $($.map(this, function(n) {
                 return $.grep(n.childNodes, function(n) {
                     return n.nodeType == 3;
                 });

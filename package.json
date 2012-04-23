@@ -1,5 +1,10 @@
 {
-  "author": "Joe Hildebrand <joe-formatters@cursive.net>",
+  "contributors": [
+    { "name": "Joe Hildebrand",
+      "email": "<joe-formatters@cursive.net>"},
+    { "name": "Patrick Linskey",
+      "email": "plinskey@gmail.com"}
+  ],
   "name": "html-rfc",
   "description": "Format IETF RFCs and Internet-Drafts as HTML",
   "version": "0.0.1",

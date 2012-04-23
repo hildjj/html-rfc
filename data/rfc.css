@@ -1,0 +1,15 @@
+body {
+    font-family: sans-serif;
+}
+.alt {
+    display: none;
+}
+.document * {
+    display: inline;
+}
+.hidden {
+    display: none;
+}
+ul.toc {
+  list-style-type: none;
+}
