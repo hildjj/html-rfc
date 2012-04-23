@@ -10,7 +10,7 @@ var log4js = require('log4js');
 var argv = opt
     .usage('\nQuery an HTML I-D or RFC\n' +
            'Usage: $0 [query] [input]\n\n' +
-           '[query] is a REQUIRED jQuery selector\n' +
+           '[query] is a REQUIRED jQuery selector, in the form \'$("body")\'\n' +
            '[input] defaults to stdin, but can be a file or URL.' )
     .boolean('h')
     .describe('h', 'Show help')
