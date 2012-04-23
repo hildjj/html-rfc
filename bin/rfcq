@@ -1,0 +1,58 @@
+#!/usr/bin/env node
+// -*- js -*-
+
+var fs = require('fs');
+var rfc = require('../lib/html-rfc');
+var pretty = require('../lib/html-pretty').pretty;
+var opt = require('optimist');
+var log4js = require('log4js');
+
+var argv = opt
+    .usage('\nQuery an HTML I-D or RFC\n' +
+           'Usage: $0 [query] [input]\n\n' +
+           '[query] is a REQUIRED jQuery selector\n' +
+           '[input] defaults to stdin, but can be a file or URL.' )
+    .boolean('h')
+    .describe('h', 'Show help')
+    .argv;
+
+if (argv['h']) {
+    opt.showHelp();
+    process.exit(64);
+}
+
+var log = log4js.getLogger();
+log4js.appenderMakers['console']({"writer": function(evt) { process.stderr.write(evt + "\n")}});
+
+var query = argv._.shift();
+var input = argv._.shift();
+
+if (!query) {
+    opt.showHelp();
+    console.error("Query is required")
+    process.exit(1);
+}
+
+
+if (input) {
+    input = fs.createReadStream(input);
+    input.on('error', function(err) {
+        log.error(err);
+        process.exit(1);
+    });
+} else {
+    input = process.stdin;
+}
+
+var r = new rfc.RFC(input, log, function(err, r) {
+    if (err) { process.exit(1); }
+    var $ = r.$;
+    var res = eval(query);
+    if ((res instanceof $) || Array.isArray(res)) {
+        r.$.each(res, function() {
+            pretty(this, process.stdout);
+        });
+    } else {
+        pretty(res, process.stdout);
+    }
+});

@@ -2,9 +2,11 @@
 // -*- js -*-
 
 var rfc = require('../lib/html-rfc');
+var pretty = require('../lib/html-pretty').pretty;
 var opt = require('optimist');
 var path = require('path');
 var fs = require('fs');
+var log4js = require('log4js');
 
 var nit_path = path.resolve(path.dirname(module.filename),
                             "../nits")
@@ -26,73 +28,39 @@ if (argv['h']) {
     process.exit(64);
 }
 
-var input = argv._.shift()
-var output = argv._.shift()
+var input = argv._.shift();
+var output = argv._.shift();
+var log = log4js.getLogger();
+log4js.appenderMakers['console']({"writer": function(evt) { process.stderr.write(evt + "\n")}});
 
 if (input) {
     input = fs.createReadStream(input);
+    input.on('error', function(err) {
+        log.error(err);
+        process.exit(1);
+    });
 } else {
     input = process.stdin;
 }
 
 if (output) {
     output = fs.createWriteStream(output);
+    output.on('error', function(err) {
+        log.error(err);
+        process.exit(1);
+    });
 } else {
     output = process.stdout;
 }
 
-function readStream(s, cb) {
-    var buffers = [];
-    var nread = 0;
-    var error;
-
-    s.on('data', function(chunk) {
-        buffers.push(chunk);
-        nread += chunk.length;
-    });
-
-    s.on('error', function(er) {
-        error = er;
-        s.destroy();
-    });
-
-    s.on('close', function() {
-        if (error) {
-          return cb(error);
-        }
-
-        var buffer;
-        switch (buffers.length) {
-        case 0:
-            buffer = new Buffer(0);
-            break;
-        case 1:
-            buffer = buffers[0];
-            break;
-        default: // glue all into one
-            buffer = new Buffer(nread);
-            var n = 0;
-            buffers.forEach(function(b) {
-                var l = b.length;
-                b.copy(buffer, n, 0, l);
-                n += l;
-            });
-            break;
-        }
-        buffer = buffer.toString('utf-8');
-        cb(null, buffer);
-    });
-}
-
-readStream(input, function(err, s) {
-    if (err) {
-        console.warn(err);
-        return;
+var r = new rfc.RFC(input, log, function(err, r) {
+    if (!err) {
+        r.lint(argv.nitdir, function(err, doc) {
+            if (err) {
+                process.exit(1);
+            }
+            pretty(doc, output);
+        });
     }
-    rfc.lint(argv.nitdir, s, output, function(err) {
-        if (err) {
-            console.warn(err.toString());
-        }
-    });
-})
+});
 
