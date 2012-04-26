@@ -9,6 +9,8 @@ The environment object includes these properties:
 - $: a jQuery instance with the input document as context
 - document: the input document as jsdom DOM
 - timestamp: a JavaScript Date object with the date/time of execution
+- log: a log4js instance that can be logged to, e.g: env.log.info("Some info")
+- error(): a method that logs, and returns a rejected promise
 
 Simple Example: 
 
@@ -21,6 +23,9 @@ Deferred Example:
 exports.nit = function(env) {
 	var def = env.$.Deferred();
 	something_async(function() {
+		if (some_error) {
+		    return env.error("An error!")
+	    }
 		def.resolve();
 	});
 	return def.promise();

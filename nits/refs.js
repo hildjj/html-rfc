@@ -26,19 +26,16 @@ exports.nit = function(env) {
         var id = ref.attr("id");
 
         if (!id) {
-            console.log("no id")
-            return;
+            return env.error("no id")
         }
         var matches = id.match(/^(\w+):(.*)/);
         if (!matches) {
-            console.log("bad id")
-            return;
+            return env.error("bad id")
         }
         var series = matches[1].toLowerCase();
         var u = refmap[series];
         if (!u) {
-            console.log("bad series")
-            return;
+            return env.error("bad series")
         }
         id = matches[2];
         // RFC's and XEP's are 4 digits
@@ -47,7 +44,7 @@ exports.nit = function(env) {
         }
 
         u = u.replace(/\{id\}/, id);
-        console.log("Getting " + series + ":", id, "(" + u + ")");
+        env.log.info("Getting " + series + ":", id, "(" + u + ")");
 
         prom.push($.get(u)
                         .done(function(data){

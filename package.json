@@ -21,7 +21,8 @@
     "jsdom": "~0.2.14",
     "xmlhttprequest": "~1.3",
     "optimist": "~0.3",
-    "log4js": "git://github.com/IETF-Formatters/log4js-node.git"
+    "log4js": "git://github.com/IETF-Formatters/log4js-node.git",
+    "bufferstream": "~0.5.1"
   },
   "directories": {
     "bin": "bin",

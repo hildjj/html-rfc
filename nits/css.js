@@ -15,16 +15,6 @@ exports.nit = function(env) {
         head.append(style);
     }
 
-    $.fn.extend({
-        comment: function(txt) {
-            return $($.map(this, function(n) {
-                var c = n.ownerDocument.createComment(txt);
-                n.appendChild(c);
-                return c;
-            }));
-        }
-    });
-
     var css_path = path.resolve(path.dirname(module.filename),
                                "../data/rfc.css");
 
