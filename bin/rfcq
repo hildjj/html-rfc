@@ -44,7 +44,7 @@ if (input) {
     input = process.stdin;
 }
 
-var r = new rfc.RFC(input, log, function(err, r) {
+var r = new rfc.RFC(input, log, argv, function(err, r) {
     if (err) { process.exit(1); }
     var $ = r.$;
     var res = eval(query);

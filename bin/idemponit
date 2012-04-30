@@ -21,6 +21,8 @@ var argv = opt
     .string('nitdir')
     .default('nitdir', nit_path)
     .describe('nitdir', 'A directory of modification scripts')
+    .boolean('rfc-editor')
+    .describe('rfc-editor', "Perform final RFC-editor modifications")
     .argv;
 
 if (argv['h']) {
@@ -53,7 +55,7 @@ if (output) {
     output = process.stdout;
 }
 
-var r = new rfc.RFC(input, log, function(err, r) {
+var r = new rfc.RFC(input, log, argv, function(err, r) {
     if (!err) {
         r.lint(argv.nitdir, function(err, doc) {
             if (err) {
