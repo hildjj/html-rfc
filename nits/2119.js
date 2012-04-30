@@ -1,5 +1,5 @@
 exports.nit = function(env) {
-    var $ = env.$
+    var $ = env.$;
     $.fn.extend({
         textNodes: function() {
             return $($.map(this, function(n) {
@@ -19,7 +19,7 @@ exports.nit = function(env) {
         var found = false;
         var val = this.nodeValue.replace(mustard, function(s) {
             found = true;
-            return "<span class='rfc2119'>" + s + "</span>"
+            return "<span class='rfc2119'>" + s + "</span>";
         });
         if (found) {
             $(this).replaceWith(val);

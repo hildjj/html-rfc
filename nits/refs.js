@@ -14,7 +14,7 @@ var refmap = {
     "w3c"   : "http://xml.resource.org/public/rfc/bibxml4/reference.W3C.{id}.xml",
     "xep"   : "http://xmpp.org/extensions/refs/reference.XSF.XEP-{id}.xml",
     "other" : "{id}"
-}
+};
 
 exports.nit = function(env) {
     var $ = env.$;
@@ -26,16 +26,16 @@ exports.nit = function(env) {
         var id = ref.attr("id");
 
         if (!id) {
-            return env.error("no id")
+            return env.error("no id");
         }
         var matches = id.match(/^(\w+):(.*)/);
         if (!matches) {
-            return env.error("bad id")
+            return env.error("bad id");
         }
         var series = matches[1].toLowerCase();
         var u = refmap[series];
         if (!u) {
-            return env.error("bad series")
+            return env.error("bad series");
         }
         id = matches[2];
         // RFC's and XEP's are 4 digits
@@ -51,7 +51,7 @@ exports.nit = function(env) {
                             var anchor = $('reference', data).attr('anchor');
                             $('<span>').attr('id', anchor).text("[" + anchor + "]").appendTo(ref);
                             var author = $('<span>').addClass('author').appendTo(ref);
-                            var nm = $('author', data).attr('surname') + ", " + $('author', data).attr('initials')
+                            var nm = $('author', data).attr('surname') + ", " + $('author', data).attr('initials');
                             var mailto = $("author email", data).text();
                             var org = $("author organization", data).text();
                             if (mailto || org) {
@@ -78,10 +78,10 @@ exports.nit = function(env) {
                                     .appendTo(reflinks);
                             });
                             $('<span>').text(',').appendTo(ref);
-                            var series = []
+                            var series = [];
                             $('seriesInfo', data).each(function() {
                                 var t = $(this);
-                                series.push(t.attr('name') + "\u00a0" + t.attr('value'))
+                                series.push(t.attr('name') + "\u00a0" + t.attr('value'));
                             });
                             $('<span>')
                                 .addClass('series-info')
@@ -96,4 +96,4 @@ exports.nit = function(env) {
                         }));
     });
     return $.when.apply($, prom);
-}
+};

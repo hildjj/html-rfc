@@ -1,5 +1,3 @@
-var pretty = require('../lib/html-pretty').pretty;
-
 exports.nit = function(env) {
     var $ = env.$;
     // at least one author
@@ -10,7 +8,7 @@ exports.nit = function(env) {
 
     var hauth = $(".ietf .authors");
     hauth.empty();
-    hauth.comment("Automatically generated from $('.section#authors address')")
+    hauth.comment("Automatically generated from $('.section#authors address')");
     authors.each(function() {
         var author = $("<div>").addClass("author");
         $("<span>").addClass("initial").text($(".initial", this).text()).appendTo(author);
@@ -18,4 +16,4 @@ exports.nit = function(env) {
         $("<span>").addClass("company").text($(".org", this).text()).appendTo(author);
         author.appendTo(hauth);
     });
-}
+};

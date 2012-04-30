@@ -16,7 +16,7 @@ function f($, divs, depth, parnum) {
         var htxt = h.text().replace(/^[\d\.]+\s+/, "");
         h.text(num + " " + htxt);
 
-        var ldiv = $("<div>")
+        var ldiv = $("<div>");
         ldiv.text(num + " ");
         ldiv.append($("<a>").text(htxt).
             attr("href", "#" + $(div).attr('id')));
@@ -28,10 +28,10 @@ function f($, divs, depth, parnum) {
 }
 
 function toc_nit(env) {
-    var $ = env.$
+    var $ = env.$;
     var toc = $("div#toc");
     if (!toc.length) {
-        onCompletion("No #toc div");
+        return env.error("No #toc div");
     }
 
     toc.empty();
