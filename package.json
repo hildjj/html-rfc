@@ -23,7 +23,8 @@
     "optimist": "~0.3",
     "log4js": "git://github.com/IETF-Formatters/log4js-node.git",
     "bufferstream": "~0.5.1",
-    "mime-magic": "~0.2.6"
+    "mime-magic": "~0.2.6",
+    "canvas": "~0.11.3"
   },
   "directories": {
     "bin": "bin",
