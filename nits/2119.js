@@ -10,7 +10,7 @@ exports.nit = function(env) {
         }
     });
 
-    var mustard = /((MUST|SHOULD|MAY|SHALL|OPTIONAL|(NOT\s+)?RECOMMENDED)(\s+NOT)?)/g;
+    var mustard = /((MUST|SHOULD|MAY|SHALL|OPTIONAL|REQUIRED|(NOT\s+)?RECOMMENDED)(\s+NOT)?)/g;
     $('body').find('*').textNodes().each(function(i){
         var p = this.parentNode;
         if (p.className === "rfc2119") {
