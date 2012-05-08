@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 
-function css_nit(env) {
+exports.nit = function(env) {
     var $ = env.$;
     var def = $.Deferred();
 
@@ -20,5 +20,4 @@ function css_nit(env) {
     return def.promise();
 }
 
-css_nit.requires = "header.js";
-exports.nit = css_nit;
+exports.requires = "header.js";

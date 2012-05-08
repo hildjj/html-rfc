@@ -27,7 +27,7 @@ function f($, divs, depth, parnum) {
     return ul;
 }
 
-function toc_nit(env) {
+exports.nit = function(env) {
     var $ = env.$;
     var toc = $("div#toc");
     if (!toc.length) {
@@ -39,5 +39,4 @@ function toc_nit(env) {
     toc.append(f($, $("body > div.section"), 2, ""));
 }
 
-toc_nit.requires = ["div-number.js"];
-exports.nit = toc_nit;
+exports.requires = "div-number.js";

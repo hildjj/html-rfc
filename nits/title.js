@@ -1,4 +1,4 @@
-function title_nit(env) {
+exports.nit = function(env) {
     var $ = env.$;
     // Title is required
     var h1 = $("div#title h1");
@@ -10,5 +10,4 @@ function title_nit(env) {
     $("html > head > name[description]").attr('content', txt);
 }
 
-title_nit.requires = "header.js";
-exports.nit = title_nit;
+exports.requires = "header.js";

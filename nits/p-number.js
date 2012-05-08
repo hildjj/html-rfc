@@ -1,4 +1,4 @@
-function pnum_nit(env) {
+exports.nit = function(env) {
     var $ = env.$;
     var i = 0;
     $("p").each(function() {
@@ -11,5 +11,4 @@ function pnum_nit(env) {
         }
     });
 }
-pnum_nit.requires = "div-number.js";
-exports.nit = pnum_nit;
+exports.requires = "div-number.js";
