@@ -24,6 +24,12 @@ body {
 ul.toc {
   list-style-type: none;
 }
+.section {
+	clear: both;
+}
+.rfc2119 {
+	color: red;
+}
 -->
     </style>
   </head>
@@ -33,8 +39,8 @@ ul.toc {
       <div class='series'>Internet-Draft</div>
       <div class='label'>Intended Status</div>
       <div class='status'>Standards Track</div>
-      <div class='published'>2012-04-26</div>
-      <div class='expires'>2012-10-26</div>
+      <div class='published'>2012-05-08</div>
+      <div class='expires'>2012-11-08</div>
       <div class='authors'>
 <!--Automatically generated from $('.section#authors address')-->
         <div class='author'>
@@ -99,6 +105,12 @@ ul.toc {
             <li class='toc'>
               <div>3.2. <a href='#ascii-art-code-samples'>ASCII Art, code samples</a></div>
             </li>
+            <li class='toc'>
+              <div>3.3. <a href='#image-sample'>Images</a></div>
+            </li>
+            <li class='toc'>
+              <div>3.4. <a href='#websequencediagram-sample'>Sequence Diagrams</a></div>
+            </li>
           </ul>
         </li>
         <li class='toc'>
@@ -152,15 +164,35 @@ ul.toc {
         <h3>3.2. ASCII Art, code samples</h3>
         <pre class='code'>
 #include &lt;stdio.h&gt;
-int main(int argc, char **argv) 
+int main(int argc, char **argv)
 {
     printf("Hello, IETF\n");
-    return 0;  
+    return 0;
 }</pre>
       </div>
-      <div class='section' id='ascii-art-code-samples'>
-        <h3>Images</h3>
-        <img src='nit-flow.png' />
+      <div class='section' id='image-sample'>
+        <h3>3.3. Images</h3>
+        <p id='image-sample-p-1'>Include an <code>img</code> tag with a <code>src</code> attribute, which specifies a file name relative to the source document, or a http(s) URL for an image of type png, jpg, or gif. The image will be retrieved and converted to a data: URI as specified in RFC2397. The <code>alt</code> attribute is <span class='rfc2119'>REQUIRED</span>, and <span class='rfc2119'>MUST</span> be a complete, accessible description for any diagram intended to be normative.</p>
+        <pre class='code'>
+&lt;img src='nit-flow.png' alt='A description of the diagram'/&gt;
+        </pre>
+        <img src='nit-flow.png' alt='A description of the diagram'/>
+      </div>
+      <div class='section' id='websequencediagram-sample'>
+        <h3>3.4. Sequence Diagrams</h3>
+        <p id='websequencediagram-sample-p-1'>Include an image tag with <code>class='sequence'</code>, where the alt text is the <a href='http://www.websequencediagrams.com/'>WebSequenceDiagrams.com</a> source for the diagram.</p>
+        <pre class='code'>
+&lt;img class='sequence' alt='
+title Authentication Sequence
+Alice-&amp;gt;Bob: Authentication Request
+note right of Bob: Bob thinks about it
+Bob-&amp;gt;Alice: Authentication Response' /&gt;
+        </pre>
+        <img class='sequence' alt='
+title Authentication Sequence
+Alice-&gt;Bob: Authentication Request
+note right of Bob: Bob thinks about it
+Bob-&gt;Alice: Authentication Response' />
       </div>
     </div>
     <div id='workflow' class='section'>
@@ -186,6 +218,24 @@ int main(int argc, char **argv)
           <span class='series-info'>BCP 14, RFC 2119</span>
           <span>,</span>
           <span class='date'>March 1997</span>
+          <span>.</span>
+        </div>
+        <div id='rfc:2397' class='ref'>
+          <span id='RFC2397'>[RFC2397]</span>
+          <span class='author'>
+            <a href='mailto:masinter@parc.xerox.com' title='Xerox Palo Alto Research Center'>Masinter, L.</a>
+          </span>
+          <span>,</span>
+          <span class='title'>"The "data" URL scheme"</span>
+          <span class='reflinks'>
+            <span>[<a href='http://www.rfc-editor.org/rfc/rfc2397.txt'>TXT</a>]</span>
+            <span>[<a href='http://xml.resource.org/public/rfc/html/rfc2397.html'>HTML</a>]</span>
+            <span>[<a href='http://xml.resource.org/public/rfc/xml/rfc2397.xml'>XML</a>]</span>
+          </span>
+          <span>,</span>
+          <span class='series-info'>RFC 2397</span>
+          <span>,</span>
+          <span class='date'>August 1998</span>
           <span>.</span>
         </div>
         <div id='w3c:WD-html5-20120329' class='ref'>
