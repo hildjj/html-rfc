@@ -13,3 +13,9 @@ body {
 ul.toc {
   list-style-type: none;
 }
+.section {
+	clear: both;
+}
+.rfc2119 {
+	color: red;
+}
