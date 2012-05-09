@@ -21,6 +21,8 @@ var argv = opt
     .string('nitdir')
     .default('nitdir', nit_path)
     .describe('nitdir', 'A directory of modification scripts')
+    .boolean('final')
+    .describe('final', 'Prepare for final submission (makes the file harder to edit)')
     .boolean('rfc-editor')
     .describe('rfc-editor', "Perform final RFC-editor modifications")
     .argv;
@@ -46,6 +48,7 @@ if (input) {
 }
 
 if (output) {
+    argv.outdir = path.dirname(output);
     output = fs.createWriteStream(output);
     output.on('error', function(err) {
         log.error(err);
@@ -53,6 +56,7 @@ if (output) {
     });
 } else {
     output = process.stdout;
+    argv.outdir = process.cwd();
 }
 
 var r = new rfc.RFC(input, log, argv, function(err, r) {
