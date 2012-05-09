@@ -29,7 +29,7 @@ function bcat(bufs) {
     return buf;
 }
 
-function parse_buffer(buf, typ, that) {
+function parse_buffer(buf, typ, that, env) {
     var img = new Canvas.Image();
     img.onerror = function(er) {
         // this shouldn't happen, so don't bother to pass env in.
@@ -38,7 +38,9 @@ function parse_buffer(buf, typ, that) {
     img.src = buf;
     that.attr('width', img.width);
     that.attr('height', img.height);
-    that.attr('src', 'data:' + typ + ';base64,' + buf.toString('base64'));
+    if (env.argv['final']) {
+        that.attr('src', 'data:' + typ + ';base64,' + buf.toString('base64'));
+    }
 }
 
 var iter = 0;
@@ -53,7 +55,7 @@ function read_stream(s, typ, def, that, env) {
         env.error(def, er);
     });
     s.on('end', function() {
-        parse_buffer(bcat(bufs), typ, that);
+        parse_buffer(bcat(bufs), typ, that, env);
         def.resolve();
     });
 }
@@ -78,7 +80,7 @@ exports.nit = function(env) {
         if (!that.attr('alt')) {
             env.log.warn("No alt text on image: '%s'", isrc);
         }
-        if ((src.indexOf("data:") === 0) &&
+        if (((src.indexOf("data:") === 0) || !env.argv['final']) &&
             that.attr('height') &&
             that.attr('width')) {
             return; // continue
@@ -138,7 +140,7 @@ exports.nit = function(env) {
                         env.error(def, "Invalid data: URI encoding: ", m[2]);
                         return; // continue
                 }
-                parse_buffer(buf, m[1], that);
+                parse_buffer(buf, m[1], that, env);
                 def.resolve();
                 break;
             default:
