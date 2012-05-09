@@ -23,14 +23,16 @@ function getDiagram(that, message, sum, file, env, def) {
         } else {
             // save next to the output file
             that.attr('src', file);
-            var fn = path.join(env.argv.outdir, file);
-            fs.writeFile(fn, buf, function(er){
-                if (er) {
-                    env.error(er);
-                } else {
-                    def.resolve();
-                }
-            });
+            if (env.argv.outdir) {
+                var fn = path.join(env.argv.outdir, file);
+                fs.writeFile(fn, buf, function(er){
+                    if (er) {
+                        env.error(er);
+                    } else {
+                        def.resolve();
+                    }
+                });
+            }
         }
     });
 }

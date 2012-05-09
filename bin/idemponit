@@ -48,7 +48,11 @@ if (input) {
 }
 
 if (output) {
-    argv.outdir = path.dirname(output);
+    if (output === "/dev/null") {
+        argv.outdir = null;
+    } else {
+        argv.outdir = path.dirname(output);
+    }
     output = fs.createWriteStream(output);
     output.on('error', function(err) {
         log.error(err);
