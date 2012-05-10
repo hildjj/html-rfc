@@ -21,7 +21,7 @@ exports.nit = function(env) {
     var prom = [];
 
     // all references that haven't been filled in
-    $(".ref:empty").each(function() {
+    $("div.ref:empty").each(function() {
         var ref = $(this);
         var id = ref.attr("id");
 
@@ -97,3 +97,5 @@ exports.nit = function(env) {
     });
     return $.when.apply($, prom);
 };
+
+exports.requires = 'inline-refs.js';
