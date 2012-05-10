@@ -24,7 +24,10 @@ var argv = opt
     .boolean('final')
     .describe('final', 'Prepare for final submission (makes the file harder to edit)')
     .boolean('rfc-editor')
-    .describe('rfc-editor', "Perform final RFC-editor modifications")
+    .describe('rfc-editor', 'Perform final RFC-editor modifications')
+    .boolean('verbose')
+    .alias('verbose', 'v')
+    .describe('verbose', 'Increase the logging level to TRACE')
     .argv;
 
 if (argv['h']) {
@@ -36,6 +39,8 @@ var input = argv._.shift();
 var output = argv._.shift();
 var log = log4js.getLogger();
 log4js.appenderMakers['console']({"writer": function(evt) { process.stderr.write(evt + "\n")}});
+
+log.setLevel(argv.verbose ? "ALL" : "WARN");
 
 if (input) {
     input = fs.createReadStream(input);
