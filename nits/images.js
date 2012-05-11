@@ -5,29 +5,7 @@ var fs = require('fs');
 var path = require('path');
 var mm = require('mime-magic');
 var Canvas = require('canvas');
-
-function bcat(bufs) {
-    if (!Array.isArray(bufs)) {
-        bufs = arguments;
-    }
-    switch (bufs.length) {
-        case 0:
-            return new Buffer(0);
-        case 1:
-            return bufs[0];
-        default:
-            break;
-    }
-    var len = bufs.reduce(function(prev,cur) {
-        return prev + cur.length;
-    }, 0);
-    var buf = new Buffer(len);
-    bufs.reduce(function(prev,cur) {
-        cur.copy(buf, prev);
-        return prev + cur.length;
-    }, 0);
-    return buf;
-}
+var bstream = require('../lib/bstream.js')
 
 function parse_buffer(buf, typ, that, env) {
     var img = new Canvas.Image();
@@ -45,17 +23,17 @@ function parse_buffer(buf, typ, that, env) {
 
 var iter = 0;
 function read_stream(s, typ, def, that, env) {
-    var bufs = [];
+    var bufs = new bstream();
     var i = iter++;
 
     s.on('data', function(chunk) {
-        bufs.push(chunk);
+        bufs.write(chunk);
     });
     s.on('error', function(er) {
         env.error(def, er);
     });
     s.on('end', function() {
-        parse_buffer(bcat(bufs), typ, that, env);
+        parse_buffer(bufs.buffer(), typ, that, env);
         def.resolve();
     });
 }
