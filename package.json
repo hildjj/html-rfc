@@ -25,7 +25,8 @@
     "mime-magic": "~0.2.6",
     "canvas": "~0.11.3",
     "websequencediagrams": "~0.0.0",
-    "graphviz": "~0.0.6"
+    "graphviz": "~0.0.6",
+    "jQuery": "git://github.com/linuxwolf/node-jquery.git"
   },
   "directories": {
     "bin": "bin",
