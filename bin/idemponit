@@ -53,6 +53,7 @@ if (input) {
 }
 
 if (output) {
+    argv.outfile = output;
     if (output === "/dev/null") {
         argv.outdir = null;
     } else {
