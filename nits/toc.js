@@ -30,11 +30,13 @@ function f($, divs, depth, parnum) {
 exports.nit = function(env) {
     var $ = env.$;
     var toc = $("div#toc");
-    if (!toc.length) {
-        return env.error("No #toc div");
+    if (toc.length === 0) {
+        toc = $("<div id='toc' />");
+        $("div.section").first().before(toc);
     }
 
     toc.empty();
+    toc.comment(" Please do not edit the table of contents.\n     It was automatically generated. ");
     toc.append($("<h2>").text("Table of Contents"));
     toc.append(f($, $("body > div.section"), 2, ""));
 }
