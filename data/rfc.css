@@ -21,14 +21,25 @@ ul.toc {
 	color: red;
 }
 code, .code {
-	background-color: #eee;
+	background-color: rgba(0, 0, 0, 0.05);
 	font-family: 'Lucida Console', Monaco, monospace;
 }
 .code {
 	margin-left: 20px;
 	margin-right: 60px;
 	padding: 10px;
+	border: 1px solid rgba(0, 0, 0, 0.20);
+	border-radius: 4px;
+}
+
+@media screen {
+	/* this isn't good enough, but without JavaScript... */
+	p[id]:hover:after {
+		content:" [#" attr(id) "]";
+	}
 }
 @media print {
-     p[id]:after { content:" [#" attr(id) "]"; }  
+    p[id]:after { 
+     	content:" [#" attr(id) "]"; 
+    }  
 }
