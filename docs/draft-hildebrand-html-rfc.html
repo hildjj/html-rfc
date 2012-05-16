@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang='en'>
   <head>
     <title>HTML RFC Format</title>
@@ -7,31 +7,7 @@
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 <!-- non-standard, but makes this work for extra devices -->
     <meta name='viewport' content='width=device-width; initial-scale=1.0' />
-    <style type='text/css'>
-<!--
-body {
-    font-family: sans-serif;
-}
-.alt {
-    display: none;
-}
-.document * {
-    display: inline;
-}
-.hidden {
-    display: none;
-}
-ul.toc {
-  list-style-type: none;
-}
-.section {
-	clear: both;
-}
-.rfc2119 {
-	color: red;
-}
--->
-    </style>
+    <link rel='stylesheet' type='text/css' href='../data/rfc.css' />
   </head>
   <body>
     <div class='ietf document'>
@@ -39,8 +15,8 @@ ul.toc {
       <div class='series'>Internet-Draft</div>
       <div class='label'>Intended Status</div>
       <div class='status'>Standards Track</div>
-      <div class='published'>2012-05-10</div>
-      <div class='expires'>2012-11-10</div>
+      <div class='published'>2012-05-15</div>
+      <div class='expires'>2012-11-15</div>
       <div class='authors'>
 <!--Automatically generated from $('.section#authors address')-->
         <div class='author'>
@@ -57,81 +33,113 @@ ul.toc {
     </div>
     <div id='title'>
       <h1>HTML RFC Format</h1>
-      <div id='filename'>draft-hildebrand-html-rfc-<span class='version'>00</span>.html</div>
-    </div>
-    <div id='ipr' class='ipr-full3978'>
-      <h2>Status of this Memo</h2>
-      <p id='ipr-p-1'>By submitting this Internet-Draft, each author represents that any applicable patent or other IPR claims of which he or she is aware have been or will be disclosed, and any of which he or she becomes aware will be disclosed, in accordance with Section 6 of BCP 79.</p>
-      <p id='ipr-p-2'>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF), its areas, and its working groups. Note that other groups may also distribute working documents as Internet-Drafts.</p>
-      <p id='ipr-p-3'>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time. It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress".</p>
-    </div>
-    <div id='copyright'>
-      <h2>Copyright Notice</h2>
-      <p id='copyright-p-1'>Copyright © The Internet Society (2012). All Rights Reserved.</p>
+      <div id='filename'>draft-hildebrand-html-rfc-00.html</div>
     </div>
     <div id='abstract'>
       <h2>Abstract</h2>
       <p id='abstract-p-1'>This specification defines an HTML format that can be used for the production of RFCs.</p>
+    </div>
+    <div id='ipr' class='trust200902'>
+      <h2>Status of this Memo</h2>
+      <p id='ipr-p-1'>This Internet-Draft is submitted in full conformance with the provisions of <a class='ref' href='#rfc:5378'>BCP 78</a> and <a class='ref' href='#rfc:3979'>BCP 79</a>.</p>
+      <p id='ipr-p-2'>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF). Note that other groups may also distribute working documents as Internet-Drafts. The list of current Internet-Drafts is at <a href='http://datatracker.ietf.org/drafts/current/'>http://datatracker.ietf.org/drafts/current/</a>.</p>
+      <p id='ipr-p-3'>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time. It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
+      <p id='ipr-p-4'>This Internet-Draft will expire on November 15, 2012.</p>
+      <h2>Copyright Notice</h2>
+      <p id='ipr-p-6'>Copyright © 2012 IETF Trust and the persons identified as the document authors. All rights reserved.</p>
+      <p id='ipr-p-7'>This document is subject to <a class='ref' href='#rfc:5378'>BCP 78</a> and the IETF Trust's Legal Provisions Relating to <a href='http://trustee.ietf.org/license-info'>IETF Documents</a> in effect on the date of publication of this document. Please review these documents carefully, as they describe your rights and restrictions with respect to this document. Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
     </div>
     <div id='venue' class='rfceditor-remove'>
       <h2>Editorial Note</h2>
       <p id='venue-p-1'>Distribution of this document is unlimited. Please send comments to ...</p>
     </div>
     <div id='toc'>
+<!-- Please do not edit the table of contents.
+     It was automatically generated. -->
       <h2>Table of Contents</h2>
       <ul class='toc'>
         <li class='toc'>
           <div>1. <a href='#introduction'>Introduction</a></div>
         </li>
         <li class='toc'>
-          <div>2. <a href='#format'>HTML Format</a></div>
+          <div>2. <a href='#submittal'>Formats Accepted by the RFC Editor</a></div>
+        </li>
+        <li class='toc'>
+          <div>3. <a href='#format'>HTML Format</a></div>
           <ul class='toc'>
             <li class='toc'>
-              <div>2.1. <a href='#syntax'>Syntax</a></div>
+              <div>3.1. <a href='#syntax'>Syntax</a></div>
+            </li>
+            <li class='toc'>
+              <div>3.2. <a href='#structure'>Basic Structure</a></div>
               <ul class='toc'>
                 <li class='toc'>
-                  <div>2.1.1. <a href='#test'>a test section</a></div>
+                  <div>3.2.1. <a href='#doctype'>DOCTYPE</a></div>
+                </li>
+                <li class='toc'>
+                  <div>3.2.2. <a href='#header'>Charset Declaration</a></div>
+                </li>
+                <li class='toc'>
+                  <div>3.2.3. <a href='#style'>Style</a></div>
+                </li>
+                <li class='toc'>
+                  <div>3.2.4. <a href='#comments'>Comments</a></div>
+                </li>
+                <li class='toc'>
+                  <div>3.2.5. <a href='#sections'>Sections</a></div>
+                </li>
+                <li class='toc'>
+                  <div>3.2.6. <a href='#paragraphs'>Paragraphs</a></div>
+                </li>
+                <li class='toc'>
+                  <div>3.2.7. <a href='#internal-references'>Internal References</a></div>
+                </li>
+                <li class='toc'>
+                  <div>3.2.8. <a href='#external-references'>External References</a></div>
                 </li>
               </ul>
             </li>
           </ul>
         </li>
         <li class='toc'>
-          <div>3. <a href='#examples'>Examples</a></div>
+          <div>4. <a href='#elaborate'>More Elaborate Information</a></div>
+        </li>
+        <li class='toc'>
+          <div>5. <a href='#examples'>Examples</a></div>
           <ul class='toc'>
             <li class='toc'>
-              <div>3.1. <a href='#self-example'>Self</a></div>
+              <div>5.1. <a href='#self-example'>Self</a></div>
             </li>
             <li class='toc'>
-              <div>3.2. <a href='#ascii-art-code-samples'>ASCII Art, code samples</a></div>
+              <div>5.2. <a href='#ascii-art-code-samples'>ASCII Art, code samples</a></div>
             </li>
             <li class='toc'>
-              <div>3.3. <a href='#image-sample'>Images</a></div>
+              <div>5.3. <a href='#image-sample'>Images</a></div>
             </li>
             <li class='toc'>
-              <div>3.4. <a href='#websequencediagram-sample'>Sequence Diagrams</a></div>
+              <div>5.4. <a href='#websequencediagram-sample'>Sequence Diagrams</a></div>
             </li>
           </ul>
         </li>
         <li class='toc'>
-          <div>4. <a href='#workflow'>Workflow</a></div>
+          <div>6. <a href='#workflow'>Workflow</a></div>
         </li>
         <li class='toc'>
-          <div>5. <a href='#references'>References</a></div>
+          <div>7. <a href='#references'>References</a></div>
           <ul class='toc'>
             <li class='toc'>
-              <div>5.1. <a href='#normative'>Normative References</a></div>
+              <div>7.1. <a href='#normative'>Normative References</a></div>
             </li>
             <li class='toc'>
-              <div>5.2. <a href='#informative'>Informative References</a></div>
+              <div>7.2. <a href='#informative'>Informative References</a></div>
             </li>
           </ul>
         </li>
         <li class='toc'>
-          <div>6. <a href='#another-test'>another-test</a></div>
+          <div>8. <a href='#another-test'>another-test</a></div>
         </li>
         <li class='toc'>
-          <div>7. <a href='#authors'>Authors' Addresses</a></div>
+          <div>9. <a href='#authors'>Authors' Addresses</a></div>
         </li>
       </ul>
     </div>
@@ -139,29 +147,94 @@ ul.toc {
       <h2>1. Introduction</h2>
       <p id='introduction-p-1'>The intro</p>
     </div>
+    <div id='submittal' class='section'>
+      <h2>2. Formats Accepted by the RFC Editor</h2>
+      <p id='submittal-p-1'>What <span class='rfc2119'>MAY</span> be submitted to the RFC editor?</p>
+      <p id='submittal-p-2'>What <span class='rfc2119'>MUST</span> be submitted to the RFC editor?</p>
+      <p id='submittal-p-3'>Any tools are allowed, any original input format</p>
+      <p id='submittal-p-4'>RFC editor <span class='rfc2119'>MAY</span> generate other forms, if desired, iff she can determine that no normative information is lost</p>
+    </div>
     <div id='format' class='section'>
-      <h2>2. HTML Format</h2>
-      <p id='format-p-1'>The format</p>
+      <h2>3. HTML Format</h2>
+      <p id='format-p-1'>The format specified here is a subset of HTML5, deemed to be widely-implemented by common browsers at the time that the specification was created, likely to continue to be widely-implemented for in the future, and unlikely to cause security issues.</p>
       <div id='syntax' class='section'>
-        <h3>2.1. Syntax</h3>
+        <h3>3.1. Syntax</h3>
         <p id='syntax-p-1'>The following rules <span class='rfc2119'>SHALL</span> be enforced before submittal.</p>
         <ul>
-          <li>HTML <span class='rfc2119'>SHALL</span> be pretty-printed, using spaces only (not tabs)</li>
+          <li>The HTML source <span class='rfc2119'>MUST</span> be encoded as UTF-8, as specified in <a class='ref' href='#rfc:3629'>RFC 3629</a>.</li>
+          <li>The HTML source <span class='rfc2119'>MUST</span> be formatted in the manner of well-formed XML, with all elements start tags having matching end tags (or <code>&lt;element /&gt;</code> for empty elements), with all elements properly nested.</li>
+          <li>HTML <span class='rfc2119'>SHALL</span> be pretty-printed, using spaces (not tabs) for indentation.</li>
+          <li>Single quotes (U+0027 APOSTROPHE: <code>'</code>) <span class='rfc2119'>MUST</span> be used to quote attribute values. Unquoted attribute values are NOT ALLOWED.</li>
           <li>Two (2) spaces used for each level of indentation</li>
+          <li>Each text-containing element such as headings (<code>&lt;h1&gt;</code>-<code>&lt;h6&gt;</code>), paragraphs (<code>&lt;p&gt;</code>), or list items (<code>&lt;li&gt;</code>), will be rendered as a single line without wrapping. </li>
         </ul>
-        <div id='test' class='section'>
-          <h4>2.1.1. a test section</h4>
+        <p id='syntax-p-3'>Note: none of these rules affect the rendered output of the HTML, but are intended to increase the chance that multiple tools that process the format will generate identical syntax. In turn, this will make difference tools that operate on the HTML source easier to write.</p>
+      </div>
+      <div class='section' id='structure'>
+        <h3>3.2. Basic Structure</h3>
+        <div class='section' id='doctype'>
+          <h4>3.2.1. DOCTYPE</h4>
+          <p id='doctype-p-1'>The DOCTYPE of the document <span class='rfc2119'>MUST</span> be "html", which declares that the document is compliant with <a href='w3c.WD-html5-20120329' class='ref'>HTML5</a>. For example, the document will start with exactly this string:</p>
+          <pre class='code'>&lt;!DOCTYPE html&gt;</pre>
+        </div>
+        <div class='section' id='header'>
+          <h4>3.2.2. Charset Declaration</h4>
+          <p id='header-p-1'>In order to be correctly processed by browsers that load the HTML using a mechanism that does not provide a valid MIME content-type or charset, the HTML <code>&lt;header&gt;</code> element <span class='rfc2119'>MUST</span> contain a <code>&lt;meta&gt;</code> element, with the attributes <code>http-equiv='Content-Type'</code> and <code>content='text/html; charset=utf-8'</code>. This will look like:</p>
+          <pre class='code'>&lt;meta http-equiv='Content-Type' content='text/html; charset=utf-8' /&gt;</pre>
+        </div>
+        <div class='section' id='style'>
+          <h4>3.2.3. Style</h4>
+          <p id='style-p-1'>The header <span class='rfc2119'>SHOULD</span> contain an embedded stylesheet. The styles in the stylesheet are to be set consistently between documents by the RFC editor, according to the best practices of the day. The stylesheet <span class='rfc2119'>MUST NOT</span> be considered as normative information. To ensure consistent formatting, individual <code>style</code> attributes <span class='rfc2119'>SHOULD NOT</span> be used in the main portion of the document source except in highly exception circumstances; each use <span class='rfc2119'>MUST</span> be individually justified.</p>
+        </div>
+        <div class='section' id='comments'>
+          <h4>3.2.4. Comments</h4>
+          <p id='comments-p-1'>HTML comments <span class='rfc2119'>MAY</span> be used, but <span class='rfc2119'>MUST NOT</span> contain normative information. One example is to clarify particular choices in the HTML format. Example:</p>
+          <pre class='code'>&lt;!-- Automatically generated: do not modify --&gt;</pre>
+        </div>
+        <div class='section' id='sections'>
+          <h4>3.2.5. Sections</h4>
+          <p id='sections-p-1'>Each section of the document <span class='rfc2119'>SHALL</span> be formatted as a <code>&lt;div&gt;</code> tag, with a class attribute with value "section". A document-unique, <code>id</code> attribute <span class='rfc2119'>SHOULD</span> be assigned to each section <code>&lt;div&gt;</code>. The <code>id</code> <span class='rfc2119'>MAY</span> be human-readable or generated. Each section <code>&lt;div&gt;</code> <span class='rfc2119'>MUST</span> contain a header tag (<code>&lt;h2&gt;</code>-<code>&lt;h6&gt;</code>) of the appropriate depth, with top-level sections getting an <code>&lt;h2&gt;</code> tag, and each nested section getting the next higher header level. If more than five levels of headers are required, <code>&lt;h6&gt;</code> <span class='rfc2119'>MUST</span> be used for each deeper-nested section. However, nesting sections more than five levels deep is <span class='rfc2119'>NOT RECOMMENDED</span>.</p>
+          <p id='sections-p-2'>The text in each header tag <span class='rfc2119'>MUST</span> begin with the section number. Section numbers <span class='rfc2119'>MUST</span> begin at "1.", and <span class='rfc2119'>MUST</span> increment by one for each successive section at the same level. Subsections <span class='rfc2119'>MUST</span> be numbered by appending the subsection number to the parent section number.</p>
+          <p id='sections-p-3'>Within a section, each "normal" paragraph <span class='rfc2119'>MUST</span> be surrounded by a <code>&lt;p&gt;</code> element. For example:</p>
+          <pre class='code'>
+&lt;div class='section' id='example'&gt;
+  &lt;h2&gt;1. Example Section&lt;/h2&gt;
+  &lt;p id='example-p-1'&gt;This is a description of the example&lt;/p&gt;
+  &lt;div class='section' id='nested'&gt;
+    &lt;h3&gt;1.1. Nested Section&lt;/h3&gt;
+    &lt;p id='nested-p-1'&gt;This is a description of the nested section.&lt;/p&gt;
+    &lt;p id='nested-p-2'&gt;This is the second description paragraph.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+        <div class='section' id='paragraphs'>
+          <h4>3.2.6. Paragraphs</h4>
+          <p id='paragraphs-p-1'>Paragraphs <span class='rfc2119'>MUST</span> be contained in a <a href='#sections'>section</a> div. A document-unique, <code>id</code> attribute <span class='rfc2119'>SHOULD</span> be assigned to each <code>&lt;p&gt;</code>. The <code>id</code> will usually be machine-generated, but <span class='rfc2119'>MAY</span> be human-readable if desired.</p>
+          <p id='paragraphs-p-2'>It is <span class='rfc2119'>RECOMMENDED</span> that each paragraph be kept relatively small compared to a "page" in previous RFC formats, so that references to each paragraph are at least as valuable as page references have been in previous formats.</p>
+        </div>
+        <div class='section' id='internal-references'>
+          <h4>3.2.7. Internal References</h4>
+          <p id='internal-references-p-1' />
+        </div>
+        <div class='section' id='external-references'>
+          <h4>3.2.8. External References</h4>
+          <p id='external-references-p-1' />
         </div>
       </div>
     </div>
+    <div class='section' id='elaborate'>
+      <h2>4. More Elaborate Information</h2>
+      <p id='elaborate-p-1'>
+      </p>
+    </div>
     <div class='section' id='examples'>
-      <h2>3. Examples</h2>
+      <h2>5. Examples</h2>
       <div id='self-example' class='section'>
-        <h3>3.1. Self</h3>
+        <h3>5.1. Self</h3>
         <p id='self-example-p-1'>This draft itself is a good example of how to use the format. Please view-source.</p>
       </div>
       <div class='section' id='ascii-art-code-samples'>
-        <h3>3.2. ASCII Art, code samples</h3>
+        <h3>5.2. ASCII Art, code samples</h3>
         <pre class='code'>
 #include &lt;stdio.h&gt;
 int main(int argc, char **argv)
@@ -171,7 +244,7 @@ int main(int argc, char **argv)
 }</pre>
       </div>
       <div class='section' id='image-sample'>
-        <h3>3.3. Images</h3>
+        <h3>5.3. Images</h3>
         <p id='image-sample-p-1'>Include an <code>img</code> tag with a <code>src</code> attribute, which specifies a file name relative to the source document, or a http(s) URL for an image of type png, jpg, or gif. The image will be retrieved and converted to a data: URI as specified in <a class='ref' href='#rfc:2397'>RFC2397</a>. The <code>alt</code> attribute is <span class='rfc2119'>REQUIRED</span>, and <span class='rfc2119'>MUST</span> be a complete, accessible description for any diagram intended to be normative.</p>
         <pre class='code'>
 &lt;img src='nit-flow.png' alt='A description of the diagram'/&gt;
@@ -179,7 +252,7 @@ int main(int argc, char **argv)
         <img src='nit-flow.png' alt='A description of the diagram' width='236' height='176' />
       </div>
       <div class='section' id='websequencediagram-sample'>
-        <h3>3.4. Sequence Diagrams</h3>
+        <h3>5.4. Sequence Diagrams</h3>
         <p id='websequencediagram-sample-p-1'>Include an image tag with <code>class='sequence'</code>, where the alt text is the <a href='http://www.websequencediagrams.com/'>WebSequenceDiagrams.com</a> source for the diagram. A reminder: in the alt text the author <span class='rfc2119'>MUST</span> escape all less-than (&lt; to &amp;lt;), greater-than (&gt; to &amp;gt;), and ampersand (&amp; to &amp;amp;) characters, in the same manner normally required by HTML.</p>
         <pre class='code'>
 &lt;img class='sequence' alt='
@@ -196,12 +269,12 @@ Bob-&gt;Alice: Authentication Response' id='e2320f07051d02b11826f58879667940d614
       </div>
     </div>
     <div id='workflow' class='section'>
-      <h2>4. Workflow</h2>
+      <h2>6. Workflow</h2>
     </div>
     <div id='references' class='section'>
-      <h2>5. References</h2>
+      <h2>7. References</h2>
       <div id='normative' class='section'>
-        <h3>5.1. Normative References</h3>
+        <h3>7.1. Normative References</h3>
         <div id='rfc:2119' class='ref'>
           <span id='RFC2119'>[RFC2119]</span>
           <span class='author'>
@@ -238,6 +311,20 @@ Bob-&gt;Alice: Authentication Response' id='e2320f07051d02b11826f58879667940d614
           <span class='date'>August 1998</span>
           <span>.</span>
         </div>
+        <div id='rfc:3629' class='ref'>
+          <span id='RFC3629'>[RFC3629]</span>
+          <span class='author'>Yergeau, F.</span>
+          <span>,</span>
+          <span class='title'>"UTF-8, a transformation format of ISO 10646"</span>
+          <span class='reflinks'>
+            <span>[<a href='http://www.rfc-editor.org/rfc/rfc3629.txt'>TXT</a>]</span>
+          </span>
+          <span>,</span>
+          <span class='series-info'>STD 63, RFC 3629</span>
+          <span>,</span>
+          <span class='date'>November 2003</span>
+          <span>.</span>
+        </div>
         <div id='w3c:WD-html5-20120329' class='ref'>
           <span id='W3C.WD-html5-20120329'>[W3C.WD-html5-20120329]</span>
           <span class='author'>Hickson, I.</span>
@@ -254,16 +341,16 @@ Bob-&gt;Alice: Authentication Response' id='e2320f07051d02b11826f58879667940d614
         </div>
       </div>
       <div id='informative' class='section'>
-        <h3>5.2. Informative References</h3>
+        <h3>7.2. Informative References</h3>
       </div>
     </div>
     <div id='another-test' class='section'>
-      <h2>6. another-test</h2>
+      <h2>8. another-test</h2>
       <p id='another-test-p-1'> something informative</p>
     </div>
     <div id='authors' class='section'>
-      <h2>7. Authors' Addresses</h2>
-      <address class='vcard' id='jhildebr@cisco.com'>
+      <h2>9. Authors' Addresses</h2>
+      <address class='vcard' id='jhildebr-cisco.com'>
         <span class='vcardline'>
           <span class='fn'>Joe Hildebrand</span>
           <span class='role'>(editor)</span>
@@ -286,7 +373,7 @@ Bob-&gt;Alice: Authentication Response' id='e2320f07051d02b11826f58879667940d614
           </a>
         </span>
       </address>
-      <address class='vcard'>
+      <address class='vcard' id='julian.reschke-greenbytes.de'>
         <span class='vcardline'>
           <span class='fn'>Julian F. Reschke</span>
           <span class='n hidden'>
