@@ -20,6 +20,8 @@ exports.nit = function(env) {
     var $ = env.$;
     var prom = [];
 
+    // TODO: Sort refs by series, then number.
+
     // all references that haven't been filled in
     $("div.ref:empty").each(function() {
         var ref = $(this);
@@ -30,7 +32,7 @@ exports.nit = function(env) {
         }
         var matches = id.match(/^(\w+):(.*)/);
         if (!matches) {
-            return env.error("bad id");
+            return env.error("bad id", id);
         }
         var series = matches[1].toLowerCase();
         var u = refmap[series];
@@ -44,7 +46,7 @@ exports.nit = function(env) {
         }
 
         u = u.replace(/\{id\}/, id);
-        env.log.info("Getting " + series + ":", id, "(" + u + ")");
+        env.log.info("Getting", series, id, "(" + u + ")");
 
         prom.push($.get(u)
                         .done(function(data){

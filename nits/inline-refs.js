@@ -26,10 +26,11 @@ exports.nit = function(env) {
         var found = false;
 
         var val = this.nodeValue.replace(ref_re, function(s, series, num) {
-            var ref_id = series.toLowerCase() + ":" + num;
-            var ref_id_q = series.toLowerCase() + "\\:" + num;
+            series = series.toLowerCase();
+            var ref_id = series + ":" + num;
+            var ref_id_q = series + "\\:" + num;
             if ($("div.ref#"+ref_id_q).length === 0) {
-                console.log('no match')
+                env.log.warn('Adding to references:', ref_id);
                 // no ref in the references section yet.
                 var top = $("div.section#references");
                 if (top.length === 0) {
