@@ -14,12 +14,16 @@ function f($, divs, depth, parnum) {
         }
         var num = parnum + (i+1) + ".";
         var htxt = h.text().replace(/^[\d\.]+\s+/, "");
-        h.text(num + " " + htxt);
+        h.empty();
+        h.text(" " + htxt);
+        var id = $(div).attr('id');
+        h.prepend($("<a>").addClass('self-ref').text(num).
+            attr("href", "#" + id));
 
         var ldiv = $("<div>");
         ldiv.text(num + " ");
         ldiv.append($("<a>").text(htxt).
-            attr("href", "#" + $(div).attr('id')));
+            attr("href", "#" + id));
         li.append(ldiv);
         li.append(f($, $("> div.section", div), depth+1, num));
         ul.append(li);
