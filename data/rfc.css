@@ -1,45 +1,136 @@
 body {
-    font-family: sans-serif;
-    margin: 0 40px 0 20px;
+  font-family: sans-serif;
+  margin: 0 40px 0 20px;
 }
 .alt {
-    display: none;
-}
-.document * {
-    display: inline;
+  display: none;
 }
 .hidden {
-    display: none;
+  display: none;
+}
+.document {
+  float: right;
+  border: 1px solid rgba(0, 0, 0, 0.20);
+  border-radius: 10px;
+  padding: 10px;
+  background: rgba(0, 0, 0, .05);
+}
+.document > .identifiers * {
+  float: right;
+  clear: both;
+}
+.document .workgroup:before {
+  content:  "Workgroup: ";
+  font-weight: bold;
+}
+.document .series:before {
+  content:  "Series: ";
+  font-weight: bold;
+}
+.document .status:before {
+  content:  "Intended Status: ";
+  font-weight: bold;
+}
+.document .published:before {
+  content:  "Published: ";
+  font-weight: bold;
+}
+.document .expires:before {
+  content:  "Expires: ";
+  font-weight: bold;
+}
+.document .version:before {
+  content:  "Version: ";
+  font-weight: bold;
+}
+.authors {
+  padding-top: 15px;
+  clear: both;
+}
+.authors .author:before {
+  /* TODO: "author" for a single author.  Probably need to fix in HTML. */
+  content: "Author: ";
+  font-weight: bold;
+}
+.authors .author {
+  float: right;
+  clear: both;
+}
+.authors .author .company:before {
+  content:  "(";
+}
+.authors .author .company:after {
+  content:  ")";
 }
 ul.toc {
   list-style-type: none;
 }
 .section {
-	clear: both;
+  clear: both;
 }
 .rfc2119 {
-	color: red;
+  color: red;
 }
 code, .code {
-	background-color: rgba(0, 0, 0, 0.05);
-	font-family: 'Lucida Console', Monaco, monospace;
+  background-color: rgba(0, 0, 0, 0.05);
+  font-family: 'Lucida Console', Monaco, monospace;
+  font-size: 90%;
+  line-height: 1.15em;
 }
 .code {
-	margin-left: 20px;
-	margin-right: 60px;
-	padding: 10px;
-	border: 1px solid rgba(0, 0, 0, 0.20);
-	border-radius: 4px;
+  margin-left: 20px;
+  margin-right: 60px;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.20);
+  border-radius: 4px;
 }
-
+a.self-ref {
+  color: rgba(0, 0, 0, 0.65);
+  text-decoration: none;
+}
+div:not(#toc) li {
+  text-align: justify;
+  padding: 4px;
+}
+p {
+  text-align: justify;
+}
 @media screen {
-	/* this isn't good enough, but without JavaScript... */
-	p[id]:hover:after {
-		content:" [#" attr(id) "]";
-	}
+  /* this isn't good enough, but without JavaScript... */
+  p[id]:active:after {
+    content: " [#" attr(id) "]";
+  }
 }
 @media print {
-    p[id]:after { 
-     	content:" [#" attr(id) "]"; 
-    }  
+  p[id]:after {
+    content: " [#" attr(id) "]";
+  }
+  a[href]:after {
+    content: " [" attr(href) "]";
+  }
+}
+.rfceditor-remove:before {
+  content: "The RFC Editor\awill remove\athis section";
+  background-color: rgba(235, 249, 105, 1);
+  float: right;
+  white-space: pre;
+  padding: 4px;
+}
+.rfceditor-remove {
+  background-color: rgba(235, 249, 105, 0.25);
+  clear: both;
+}
+address {
+  padding-bottom: 10px;
+}
+address > span {
+  display: block;
+}
+
+address * {
+  font-style: normal;
+}
+address .fn {
+  font-weight: bold;
+  font-style: normal;
 }
