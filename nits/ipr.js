@@ -1,5 +1,7 @@
 var dateformat = require('dateformat');
 
+// TODO: deal with: http://www.rfc-editor.org/rfc-style-guide/status-memos.txt
+
 var TLPs = {
     'trust200902':
         ["", ""],
