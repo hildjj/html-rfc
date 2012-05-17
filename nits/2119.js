@@ -13,7 +13,8 @@ exports.nit = function(env) {
     var mustard = /((MUST|SHOULD|MAY|SHALL|OPTIONAL|REQUIRED|(NOT\s+)?RECOMMENDED)(\s+NOT)?)/g;
     $('body').find('*').textNodes().each(function(i){
         var p = this.parentNode;
-        if (p.className === "rfc2119") {
+        var pname = p.nodeName.toLowerCase();
+        if ((p.className === "rfc2119") || (pname === 'pre') || (pname === 'code')) {
             return;
         }
         var found = false;

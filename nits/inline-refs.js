@@ -17,8 +17,10 @@ exports.nit = function(env) {
         var p = this.parentNode;
 
         // if we're in the reference, don't do anything
-        if ((p.nodeName.toLowerCase() === "span") &&
-            ($(p).closest("div.ref").length > 0)) {
+        var pname = p.nodeName.toLowerCase();
+        if (((pname === "span") && ($(p).closest("li.ref").length > 0)) ||
+            (pname === 'pre') ||
+            (pname === 'code')) {
             return;
         }
 
@@ -29,7 +31,7 @@ exports.nit = function(env) {
             series = series.toLowerCase();
             var ref_id = series + ":" + num;
             var ref_id_q = series + "\\:" + num;
-            if ($("div.ref#"+ref_id_q).length === 0) {
+            if ($("li.ref#"+ref_id_q).length === 0) {
                 env.log.warn('Adding to references:', ref_id);
                 // no ref in the references section yet.
                 var top = $("div.section#references");
@@ -42,7 +44,12 @@ exports.nit = function(env) {
                     norm = $("<div id='normative' class='section'>");
                     top.prepend(norm);
                 }
-                $("<div id='" + ref_id + "' class='ref'>").appendTo(norm);
+                var ul = $("ul", norm);
+                if (ul.length === 0) {
+                    ul = $("<ul>")
+                    norm.append(ul);
+                }
+                $("<li id='" + ref_id + "' class='ref'>").appendTo(norm);
             }
             if (only_check) {
                 return s;
