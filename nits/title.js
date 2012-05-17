@@ -12,15 +12,6 @@ exports.nit = function(env) {
     var txt = h1.text();
     $("html > head > title").text(txt);
     $("html > head > name[description]").attr('content', txt);
-
-    if (env.argv.outfile) {
-        var fn = $("div#title > div#filename")
-        if (fn.length === 0) {
-            fn = $("<div id='filename' />");
-            h1.after(fn);
-        }
-        fn.text(path.basename(env.argv.outfile));
-    }
 }
 
 exports.requires = ["header.js", "authors.js"];
