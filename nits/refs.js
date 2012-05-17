@@ -21,9 +21,10 @@ exports.nit = function(env) {
     var prom = [];
 
     // TODO: Sort refs by series, then number.
+    // TODO: support div.inforef
 
     // all references that haven't been filled in
-    $("div.ref:empty").each(function() {
+    $("li.ref:empty").each(function() {
         var ref = $(this);
         var id = ref.attr("id");
 
