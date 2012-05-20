@@ -217,6 +217,10 @@
           <h4><a class='self-ref' href='#style'>3.2.4.</a> Style</h4>
           <p id='style-p-1'>The header <span class='rfc2119'>SHOULD</span> contain an embedded stylesheet. The styles in the stylesheet are to be set consistently between documents by the RFC editor, according to the best practices of the day. The stylesheet <span class='rfc2119'>MUST NOT</span> be considered as normative information. To ensure consistent formatting, individual <code>style</code> attributes <span class='rfc2119'>SHOULD NOT</span> be used in the main portion of the document source except in highly exception circumstances; each use <span class='rfc2119'>MUST</span> be individually justified.</p>
         </div>
+        <div class='section' id='emphasis'>
+          <h4>Emphasis</h4>
+          <p id='emphasis-p-1'>Words or phrases may be emphasized using the <code>&lt;strong&gt;</code> element for "<strong>bold</strong>", and the <code>&lt;em&gt;</code> element for "<em>italics</em>".  Underlining SHOULD NOT be used except for links, to avoid visual confusion.</p>
+        </div>
         <div class='section' id='comments'>
           <h4><a class='self-ref' href='#comments'>3.2.5.</a> Comments</h4>
           <p id='comments-p-1'>HTML comments <span class='rfc2119'>MAY</span> be used, but <span class='rfc2119'>MUST NOT</span> contain normative information. One example is to clarify particular choices in the HTML format. Example:</p>
@@ -245,6 +249,22 @@
           <h4><a class='self-ref' href='#paragraphs'>3.2.7.</a> Paragraphs</h4>
           <p id='paragraphs-p-1'>Paragraphs <span class='rfc2119'>MUST</span> be contained in a <a href='#sections'>section</a> div. A document-unique, <code>id</code> attribute <span class='rfc2119'>SHOULD</span> be assigned to each <code>&lt;p&gt;</code>. The <code>id</code> will usually be machine-generated, but <span class='rfc2119'>MAY</span> be human-readable if desired.</p>
           <p id='paragraphs-p-2'>It is <span class='rfc2119'>RECOMMENDED</span> that each paragraph be kept relatively small compared to a "page" in previous RFC formats, so that references to each paragraph are at least as valuable as page references have been in previous formats.</p>
+        </div>
+        <div class='section' id='lists'>
+          <h4>Lists</h4>
+          <p id='lists-p-1'>Lists may be used inside a section <code>&lt;div&gt;</code>, and may nest in other lists as needed.  However, lists MUST NOT be nested inside a <code>&lt;p&gt;</code> element.  Unordered lists (<code>&lt;ul&gt;</code>) and ordered lists (<code>&lt;ol&gt;</code>) may both be used.  For example:</p>
+          <pre class='code'>
+&lt;div class='section' id='lists'&gt;
+  &lt;h4&gt;Unordered list&lt;/h4&gt;
+  &lt;p id='lists-p-1'&gt;An explanation:&lt;/p&gt;
+  <strong>&lt;ul&gt;</strong>
+    &lt;li&gt;One&lt;/li&gt;
+    &lt;li&gt;Two&lt;/li&gt;
+    <strong>&lt;ol&gt;</strong>
+      &lt;li&gt;Two.1: (this one is numbered)&lt;/li&gt;
+    <strong>&lt;/ol&gt;</strong>
+  <strong>&lt;/ul&gt;</strong>
+&lt;/div&gt;</pre>
         </div>
         <div class='section' id='references'>
           <h4><a class='self-ref' href='#references'>3.2.8.</a> References</h4>
