@@ -69,14 +69,21 @@ if (output) {
     argv.outdir = process.cwd();
 }
 
-var r = new rfc.RFC(input, log, argv, function(err, r) {
-    if (!err) {
-        r.lint(argv.nitdir, function(err, doc) {
-            if (err) {
-                process.exit(1);
-            }
-            pretty(doc, output);
-        });
-    }
-});
+function logErr(er) {
+    log.error(er);
+    process.exit(1);
+}
+
+var home = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
+var ihome = path.join(home, ".idemponit");
+
+new rfc.RFC(input, log, argv).done(function(r) {
+    r.loadNits(argv.nitdir).done(function() {
+        r.loadNits(ihome).always(function() {
+            r.lint().done(function() {
+                pretty(r.document, output);
+            }).fail(logErr);
+        }); // don't log errors loading ihome
+    }).fail(logErr);
+}).fail(logErr);
 
