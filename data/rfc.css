@@ -79,10 +79,17 @@ code, .code {
 }
 .code {
   margin-left: 20px;
-  margin-right: 60px;
+  margin-right: 20px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.20);
   border-radius: 4px;
+  float: left;
+}
+.code + * {
+  clear: both;
+}
+img {
+  display: block;
 }
 a.self-ref {
   color: rgba(0, 0, 0, 0.65);
