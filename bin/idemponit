@@ -1,15 +1,19 @@
 #!/usr/bin/env node
 // -*- js -*-
 
-var rfc = require('../lib/html-rfc');
-var pretty = require('../lib/html-pretty').pretty;
-var opt = require('optimist');
+var fs   = require('fs');
 var path = require('path');
-var fs = require('fs');
+
+var jQuery = require('jQuery');
 var log4js = require('log4js');
+var opt    = require('optimist');
+
+var pretty   = require('../lib/html-pretty').pretty;
+var rfc      = require('../lib/html-rfc');
+var whenEver = require('../lib/misc').whenEver;
 
 var nit_path = path.resolve(path.dirname(module.filename),
-                            "../nits")
+                            "../nits");
 
 var argv = opt
     .usage('Update an HTML I-D or RFC\n' +
@@ -19,7 +23,6 @@ var argv = opt
     .boolean('h')
     .describe('h', 'Show help')
     .string('nitdir')
-    .default('nitdir', nit_path)
     .describe('nitdir', 'A directory of modification scripts')
     .boolean('final')
     .describe('final', 'Prepare for final submission (makes the file harder to edit)')
@@ -74,16 +77,36 @@ function logErr(er) {
     process.exit(1);
 }
 
+// use (in order):
+//  - core set
+//  - per-user set
+//  - others specified on the command-line
 var home = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
 var ihome = path.join(home, ".idemponit");
+var ndirs = [nit_path, ihome];
+if (argv.nitdir) {
+    ndirs = ndirs.concat(argv.nitdir);
+}
 
 new rfc.RFC(input, log, argv).done(function(r) {
-    r.loadNits(argv.nitdir).done(function() {
-        r.loadNits(ihome).always(function() {
+    whenEver(ndirs, function(p) {
+        // which of the nit dirs exist?
+        var def = jQuery.Deferred();
+        path.exists(p, function(exists) {
+            def.resolve(exists ? p : null);
+        });
+        return def;
+    }).done(function() {
+        whenEver(arguments, function(d) {
+            // each of the existing paths, plus nulls
+            return d ? r.loadDir(d) : null;
+        }).done(function() {
             r.lint().done(function() {
+                // We're finally done
                 pretty(r.document, output);
             }).fail(logErr);
-        }); // don't log errors loading ihome
+        }).fail(logErr);
     }).fail(logErr);
 }).fail(logErr);
+
 
