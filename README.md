@@ -2,27 +2,33 @@ IETF RFCs with the authoring, archival, and reading formats all being HTML.
 
 A prototype, for now.
 
+### Installation
 
-### Lint Usage
-Write output to a named file (can be the same as input file):
+Eventually, this project will be put into [NPM](http://npmjs.org/).  Until then:
 
-    node src/main/javascript input.html output.html
+	git clone git://github.com/IETF-Formatters/html-rfc.git
+	cd html-rfc
+	npm install
 
-Write output to stdout:
+### idemponit Usage
+Convert input.html to output.html, fixing it up:
 
-    node src/main/javascript input.html -
+    bin/idemponit input.html output.html
 
+Convert input.html in-place, making input.html.bak be the old version:
 
-### Testing changes to lint program
-The lint process supports an optional 'nitdir' argument, which is a handy way
-to run tests of expected behavior. There is currently no automated regression
-or unit testing, but it would be straightforward to convert the semi-automatic
-tests to automated ones.
+    bin/idemponit -b input.html
 
-To run tests:
+Idemponit will read all of the fixup routines from the nits/ directory, applying each one to the input before serializing the output as well-formed HTML5.
 
-    node src/main/javascript --nitdir src/test/javascript/basics src/test/resources/test-basics.html /tmp/out.html
+If you want to have your own set of fixup routines, put .js files in ~/.idemponit
 
+Pass in more directories (perhaps document-specific) with --nitdir on the command line.
+
+### rfcq Usage
+To test out a jQuery selector, or to retrieve meta-data from a document, use bin/rfcq:
+
+	bin/rfcq '$(".author .surname").first().text()' docs/draft-hildebrand-html-rfc.html
 
 ### License
 This code is licensed under the [Apache Software License, 2.0](http://www.apache.org/licenses/LICENSE-2.0)

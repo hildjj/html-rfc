@@ -8,9 +8,13 @@ var jQuery = require('jQuery');
 var log4js = require('log4js');
 var opt    = require('optimist');
 
-var pretty   = require('../lib/html-pretty').pretty;
-var rfc      = require('../lib/html-rfc');
-var whenEver = require('../lib/misc').whenEver;
+var pretty = require('../lib/html-pretty').pretty;
+var rfc    = require('../lib/html-rfc');
+var nit    = require('../lib/nit');
+var misc   = require('../lib/misc');
+
+var whenEver = misc.whenEver;
+var rename   = misc.deferize(fs.rename);
 
 var nit_path = path.resolve(path.dirname(module.filename),
                             "../nits");
@@ -22,6 +26,9 @@ var argv = opt
            'output defaults to stdout')
     .boolean('h')
     .describe('h', 'Show help')
+    .boolean('backup')
+    .describe('backup', 'Create a backup file of the input, then overwrite the input file.  Allows 1+ input files.')
+    .alias('backup', 'b')
     .string('nitdir')
     .describe('nitdir', 'A directory of modification scripts')
     .boolean('final')
@@ -38,44 +45,45 @@ if (argv['h']) {
     process.exit(64);
 }
 
-var input = argv._.shift();
-var output = argv._.shift();
-var log = log4js.getLogger();
-log4js.appenderMakers['console']({"writer": function(evt) { process.stderr.write(evt + "\n")}});
-
-log.setLevel(argv.verbose ? "ALL" : "WARN");
-
-if (input) {
-    input = fs.createReadStream(input);
-    input.on('error', function(err) {
-        log.error(err);
-        process.exit(1);
-    });
-} else {
-    input = process.stdin;
-}
-
-if (output) {
-    argv.outfile = output;
-    if (output === "/dev/null") {
-        argv.outdir = null;
-    } else {
-        argv.outdir = path.dirname(output);
-    }
-    output = fs.createWriteStream(output);
-    output.on('error', function(err) {
-        log.error(err);
-        process.exit(1);
-    });
-} else {
-    output = process.stdout;
-    argv.outdir = process.cwd();
-}
-
 function logErr(er) {
     log.error(er);
     process.exit(1);
 }
+
+function process_rfc(input, output, nits) {
+    if (input) {
+        input = fs.createReadStream(input);
+        input.on('error', logErr);
+    } else {
+        input = process.stdin;
+    }
+
+    if (output) {
+        argv.outfile = output;
+        if (output === "/dev/null") {
+            argv.outdir = null;
+        } else {
+            argv.outdir = path.dirname(output);
+        }
+        output = fs.createWriteStream(output);
+        output.on('error', logErr);
+    } else {
+        output = process.stdout;
+        argv.outdir = process.cwd();
+    }
+
+    var arrfc; // pirates write these
+    return new rfc.RFC(input, log, argv).pipe(function(r) {
+        arrfc = r;
+        return arrfc.lint(nits);
+    }).done(function() {
+        pretty(arrfc.document, output);
+    });
+}
+
+var log = log4js.getLogger();
+log4js.appenderMakers['console']({"writer": function(evt) { process.stderr.write(evt + "\n")}});
+log.setLevel(argv.verbose ? "ALL" : "WARN");
 
 // use (in order):
 //  - core set
@@ -88,25 +96,39 @@ if (argv.nitdir) {
     ndirs = ndirs.concat(argv.nitdir);
 }
 
-new rfc.RFC(input, log, argv).done(function(r) {
-    whenEver(ndirs, function(p) {
-        // which of the nit dirs exist?
-        var def = jQuery.Deferred();
-        path.exists(p, function(exists) {
-            def.resolve(exists ? p : null);
+whenEver(ndirs, function(p) {
+    // which of the nit dirs exist?
+    var def = jQuery.Deferred();
+    path.exists(p, function(exists) {
+        def.resolve(exists ? p : null);
+    });
+    return def;
+}).pipe(function() {
+    // arguments is all of the existing directories
+    return whenEver(arguments, function(dir) {
+        return dir ? nit.loadDir(dir) : null;
+    });
+}).pipe(function() {
+    // arguments is an array of nit arrays.  Flatten.
+    var args = [].slice.call(arguments);
+    var nits = args.reduce(function(a,b) {
+        return a.concat(b);
+    });
+
+    if (argv.backup) {
+        return whenEver(argv._, function(input) {
+            var output = input;
+            input = output + ".bak";
+            return rename(output, input).pipe(function() {
+                return process_rfc(input, output, nits);
+            });
         });
-        return def;
-    }).done(function() {
-        whenEver(arguments, function(d) {
-            // each of the existing paths, plus nulls
-            return d ? r.loadDir(d) : null;
-        }).done(function() {
-            r.lint().done(function() {
-                // We're finally done
-                pretty(r.document, output);
-            }).fail(logErr);
-        }).fail(logErr);
-    }).fail(logErr);
+    } else {
+        var input = argv._.shift();
+        var output = argv._.shift();
+        return process_rfc(input, output, nits);
+    }
 }).fail(logErr);
+
 
 

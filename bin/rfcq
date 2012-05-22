@@ -33,7 +33,6 @@ if (!query) {
     process.exit(1);
 }
 
-
 if (input) {
     input = fs.createReadStream(input);
     input.on('error', function(err) {
@@ -44,8 +43,7 @@ if (input) {
     input = process.stdin;
 }
 
-var r = new rfc.RFC(input, log, argv, function(err, r) {
-    if (err) { process.exit(1); }
+new rfc.RFC(input, log, argv).done(function(r) {
     var $ = r.$;
     var res = eval(query);
     if ((res instanceof $) || Array.isArray(res)) {
@@ -55,4 +53,4 @@ var r = new rfc.RFC(input, log, argv, function(err, r) {
     } else {
         pretty(res, process.stdout);
     }
-});
+}).fail(log.error);
