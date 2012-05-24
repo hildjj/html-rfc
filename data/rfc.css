@@ -14,6 +14,7 @@ body {
   border-radius: 10px;
   padding: 10px;
   background: rgba(0, 0, 0, .05);
+  margin-left: 20px;
 }
 .document > .identifiers * {
   float: right;
@@ -95,27 +96,50 @@ a.self-ref {
   color: rgba(0, 0, 0, 0.65);
   text-decoration: none;
 }
+div#toc {
+  page-break-before: always;
+}
 div:not(#toc) li {
   text-align: justify;
   padding: 4px;
 }
 p {
   text-align: justify;
+  orphans: 3;
+  widows: 3;
 }
 @media screen {
   /* this isn't good enough, but without JavaScript... */
   p[id]:active:after {
     content: " [#" attr(id) "]";
+    color: #999;
   }
 }
 @media print {
   p[id]:after {
     content: " [#" attr(id) "]";
+    color: #999;
   }
-  a[href]:after {
+  p a:not(.literal)[href]:after {
     content: " [" attr(href) "]";
+    color: #999;
+    text-decoration: none;
+    display: inline-block;
+  }
+  div#toc {
+    page-break-before: always;
+  }
+  pre {
+    page-break-inside: avoid;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  h2+*, h3+*, h4+*, h5+*, h6+* {
+    page-break-before: avoid;
   }
 }
+
 .rfceditor-remove:before {
   content: "The RFC Editor\awill remove\athis section";
   background-color: rgba(235, 249, 105, 1);
