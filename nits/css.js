@@ -19,12 +19,14 @@ exports.nit = function(env) {
                 var style = $("<style type='text/css' />");
                 style.comment("\n" + data + "\n");
                 $("head").append(style);
+                $("<link rel='stylesheet' type='text/css' href='local.css'>").appendTo($("head"));
                 def.resolve();
             }
         });
         return def.promise();
     } else {
         $("<link rel='stylesheet' type='text/css' href='" + path.relative(env.argv.outdir, css_path) + "'>").appendTo($("head"));
+        $("<link rel='stylesheet' type='text/css' href='local.css'>").appendTo($("head"));
     }
 }
 
