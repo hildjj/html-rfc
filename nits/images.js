@@ -21,10 +21,8 @@ function parse_buffer(buf, typ, that, env) {
     }
 }
 
-var iter = 0;
 function read_stream(s, typ, def, that, env) {
     var bufs = new bstream();
-    var i = iter++;
 
     s.on('data', function(chunk) {
         bufs.write(chunk);
