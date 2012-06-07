@@ -27,7 +27,8 @@
     "websequencediagrams": "~0.0.0",
     "graphviz": "~0.0.6",
     "jQuery": "git://github.com/linuxwolf/node-jquery.git",
-    "dateformat": "~1"
+    "dateformat": "~1",
+    "abnf": "~0.0.2"
   },
   "directories": {
     "bin": "bin",
