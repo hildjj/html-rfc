@@ -8,7 +8,7 @@ body {
 .hidden {
   display: none;
 }
-.document {
+#document {
   float: right;
   border: 1px solid rgba(0, 0, 0, 0.20);
   border-radius: 10px;
@@ -16,31 +16,31 @@ body {
   background: rgba(0, 0, 0, .05);
   margin-left: 20px;
 }
-.document > .identifiers * {
+#document > .identifiers * {
   float: right;
   clear: both;
 }
-.document .workgroup:before {
+#document .workgroup:before {
   content:  "Workgroup: ";
   font-weight: bold;
 }
-.document .series:before {
+#document .series:before {
   content:  "Series: ";
   font-weight: bold;
 }
-.document .status:before {
+#document .status:before {
   content:  "Intended Status: ";
   font-weight: bold;
 }
-.document .published:before {
+#document .published:before {
   content:  "Published: ";
   font-weight: bold;
 }
-.document .expires:before {
+#document .expires:before {
   content:  "Expires: ";
   font-weight: bold;
 }
-.document .version:before {
+#document .version:before {
   content:  "Version: ";
   font-weight: bold;
 }
@@ -70,7 +70,8 @@ ul.toc {
   clear: both;
 }
 .rfc2119 {
-  color: red;
+  color: #666;
+  font-weight: bold;
 }
 code, .code {
   background-color: rgba(0, 0, 0, 0.05);
@@ -79,8 +80,8 @@ code, .code {
   line-height: 1.15em;
 }
 .code {
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.20);
   border-radius: 4px;
@@ -88,9 +89,6 @@ code, .code {
 }
 .code + * {
   clear: both;
-}
-img {
-  display: block;
 }
 a.self-ref {
   color: rgba(0, 0, 0, 0.65);
@@ -164,4 +162,47 @@ address * {
 address .fn {
   font-weight: bold;
   font-style: normal;
+}
+figcaption {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+table {
+  border-collapse: collapse;
+}
+th {
+  border: solid thin;
+  text-align: center;
+  background-color: #ccc;
+}
+td {
+  border: solid thin;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+table.pdu {
+  text-align: center;
+}
+table.pdu th, table.pdu td {
+    padding: 0.2em;
+}
+table.pdu th {
+    text-align: right;
+    padding-right: 5px;
+    font-family: 'Lucida Console', Monaco, monospace;
+    font-size: 80%;
+}
+table.pdu tr:nth-child(1) th:nth-child(2), table.pdu tr:nth-child(2) th:nth-child(1), table.pdu tr:nth-child(2) th:nth-child(2) {
+    text-align: center;
+    font-family: sans-serif;
+    background-color: rgba(0, 0, 0, 0.05);
+    font-size: 95%;
+}
+table.pdu tr:first-child th:first-child {
+  /* upper left corner */
+    font-family: sans-serif;
+    font-style: italic;
+    font-weight: normal;
+    background-color: #fff;
+    border: none;
 }

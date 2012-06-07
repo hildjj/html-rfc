@@ -11,13 +11,13 @@
     <link rel='stylesheet' type='text/css' href='local.css' />
   </head>
   <body>
-    <div class='document'>
+    <div id='document'>
       <div class='identifiers'>
         <div class='workgroup'>Network Working Group</div>
         <div class='series'>Internet-Draft</div>
         <div class='status'>Standards Track</div>
-        <div class='published'>2012-05-24</div>
-        <div class='expires'>2012-11-24</div>
+        <div class='published'>2012-06-06</div>
+        <div class='expires'>2012-12-06</div>
         <div class='version'>00</div>
       </div>
       <div class='authors'>
@@ -27,26 +27,19 @@
           <span class='surname'>Hildebrand</span>
           <span class='company'>Cisco Systems, Inc.</span>
         </div>
-        <div class='author'>
-          <span class='initial'>J.</span>
-          <span class='surname'>Reschke</span>
-          <span class='company'>greenbytes GmbH</span>
-        </div>
       </div>
     </div>
-    <div id='title'>
-      <h1>HTML RFC Format</h1>
-    </div>
+    <h1 id='title'>HTML RFC Format</h1>
     <div id='abstract'>
       <h2>Abstract</h2>
-      <p id='abstract-p-1'>This specification defines an HTML format that can be used for the production of RFCs.</p>
+      <p id='abstract-p-1'>This document defines an HTML format that can be used for the production of Internet-Drafts and RFCs.</p>
     </div>
     <div id='ipr' class='trust200902'>
       <h2>Status of this Memo</h2>
       <p>This Internet-Draft is submitted in full conformance with the provisions of <a class='ref' href='#rfc:5378'>BCP 78</a> and <a class='ref' href='#rfc:3979'>BCP 79</a>.</p>
       <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF). Note that other groups may also distribute working documents as Internet-Drafts. The list of current Internet-Drafts is at <a href='http://datatracker.ietf.org/drafts/current/'>http://datatracker.ietf.org/drafts/current/</a>.</p>
       <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time. It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-      <p>This Internet-Draft will expire on November 24, 2012.</p>
+      <p>This Internet-Draft will expire on December 06, 2012.</p>
       <h2>Copyright Notice</h2>
       <p>Copyright © 2012 IETF Trust and the persons identified as the document authors. All rights reserved.</p>
       <p>This document is subject to <a class='ref' href='#rfc:5378'>BCP 78</a> and the IETF Trust's Legal Provisions Relating to <a href='http://trustee.ietf.org/license-info'>IETF Documents</a> in effect on the date of publication of this document. Please review these documents carefully, as they describe your rights and restrictions with respect to this document. Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -62,6 +55,17 @@
       <ul class='toc'>
         <li class='toc'>
           <div>1. <a href='#introduction'>Introduction</a></div>
+          <ul class='toc'>
+            <li class='toc'>
+              <div>1.1. <a href='#background'>Background</a></div>
+            </li>
+            <li class='toc'>
+              <div>1.2. <a href='#overview'>Overview</a></div>
+            </li>
+            <li class='toc'>
+              <div>1.3. <a href='#mustard'>Terminology</a></div>
+            </li>
+          </ul>
         </li>
         <li class='toc'>
           <div>2. <a href='#submittal'>Formats Accepted by the RFC Editor</a></div>
@@ -82,80 +86,106 @@
                   <div>3.2.2. <a href='#doctype'>DOCTYPE</a></div>
                 </li>
                 <li class='toc'>
-                  <div>3.2.3. <a href='#header'>Charset Declaration</a></div>
+                  <div>3.2.3. <a href='#root'>Root Element</a></div>
                 </li>
                 <li class='toc'>
-                  <div>3.2.4. <a href='#style'>Style</a></div>
+                  <div>3.2.4. <a href='#charset'>Charset Declaration</a></div>
                 </li>
                 <li class='toc'>
-                  <div>3.2.5. <a href='#emphasis'>Emphasis</a></div>
+                  <div>3.2.5. <a href='#style'>Style</a></div>
                 </li>
                 <li class='toc'>
-                  <div>3.2.6. <a href='#comments'>Comments</a></div>
+                  <div>3.2.6. <a href='#emphasis'>Emphasis</a></div>
                 </li>
                 <li class='toc'>
-                  <div>3.2.7. <a href='#sections'>Sections</a></div>
+                  <div>3.2.7. <a href='#comments'>Comments</a></div>
                 </li>
                 <li class='toc'>
-                  <div>3.2.8. <a href='#paragraphs'>Paragraphs</a></div>
+                  <div>3.2.8. <a href='#sections'>Sections</a></div>
                 </li>
                 <li class='toc'>
-                  <div>3.2.9. <a href='#lists'>Lists</a></div>
+                  <div>3.2.9. <a href='#appendices'>Appendices</a></div>
                 </li>
                 <li class='toc'>
-                  <div>3.2.10. <a href='#references'>References</a></div>
+                  <div>3.2.10. <a href='#paragraphs'>Paragraphs</a></div>
+                </li>
+                <li class='toc'>
+                  <div>3.2.11. <a href='#lists'>Lists</a></div>
+                </li>
+                <li class='toc'>
+                  <div>3.2.12. <a href='#references-types'>References</a></div>
                   <ul class='toc'>
                     <li class='toc'>
-                      <div>3.2.10.1. <a href='#internal-references'>Internal References</a></div>
+                      <div>3.2.12.1. <a href='#internal-references'>Internal References</a></div>
                     </li>
                     <li class='toc'>
-                      <div>3.2.10.2. <a href='#standards-references'>References to Standards</a></div>
+                      <div>3.2.12.2. <a href='#standards-references'>References to Standards</a></div>
                     </li>
                     <li class='toc'>
-                      <div>3.2.10.3. <a href='#external-references'>Other External References</a></div>
+                      <div>3.2.12.3. <a href='#external-references'>Other External References</a></div>
                     </li>
                   </ul>
                 </li>
               </ul>
             </li>
             <li class='toc'>
-              <div>3.3. <a href='#metadata'>Metadata</a></div>
+              <div>3.3. <a href='#elaborate'>More Elaborate Information</a></div>
               <ul class='toc'>
                 <li class='toc'>
-                  <div>3.3.1. <a href='#identifying'>Identifying information</a></div>
+                  <div>3.3.1. <a href='#images'>Images</a></div>
                 </li>
                 <li class='toc'>
-                  <div>3.3.2. <a href='#md_author'>Author</a></div>
+                  <div>3.3.2. <a href='#svg'>SVG</a></div>
+                </li>
+                <li class='toc'>
+                  <div>3.3.3. <a href='#inline-code'>Inline Code</a></div>
+                </li>
+                <li class='toc'>
+                  <div>3.3.4. <a href='#block-code'>Blocks of Code</a></div>
+                </li>
+                <li class='toc'>
+                  <div>3.3.5. <a href='#ascii-art'>ASCII Art</a></div>
+                </li>
+                <li class='toc'>
+                  <div>3.3.6. <a href='#math'>Mathematical Formulae</a></div>
+                </li>
+                <li class='toc'>
+                  <div>3.3.7. <a href='#pdu'>Packet Formats</a></div>
                 </li>
               </ul>
             </li>
-            <li class='toc'>
-              <div>3.4. <a href='#elaborate'>More Elaborate Information</a></div>
-            </li>
           </ul>
         </li>
         <li class='toc'>
-          <div>4. <a href='#examples'>Examples</a></div>
+          <div>4. <a href='#metadata'>Document Metadata</a></div>
           <ul class='toc'>
             <li class='toc'>
-              <div>4.1. <a href='#self-example'>Self</a></div>
+              <div>4.1. <a href='#docinfo'>Document Information</a></div>
             </li>
             <li class='toc'>
-              <div>4.2. <a href='#ascii-art-code-samples'>ASCII Art, code samples</a></div>
+              <div>4.2. <a href='#md_author'>Author</a></div>
             </li>
             <li class='toc'>
-              <div>4.3. <a href='#image-sample'>Images</a></div>
-            </li>
-            <li class='toc'>
-              <div>4.4. <a href='#websequencediagram-sample'>Sequence Diagrams</a></div>
-            </li>
-            <li class='toc'>
-              <div>4.5. <a href='#abnf'>ABNF</a></div>
+              <div>4.3. <a href='#bibliographical'>Bibliographical Information</a></div>
             </li>
           </ul>
         </li>
         <li class='toc'>
-          <div>5. <a href='#workflow'>Workflow</a></div>
+          <div>5. <a href='#examples'>Examples</a></div>
+          <ul class='toc'>
+            <li class='toc'>
+              <div>5.1. <a href='#self-example'>Self</a></div>
+            </li>
+            <li class='toc'>
+              <div>5.2. <a href='#ascii-art-code-samples'>Code Sample</a></div>
+            </li>
+            <li class='toc'>
+              <div>5.3. <a href='#websequencediagram-sample'>Sequence Diagrams</a></div>
+            </li>
+            <li class='toc'>
+              <div>5.4. <a href='#abnf'>ABNF</a></div>
+            </li>
+          </ul>
         </li>
         <li class='toc'>
           <div>6. <a href='#security'>Security Considerations</a></div>
@@ -174,11 +204,56 @@
         <li class='toc'>
           <div>8. <a href='#authors'>Authors' Addresses</a></div>
         </li>
+        <li class='toc'>
+          <div>Appendix A. <a href='#html-subset'>Allowable Subset of HTML</a></div>
+        </li>
+        <li class='toc'>
+          <div>Appendix B. <a href='#html-classes'>CSS Classes with Special Meaning</a></div>
+        </li>
+        <li class='toc'>
+          <div>Appendix C. <a href='#html-ids'>Element IDs with Special Meaning</a></div>
+        </li>
+        <li class='toc'>
+          <div>Appendix D. <a href='#acknowledgments'>Acknowledgments</a></div>
+        </li>
       </ul>
     </div>
     <div id='introduction' class='section'>
       <h2><a class='self-ref' href='#introduction'>1.</a> Introduction</h2>
-      <p id='introduction-p-1'>The intro</p>
+      <div class='section' id='background'>
+        <h3><a class='self-ref' href='#background'>1.1.</a> Background</h3>
+        <p id='background-p-1'>The RFC Series has been in existence for over 40 years. During much of that time, the limitations of character set, line and page length, and graphics restrictions of RFC documents met the most immediate needs of the majority of authors and readers. As technology changed, new formats that allowed for a richer set of features when editing, reading, searching, and displaying documents came in to use and tools were created to convert the plain ASCII documents in to other desired formats such as HTML, PDF, and Microsoft Word. While the converted versions of the RFC are widely available, the canonical display format remains the plain text, ASCII, line-printer structured one. The canonical source format is nroff.</p>
+        <p id='background-p-2'>Canonical source and display versions of an RFC exists for several reasons:</p>
+        <ul>
+          <li>to provide verification of the content of a RFC in case inconsistencies are created when a document is converted to another format or mirrored to another location</li>
+          <li>to verify the final content of a document in cases of legal dispute</li>
+          <li>to aid in the conversion of the RFC in to formats requested by the community</li>
+        </ul>
+        <p id='background-p-4'>The very basic format of RFC source and display documents have two persistent characteristics that are considered by the RFC Series Editor to be critical to the RFC Series, including:</p>
+        <ul>
+          <li>persistence (tools to read, edit, and print the documents remain easily accessible to everyone)</li>
+          <li>convertibility (the plain text version is simple to convert to other formats)</li>
+        </ul>
+        <p id='background-p-6'>That said, the very simple nature of the current display format in particular introduces a variety of limitations, the list of which has grown as changes in technology create new expectations:</p>
+        <ul>
+          <li>ASCII art is considered by some to be a major limitation in expressing visually-oriented information</li>
+          <li>the internationalization of the authorship and the Internet is introducing Unicode codepoints not expressible in 7-bit ASCII</li>
+          <li>the more common forms of display (web pages, smaller devices) make the limitations of page and line length a hindrance to the reading of an RFC</li>
+        </ul>
+      </div>
+      <div class='section' id='overview'>
+        <h3><a class='self-ref' href='#overview'>1.2.</a> Overview</h3>
+        <p id='overview-p-1'>This memo describes a format that can be used both as the canonical input format to the RFC Series Editor (RSE), as well as an archival format. Some document authors will author documents directly in this format (perhaps with tooling to generate the more repetitive tasks), and some authors will prefer other formats as their original source, all of which <span class='rfc2119'>MUST</span> be able to generate the format described in this memo.</p>
+        <p id='overview-p-2'>This memo has the following goals:</p>
+        <ol>
+          <li>Define a strict subset of HTML appropriate for Internet-Draft and RFC Series documents</li>
+          <li>Serve as a comprehensive example of all of the HTML elements that are permissible</li>
+        </ol>
+      </div>
+      <div id='mustard' class='section'>
+        <h3><a class='self-ref' href='#mustard'>1.3.</a> Terminology</h3>
+        <p id='mustard-p-1'>The key words "<span class='rfc2119'>MUST</span>", "<span class='rfc2119'>MUST NOT</span>", "<span class='rfc2119'>REQUIRED</span>", "<span class='rfc2119'>SHALL</span>", "<span class='rfc2119'>SHALL NOT</span>", "<span class='rfc2119'>SHOULD</span>", "<span class='rfc2119'>SHOULD NOT</span>", "<span class='rfc2119'>RECOMMENDED</span>", "<span class='rfc2119'>NOT RECOMMENDED</span>", "<span class='rfc2119'>MAY</span>", and "<span class='rfc2119'>OPTIONAL</span>" in this document are to be interpreted as described in <a class='ref' href='#rfc:2119'>RFC 2119</a>.</p>
+      </div>
     </div>
     <div id='submittal' class='section'>
       <h2><a class='self-ref' href='#submittal'>2.</a> Formats Accepted by the RFC Editor</h2>
@@ -195,7 +270,7 @@
         <p id='syntax-p-1'>The following rules <span class='rfc2119'>SHALL</span> be enforced before submittal.</p>
         <ul>
           <li>The HTML source <span class='rfc2119'>MUST</span> be encoded as UTF-8, as specified in <a class='ref' href='#rfc:3629'>RFC3629</a>.</li>
-          <li>The HTML source <span class='rfc2119'>MUST</span> be formatted in the manner of well-formed <a class='ref' href='w3c:REC-xml-20081126'>XML</a>, with all elements start tags having matching end tags (or <code>&lt;element /&gt;</code> for empty elements), with all elements properly nested. HTML "boolean" attributes <span class='rfc2119'>MUST</span> be formatted in the <code>attr='attr'</code> style.</li>
+          <li>The HTML source <span class='rfc2119'>MUST</span> be formatted in the manner of well-formed <a class='ref' href='#w3c:REC-xml-20081126'>XML</a>, with all elements start tags having matching end tags (or <code>&lt;element /&gt;</code> for empty elements), with all elements properly nested. HTML "boolean" attributes <span class='rfc2119'>MUST</span> be formatted in the <code>attr='attr'</code> style.</li>
           <li>HTML <span class='rfc2119'>SHALL</span> be pretty-printed, using spaces (not tabs) for indentation.</li>
           <li>Single quotes (U+0027 APOSTROPHE: <code>'</code>) <span class='rfc2119'>MUST</span> be used to quote attribute values. Unquoted attribute values <span class='rfc2119'>MUST NOT</span> be used.</li>
           <li>Two spaces <span class='rfc2119'>MUST</span> be used for each level of indentation</li>
@@ -218,16 +293,21 @@
           <p id='doctype-p-1'>The DOCTYPE of the document <span class='rfc2119'>MUST</span> be "html", which declares that the document is compliant with <a href='#w3c:WD-html5-20120329' class='ref'>HTML5</a>. For example, the document will start with exactly this string:</p>
           <pre class='code'>&lt;!DOCTYPE html&gt;</pre>
         </div>
-        <div class='section' id='header'>
-          <h4><a class='self-ref' href='#header'>3.2.3.</a> Charset Declaration</h4>
-          <p id='header-p-1'>In order to be correctly processed by browsers that load the HTML using a mechanism that does not provide a valid MIME content-type or charset, the HTML <code>&lt;header&gt;</code> element <span class='rfc2119'>MUST</span> contain a <code>&lt;meta&gt;</code> element, with the attributes <code>http-equiv='Content-Type'</code> and <code>content='text/html; charset=utf-8'</code>. This will look like:</p>
+        <div class='section' id='root'>
+          <h4><a class='self-ref' href='#root'>3.2.3.</a> Root Element</h4>
+          <p id='root-p-1'>The root element of the document <span class='rfc2119'>MUST</span> be <code>&lt;html&gt;</code>. This element <span class='rfc2119'>SHOULD</span> include a <code>lang</code> attribute, whose value is a <a class='ref' href='#rfc:5646'>RFC5646</a> language tag describing the natural language of the document. For documents submitted to the RFC Series or Internet-Draft Series, the language tag <span class='rfc2119'>MUST</span> be "<code>en</code>", meaning "English". If the <code>lang</code> attribute is not present, its value should be taken to be "<code>en</code>".</p>
+        </div>
+        <div class='section' id='charset'>
+          <h4><a class='self-ref' href='#charset'>3.2.4.</a> Charset Declaration</h4>
+          <p id='charset-p-1'>In order to be correctly processed by browsers that load the HTML using a mechanism that does not provide a valid MIME content-type or charset, the HTML <code>&lt;header&gt;</code> element <span class='rfc2119'>MUST</span> contain a <code>&lt;meta&gt;</code> element, with the attributes <code>http-equiv='Content-Type'</code> and <code>content='text/html; charset=utf-8'</code>. This will look like:</p>
           <pre class='code'>&lt;meta http-equiv='Content-Type' content='text/html; charset=utf-8' /&gt;</pre>
         </div>
         <div class='section' id='style'>
-          <h4><a class='self-ref' href='#style'>3.2.4.</a> Style</h4>
-          <p id='style-p-1'>The <code>&lt;head&gt;</code> <span class='rfc2119'>SHOULD</span> contain an embedded stylesheet in a <code>&lt;style&gt;</code> element. The styles in the stylesheet are to be set consistently between documents by the RFC editor, according to the best practices of the day. The stylesheet <span class='rfc2119'>MUST NOT</span> be considered as normative information. To ensure consistent formatting, individual <code>style</code> attributes <span class='rfc2119'>SHOULD NOT</span> be used in the main portion of the document source except in highly exception circumstances; each use <span class='rfc2119'>MUST</span> be individually justified.</p>
-          <p id='style-p-2'>Different readers of a specification will desire different tweaks to the stylesheet. To facilitate this, the <code>&lt;head&gt;</code> <span class='rfc2119'>SHOULD</span> include a <code>&lt;link&gt;</code> to a stylesheet in the same directory as the HTML file, named "local.css", <strong>after</strong> the embedded stylesheet. Note that this "local.css" file will not exist for most users; browsers will correspondingly ignore this <code>&lt;link&gt;</code>. When the document is used canonically, these local style overrides <span class='rfc2119'>MUST NOT</span> be in effect.</p>
-          <p id='style-p-3'>For example:</p>
+          <h4><a class='self-ref' href='#style'>3.2.5.</a> Style</h4>
+          <p id='style-p-1'>The <code>&lt;head&gt;</code> <span class='rfc2119'>SHOULD</span> contain an embedded <a class='ref' href='#w3c:REC-CSS2-20110607'>CSS</a> stylesheet in a <code>&lt;style&gt;</code> element. The styles in the stylesheet are to be set consistently between documents by the RFC Editor, according to the best practices of the day. The RFC Editor <span class='rfc2119'>SHALL</span> choose a stylesheet that does not modify the meaning of the normative text of the document. The RFC Editor <span class='rfc2119'>SHALL</span> make the stylesheet available via a standard protocol (e.g. HTTP or HTTPS) for ease of authorship. However, when a document is submitted, external stylesheets (other than "local.css" as specified below) are NOT ALLOWED. The stylesheet itself <span class='rfc2119'>MUST NOT</span> be considered as normative information.</p>
+          <p id='style-p-2'>To ensure consistent formatting, individual <code>style</code> attributes <span class='rfc2119'>SHOULD NOT</span> be used in the main portion of the document source except in highly exceptional circumstances; each use <span class='rfc2119'>MUST</span> be individually justified.</p>
+          <p id='style-p-3'>Different readers of a specification will desire different tweaks to the stylesheet. To facilitate this, the <code>&lt;head&gt;</code> <span class='rfc2119'>SHOULD</span> include a <code>&lt;link&gt;</code> to a stylesheet in the same directory as the HTML file, named "local.css", <strong>after</strong> the embedded stylesheet. Note that this "local.css" file will not exist for most users; browsers will correspondingly ignore this <code>&lt;link&gt;</code>. When the document is used canonically, these local style overrides <span class='rfc2119'>MUST NOT</span> be in effect.</p>
+          <p id='style-p-4'>For example:</p>
           <pre class='code'>
 &lt;head&gt;
   &lt;style type='text/css'&gt;
@@ -239,40 +319,58 @@
 &lt;/head&gt;</pre>
         </div>
         <div class='section' id='emphasis'>
-          <h4><a class='self-ref' href='#emphasis'>3.2.5.</a> Emphasis</h4>
-          <p id='emphasis-p-1'>Words or phrases may be emphasized using the <code>&lt;strong&gt;</code> element for "<strong>bold</strong>", and the <code>&lt;em&gt;</code> element for "<em>italics</em>". Underlining <span class='rfc2119'>SHOULD NOT</span> be used except for links, to avoid visual confusion.</p>
+          <h4><a class='self-ref' href='#emphasis'>3.2.6.</a> Emphasis</h4>
+          <p id='emphasis-p-1'>Words or phrases may be emphasized using the <code>&lt;strong&gt;</code> element for "<strong>bold</strong>", and the <code>&lt;em&gt;</code> element for "<em>italics</em>". Underlining <span class='rfc2119'>MUST NOT</span> be used except for links, to avoid visual confusion. Text-only emphasis <span class='rfc2119'>MUST NOT</span> be used.</p>
+          <p id='emphasis-p-2'>The RFC Editor will set a policy that reflects the current feelings of the community as to whether this emphasis markup is allowed in documents that are submitted for publication in the RFC series.</p>
         </div>
         <div class='section' id='comments'>
-          <h4><a class='self-ref' href='#comments'>3.2.6.</a> Comments</h4>
+          <h4><a class='self-ref' href='#comments'>3.2.7.</a> Comments</h4>
           <p id='comments-p-1'>HTML comments <span class='rfc2119'>MAY</span> be used, but <span class='rfc2119'>MUST NOT</span> contain normative information. One example is to clarify particular choices in the HTML format. Example:</p>
           <pre class='code'>&lt;!-- Automatically generated: do not modify --&gt;</pre>
         </div>
         <div class='section' id='sections'>
-          <h4><a class='self-ref' href='#sections'>3.2.7.</a> Sections</h4>
+          <h4><a class='self-ref' href='#sections'>3.2.8.</a> Sections</h4>
           <p id='sections-p-1'>Each section of the document <span class='rfc2119'>SHALL</span> be formatted as a <code>&lt;div&gt;</code> tag, with a class attribute with value "section". A document-unique, <code>id</code> attribute <span class='rfc2119'>SHOULD</span> be assigned to each section <code>&lt;div&gt;</code>. The <code>id</code> <span class='rfc2119'>MAY</span> be human-readable or generated.</p>
           <p class='note' id='sections-p-2'>NOTE: <a class='ref' href='#w3c:REC-xml-20081126'>XML</a> requires id attributes to be unique across an entire document:</p>
-          <blockquote>Values of type ID must match the Name production. A name must not appear more than once in an XML document as a value of this type; i.e., ID values must uniquely identify the elements which bear them.</blockquote>
+          <blockquote>
+            <p id='sections-p-0'>Values of type ID must match the Name production. A name must not appear more than once in an XML document as a value of this type; i.e., ID values must uniquely identify the elements which bear them.</p>
+          </blockquote>
           <p id='sections-p-4'>Each section <code>&lt;div&gt;</code> <span class='rfc2119'>MUST</span> contain a header tag (<code>&lt;h2&gt;</code>-<code>&lt;h6&gt;</code>) of the appropriate depth, with top-level sections getting an <code>&lt;h2&gt;</code> tag, and each nested section getting the next higher header level. If more than five levels of headers are required, <code>&lt;h6&gt;</code> <span class='rfc2119'>MUST</span> be used for each deeper-nested section. However, nesting sections more than five levels deep is <span class='rfc2119'>NOT RECOMMENDED</span>.</p>
           <p id='sections-p-5'>The text in each header tag <span class='rfc2119'>MUST</span> begin with the section number. Section numbers <span class='rfc2119'>MUST</span> begin at "1.", and <span class='rfc2119'>MUST</span> increment by one for each successive section at the same level. Subsections <span class='rfc2119'>MUST</span> be numbered by appending the subsection number to the parent section number.</p>
           <p id='sections-p-6'>Within a section, each "normal" paragraph <span class='rfc2119'>MUST</span> be surrounded by a <code>&lt;p&gt;</code> element. For example:</p>
           <pre class='code'>
 &lt;div class='section' id='example'&gt;
-  &lt;h2&gt;1. Example Section&lt;/h2&gt;
-  &lt;p id='example-p-1'&gt;This is a description of the example&lt;/p&gt;
+  &lt;h2&gt;<strong>1.</strong> Example Section&lt;/h2&gt;
+  &lt;p&gt;This is a description of the example&lt;/p&gt;
   &lt;div class='section' id='nested'&gt;
-    &lt;h3&gt;1.1. Nested Section&lt;/h3&gt;
-    &lt;p id='nested-p-1'&gt;This is a description of the nested section.&lt;/p&gt;
-    &lt;p id='nested-p-2'&gt;This is the second description paragraph.&lt;/p&gt;
+    &lt;h3&gt;<strong>1.1.</strong> Nested Section&lt;/h3&gt;
+    &lt;p&gt;This is a description of the nested section.&lt;/p&gt;
+    &lt;p&gt;This is the second description paragraph.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+        <div class='section' id='appendices'>
+          <h4><a class='self-ref' href='#appendices'>3.2.9.</a> Appendices</h4>
+          <p id='appendices-p-1'>Appendices are special cases of top-level sections. Each appendix of the document <span class='rfc2119'>SHALL</span> be formatted as a <code>&lt;div&gt;</code> tag, with a class attribute with value "appendix". A document-unique, id attribute <span class='rfc2119'>SHOULD</span> be assigned to each section <code>&lt;div&gt;</code>. The id <span class='rfc2119'>MAY</span> be human-readable or generated. Each appendix <code>&lt;div&gt;</code> <span class='rfc2119'>MUST</span> contain an <code>&lt;h2&gt;</code> element containing text that describes the purpose of the appendix. Appendices are identified to the reader with Latin capital letters A-Z, in order. It is <span class='rfc2119'>NOT RECOMMENDED</span> to have more than 26 appendices, but if required, appendices "AA.", "AB.", etc. follow Appendix Z.</p>
+          <p id='appendices-p-2'>Inside the appendix, subsections <span class='rfc2119'>MUST</span> be formatted per <a href='#sections'>Sections</a>, numbered sequentially. For example, the first subsection of "Appendix A." is "Appendix A.1.".</p>
+          <p id='appendices-p-3'>For example:</p>
+          <pre class='code'>
+&lt;div class='appendix' id='acknowledgements'&gt;
+  &lt;h2&gt;Appendix <strong>A.</strong> Acknowledgements&lt;/h2&gt;
+  &lt;p&gt;The author gratefully acknowledges the contributions of...&lt;/p&gt;
+  &lt;div class='section' id='contributors'&gt;
+    &lt;h3&gt;Appendix <strong>A.1.</strong> Contributors&lt;/h2&gt;
+    &lt;p&gt;These people contributed text...&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;</pre>
         </div>
         <div class='section' id='paragraphs'>
-          <h4><a class='self-ref' href='#paragraphs'>3.2.8.</a> Paragraphs</h4>
-          <p id='paragraphs-p-1'>Paragraphs <span class='rfc2119'>MUST</span> be contained in a <a href='#sections'>section</a> div. A document-unique, <code>id</code> attribute <span class='rfc2119'>SHOULD</span> be assigned to each <code>&lt;p&gt;</code>. The <code>id</code> will usually be machine-generated, but <span class='rfc2119'>MAY</span> be human-readable if desired.</p>
+          <h4><a class='self-ref' href='#paragraphs'>3.2.10.</a> Paragraphs</h4>
+          <p id='paragraphs-p-1'>Paragraphs <span class='rfc2119'>MUST</span> be contained in a <a href='#sections'>section</a> <code>&lt;div&gt;</code> or an <a href='#appendices'>appendix</a> <code>&lt;div&gt;</code>. A document-unique, <code>id</code> attribute <span class='rfc2119'>SHOULD</span> be assigned to each <code>&lt;p&gt;</code>. The <code>id</code> will usually be machine-generated, but <span class='rfc2119'>MAY</span> be human-readable if desired.</p>
           <p id='paragraphs-p-2'>It is <span class='rfc2119'>RECOMMENDED</span> that each paragraph be kept relatively small compared to a "page" in previous RFC formats, so that references to each paragraph are at least as valuable as page references have been in previous formats.</p>
         </div>
         <div class='section' id='lists'>
-          <h4><a class='self-ref' href='#lists'>3.2.9.</a> Lists</h4>
+          <h4><a class='self-ref' href='#lists'>3.2.11.</a> Lists</h4>
           <p id='lists-p-1'>Lists may be used inside a section <code>&lt;div&gt;</code>, and may nest in other lists as needed. However, lists <span class='rfc2119'>MUST NOT</span> be nested inside a <code>&lt;p&gt;</code> element. Unordered lists (<code>&lt;ul&gt;</code>) and ordered lists (<code>&lt;ol&gt;</code>) may both be used. For example:</p>
           <pre class='code'>
 &lt;div class='section' id='lists'&gt;
@@ -287,15 +385,15 @@
   <strong>&lt;/ul&gt;</strong>
 &lt;/div&gt;</pre>
         </div>
-        <div class='section' id='references'>
-          <h4><a class='self-ref' href='#references'>3.2.10.</a> References</h4>
+        <div class='section' id='references-types'>
+          <h4><a class='self-ref' href='#references-types'>3.2.12.</a> References</h4>
           <div class='section' id='internal-references'>
-            <h5><a class='self-ref' href='#internal-references'>3.2.10.1.</a> Internal References</h5>
+            <h5><a class='self-ref' href='#internal-references'>3.2.12.1.</a> Internal References</h5>
             <p id='internal-references-p-1'>References to other paragraphs or sections in the same document <span class='rfc2119'>MUST</span> use an <code>&lt;a&gt;</code> element with an <code>href</code> attribute with a fragment that points at the <code>id</code> attribute of the target (i.e. the <code>id</code> prefixed with a <code>#</code>). The target element <span class='rfc2119'>MUST</span> have a human-readable <code>id</code> attribute, which <span class='rfc2119'>MUST</span> be stable even when tooling generates new <code>id</code> attributes. For example:</p>
             <pre class='code'>See &lt;a href='#example'&gt;Example Section&lt;/a&gt; for more details</pre>
           </div>
           <div class='section' id='standards-references'>
-            <h5><a class='self-ref' href='#standards-references'>3.2.10.2.</a> References to Standards</h5>
+            <h5><a class='self-ref' href='#standards-references'>3.2.12.2.</a> References to Standards</h5>
             <p id='standards-references-p-1'>References to standards are special, in that they generate formal bibliographical metadata. All links to standards in the main body of the text <span class='rfc2119'>MUST</span> jump to the <a href='#bibliography'>bibliography</a> entry; the href <span class='rfc2119'>MUST</span> be of the form #[series]:[number]. For example:</p>
             <pre class='code'>href='#rfc:2119'</pre>
             <p id='standards-references-p-3'>Valid series identifiers include:</p>
@@ -322,7 +420,7 @@
             <pre class='code'>See: &lt;a class='inforef' href='#rfc:2119'&gt;RFC2119&lt;/a&gt;</pre>
           </div>
           <div class='section' id='external-references'>
-            <h5><a class='self-ref' href='#external-references'>3.2.10.3.</a> Other External References</h5>
+            <h5><a class='self-ref' href='#external-references'>3.2.12.3.</a> Other External References</h5>
             <p id='external-references-p-1'>References to other documents that are not standards <span class='rfc2119'>SHOULD</span> be linked using the <code>http:</code> or <code>https:</code> URI scheme, and <span class='rfc2119'>MUST</span> be linked using a a URI scheme that is widely-deployed at the time that the document is published, and which does not raise any security or stability issues. In particular, <code>javascript:</code> references <span class='rfc2119'>MUST NOT</span> be used. Links using the <code>mailto:</code> scheme <span class='rfc2119'>SHOULD</span> be limited to the author's address information.</p>
             <p id='external-references-p-2' />
             <p id='external-references-p-3'>For example:</p>
@@ -330,33 +428,273 @@
           </div>
         </div>
       </div>
-      <div class='section' id='metadata'>
-        <h3><a class='self-ref' href='#metadata'>3.3.</a> Metadata</h3>
-        <p id='metadata-p-1'>Metadata for the document <span class='rfc2119'>SHOULD</span> be easily extractable from the document by tools that ordinarily process HTML. For example, <code>class</code> and <code>id</code> attributes can be used to query the document using CSS-style selectors.</p>
-        <p class='note rfceditor-remove' id='metadata-p-2'>NOTE: the editor's version of the HTML specification contains explicit support for "<a href='http://www.whatwg.org/specs/web-apps/current-work/multipage/microdata.html#microdata'>microdata</a>". If this approach is formally included in spec produced by the W3C, this document can be revised to recommend the use of <code>itemscope</code>, <code>itemtype</code>, etc.</p>
-        <div class='section' id='identifying'>
-          <h4><a class='self-ref' href='#identifying'>3.3.1.</a> Identifying information</h4>
-          <p id='identifying-p-1' />
+      <div class='section' id='elaborate'>
+        <h3><a class='self-ref' href='#elaborate'>3.3.</a> More Elaborate Information</h3>
+        <p id='elaborate-p-1'>This section describes how to format several types of information that occur regularly in documents for the Internet-Draft and RFC Series which are not descriptive text.</p>
+        <div class='section' id='images'>
+          <h4><a class='self-ref' href='#images'>3.3.1.</a> Images</h4>
+          <p id='images-p-1'>Include an image using the <code>&lt;img&gt;</code> tag with a <code>src</code> attribute. During the editing process, it may be useful to keep the value of the <code>src</code> attribute as a file name relative to the document, or a http(s) URL. However, upon submission, the final version of a document <span class='rfc2119'>SHALL</span> include a <code>data:</code> URI as specified in <a class='ref' href='#rfc:2397'>RFC2397</a>.</p>
+          <p id='images-p-2'>The image MIME type of the image <span class='rfc2119'>SHALL</span> be <code>image/png</code>, as specified in <a class='ref' href='#rfc:2083'>RFC2083</a>. The RFC Editor can allow other image types in the future, at the Editor's discretion, as the state of the art and common implementation patterns change.</p>
+          <p id='images-p-3'>Consider how images will look when printed. Images <span class='rfc2119'>MUST NOT</span> be animated.</p>
+          <p id='images-p-4'>The <code>alt</code> attribute is <span class='rfc2119'>REQUIRED</span>, and <span class='rfc2119'>MUST</span> be a complete, accessible description of the image.</p>
+          <p id='images-p-5'>The <code>height</code> and <code>width</code> attributes <span class='rfc2119'>SHOULD</span> be used to specify the size of the image in pixels.</p>
+          <p id='images-p-6'>Images <span class='rfc2119'>MUST</span> be wrapped in a <code>&lt;figure&gt;</code> element. The <code>&lt;figure&gt;</code> element <span class='rfc2119'>SHOULD</span> contain a <code>&lt;figcaption&gt;</code> element after the <code>&lt;img&gt;</code> element, which <span class='rfc2119'>SHOULD</span> contain text that describes the image. For example:</p>
+          <pre class='code'>
+&lt;figure&gt;
+  &lt;img src='data:image/png;base64,[BASE64-encoded PNG]'
+       alt='A description of the diagram' 
+       width='236' 
+       height='176'/&gt;
+  &lt;figcaption&gt;Possible workflow for processing HTML RFCs&lt;/figcaption&gt;
+&lt;/figure&gt;</pre>
+          <figure id='nit-flow'>
+            <img src='nit-flow.png' alt='A description of the diagram' width='236' height='176' />
+            <figcaption><a class='self-ref' href='#nit-flow'>Figure 1.</a> Possible workflow for processing HTML RFCs</figcaption>
+          </figure>
+          <p id='images-p-9'>Images <span class='rfc2119'>SHOULD NOT</span> be normative. Instead, the information contained in the image <span class='rfc2119'>SHOULD</span> be adequately conveyed in the textual description that accompanies the image.</p>
         </div>
-        <div class='section' id='md_author'>
-          <h4><a class='self-ref' href='#md_author'>3.3.2.</a> Author</h4>
-          <p id='md_author-p-1' />
+        <div class='section' id='svg'>
+          <h4><a class='self-ref' href='#svg'>3.3.2.</a> SVG</h4>
+          <p id='svg-p-1'><a class='ref' href='#w3c:REC-SVG11-20110816'>SVG</a> can be included directly in the HTML source, surrounded by a <code>&lt;figure&gt;</code> element and succeeded by a <code>&lt;figcaption&gt;</code> element, as described in the <a href='#images'>Images section</a>. For example:</p>
+          <pre class='code language-html'>
+&lt;figure id='fig-2'&gt;
+  &lt;svg xmlns='http://www.w3.org/2000/svg'&gt;...
+  &lt;figcaption&gt;Sample SVG&lt;/figcaption&gt;
+&lt;/figure&gt;
+</pre>
+          <p id='svg-p-3'>Might render as:</p>
+          <figure id='fig-2'>
+<!-- Generated by graphviz version 2.28.0 (20120430.1708)
+ -->
+<!-- Title: nit_flow Pages: 1 -->
+            <svg width='271pt' height='172pt' viewbox='0.00 0.00 271.00 172.00' xmlns='http://www.w3.org/2000/svg'>
+              <g id='graph1' class='graph' transform='scale(1 1) rotate(0) translate(4 168)'>
+                <title>nit_flow</title>
+                <polygon fill='white' stroke='white' points='-4,5 -4,-168 267.845,-168 267.845,5 -4,5' />
+<!-- original -->
+                <g id='node1' class='node'>
+                  <title>original</title>
+                  <ellipse fill='none' stroke='black' cx='72' cy='-139' rx='60.2747' ry='24.7895' />
+                  <text text-anchor='middle' x='72' y='-133.426'>original</text>
+                </g>
+<!-- canonical -->
+                <g id='node3' class='node'>
+                  <title>canonical</title>
+                  <ellipse fill='none' stroke='black' cx='72' cy='-25' rx='72.4162' ry='24.7895' />
+                  <text text-anchor='middle' x='72' y='-19.4262'>canonical</text>
+                </g>
+<!-- original&#45;&gt;canonical -->
+                <g id='edge2' class='edge'>
+                  <title>original-&gt;canonical</title>
+                  <path fill='none' stroke='black' d='M57.0754,-114.835C54.0001,-108.92 51.2126,-102.413 49.6099,-96 46.5927,-83.9268 46.5927,-80.0732 49.6099,-68 50.4112,-64.7934 51.5088,-61.5634 52.7904,-58.3957' />
+                  <polygon fill='black' stroke='black' points='56.0394,-59.7091 57.0754,-49.165 49.6902,-56.7616 56.0394,-59.7091' />
+                  <text text-anchor='middle' x='62.1951' y='-76.4262'>nit</text>
+                </g>
+<!-- canonical&#45;&gt;original -->
+                <g id='edge6' class='edge'>
+                  <title>canonical-&gt;original</title>
+                  <path fill='none' stroke='black' d='M73.3391,-49.9803C73.6137,-55.8708 73.8611,-62.1617 74,-68 74.296,-80.4409 74.296,-83.5591 74,-96 73.9392,-98.5543 73.8577,-101.195 73.7622,-103.851' />
+                  <polygon fill='black' stroke='black' points='70.2579,-103.883 73.3391,-114.02 77.2519,-104.174 70.2579,-103.883' />
+                  <text text-anchor='middle' x='91.5713' y='-76.4262'>edit</text>
+                </g>
+<!-- canonical&#45;&gt;canonical -->
+                <g id='edge4' class='edge'>
+                  <title>canonical-&gt;canonical</title>
+                  <path fill='none' stroke='black' d='M137.929,-35.161C151.906,-34.1292 162,-30.7422 162,-25 162,-20.7382 156.44,-17.7738 147.859,-16.1067' />
+                  <polygon fill='black' stroke='black' points='148.292,-12.6336 137.929,-14.839 147.405,-19.5773 148.292,-12.6336' />
+                  <text text-anchor='middle' x='212.422' y='-19.4262'>nit (no-op)</text>
+                </g>
+              </g>
+            </svg>
+            <figcaption><a class='self-ref' href='#fig-2'>Figure 2.</a> Sample SVG</figcaption>
+          </figure>
+        </div>
+        <div class='section' id='inline-code'>
+          <h4><a class='self-ref' href='#inline-code'>3.3.3.</a> Inline Code</h4>
+          <p id='inline-code-p-1'>Use the <code>&lt;code&gt;</code> element to set aside literal references to code or protocol elements in the middle of a paragraph. If desired, the language of the code or protocol can be declared using a <code>class</code> attribute starting with <code>language-</code>. For example:</p>
+          <pre class='code'>Use the &lt;code class='language-html'&gt;&amp;lt;code&amp;gt;&lt;/code&gt; element</pre>
+        </div>
+        <div class='section' id='block-code'>
+          <h4><a class='self-ref' href='#block-code'>3.3.4.</a> Blocks of Code</h4>
+          <p id='block-code-p-1'>Larger sections of code or protocol can be included using a <code>&lt;pre&gt;</code> element with a <code>class</code> attribute of <code>code</code>. If desired, the language of the code or protocol can be declared using a further <code>class</code> value starting with <code>language-</code> (multiple <code>class</code> values are separated by spaces in HTML). The text inside the <code>&lt;pre&gt;</code> element will be rendered in a monospace font, with whitespace maintained. For example:</p>
+          <pre class='code language-html'>&lt;pre class='code language-html'&gt;
+&amp;lt;html&amp;gt;
+  &amp;lt;body /&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/pre&gt;</pre>
+          <p id='block-code-p-3'>Will be rendered as:</p>
+          <pre class='code language-html'>&lt;html&gt;
+  &lt;body /&gt;
+&lt;/html&gt;</pre>
+        </div>
+        <div class='section' id='ascii-art'>
+          <h4><a class='self-ref' href='#ascii-art'>3.3.5.</a> ASCII Art</h4>
+          <p id='ascii-art-p-1'>ASCII art is still preferred by some authors in preference to an image or SVG. The RFC Editor may decide to prefer images or SVG, or may decide to prohibit ASCII art in the future, depending on the needs of the community at the time of publishing. Until that time, to include ASCII art, wrap a <code>&lt;pre&gt;</code> element with <code>class='ascii'</code> in a <code>&lt;figure&gt;</code> along with a <code>&lt;figcaption&gt;</code>, as if the <code>&lt;pre&gt;</code> element were an image, as specified in the <a href='#images'>Images section</a>. For example:</p>
+          <pre class='code language-html'>
+&lt;figure&gt;
+  &lt;pre class='ascii'&gt;
+                  +-----------+
+                  | original  | &amp;lt;+
+                  +-----------+  |
+                    |            |
+                    | nit        | edit
+                    v            |
+    nit (no-op)   +-----------+  |
+  +-------------- |           |  |
+  |               | canonical |  |
+  +-------------&amp;gt; |           | -+
+                  +-----------+
+  &lt;/pre&gt;
+  &lt;figcaption&gt;Sample ASCII art&lt;/figcaption&gt;
+&lt;/figure&gt;
+          </pre>
+          <figure id='fig-ascii'>
+            <pre class='ascii'>
+                  +-----------+
+                  | original  | &lt;+
+                  +-----------+  |
+                    |            |
+                    | nit        | edit
+                    v            |
+    nit (no-op)   +-----------+  |
+  +-------------- |           |  |
+  |               | canonical |  |
+  +-------------&gt; |           | -+
+                  +-----------+
+</pre>
+            <figcaption><a class='self-ref' href='#fig-ascii'>Figure 3.</a> Sample ASCII art</figcaption>
+          </figure>
+        </div>
+        <div class='section' id='math'>
+          <h4><a class='self-ref' href='#math'>3.3.6.</a> Mathematical Formulae</h4>
+          <p id='math-p-1' />
+        </div>
+        <div class='section' id='pdu'>
+          <h4><a class='self-ref' href='#pdu'>3.3.7.</a> Packet Formats</h4>
+          <p id='pdu-p-1'>Packet format descriptions can be encoded as a <code>&lt;table&gt;</code> element wrapped in a <code>&lt;figure&gt;</code> along with a <code>&lt;figcaption&gt;</code>, as if the <code>&lt;pre&gt;</code> element were an image, as specified in the <a href='#images'>Images section</a>. For consistent formatting, the <code>&lt;table&gt;</code> element should have class <code>pdu</code>. For example:</p>
+          <pre class='code language-html'>
+&lt;figure&gt;
+  &lt;figcaption&gt;Sample packet format&lt;/figcaption&gt;
+  &lt;table class='pdu' /&gt;
+&lt;/figure&gt;</pre>
+          <p id='pdu-p-3'>Would be rendered as:</p>
+          <figure id='fig-4'>
+            <figcaption><a class='self-ref' href='#fig-4'>Figure 4.</a> Sample packet format</figcaption>
+            <table class='pdu'>
+              <tbody>
+                <tr>
+                  <th>Offsets</th>
+                  <th>Octet</th>
+                  <th colspan='8'>0</th>
+                  <th colspan='8'>1</th>
+                  <th colspan='8'>2</th>
+                  <th colspan='8'>3</th>
+                </tr>
+                <tr>
+                  <th>Octet</th>
+                  <th>Bit</th>
+                  <th> 0</th>
+                  <th> 1</th>
+                  <th> 2</th>
+                  <th> 3</th>
+                  <th> 4</th>
+                  <th> 5</th>
+                  <th> 6</th>
+                  <th> 7</th>
+                  <th> 8</th>
+                  <th> 9</th>
+                  <th>10</th>
+                  <th>11</th>
+                  <th>12</th>
+                  <th>13</th>
+                  <th>14</th>
+                  <th>15</th>
+                  <th>16</th>
+                  <th>17</th>
+                  <th>18</th>
+                  <th>19</th>
+                  <th>20</th>
+                  <th>21</th>
+                  <th>22</th>
+                  <th>23</th>
+                  <th>24</th>
+                  <th>25</th>
+                  <th>26</th>
+                  <th>27</th>
+                  <th>28</th>
+                  <th>29</th>
+                  <th>30</th>
+                  <th>31</th>
+                </tr>
+                <tr>
+                  <th>0</th>
+                  <th>0</th>
+                  <td colspan='4'>version</td>
+                  <td colspan='4'>header len</td>
+                  <td colspan='6'>differentiated services</td>
+                  <td colspan='2'>ECN</td>
+                  <td colspan='16'>length</td>
+                </tr>
+                <tr>
+                  <th>4</th>
+                  <th>32</th>
+                  <td colspan='16'>identification</td>
+                  <td>R<br />S<br />V</td>
+                  <td>D<br />F</td>
+                  <td>M<br />F</td>
+                  <td colspan='13'>fragment offset</td>
+                </tr>
+                <tr>
+                  <th>8</th>
+                  <th>64</th>
+                  <td colspan='32'>source IP</td>
+                </tr>
+                <tr>
+                  <th>12</th>
+                  <th>96</th>
+                  <td colspan='32'>destination IP</td>
+                </tr>
+                <tr>
+                  <th>16<br />...</th>
+                  <th>128<br />...</th>
+                  <td colspan='32'>options<br />...</td>
+                </tr>
+              </tbody>
+            </table>
+          </figure>
         </div>
       </div>
-      <div class='section' id='elaborate'>
-        <h3><a class='self-ref' href='#elaborate'>3.4.</a> More Elaborate Information</h3>
-        <p id='elaborate-p-1' />
+    </div>
+    <div class='section' id='metadata'>
+      <h2><a class='self-ref' href='#metadata'>4.</a> Document Metadata</h2>
+      <p id='metadata-p-1'>Metadata for the document <span class='rfc2119'>SHOULD</span> be easily extractable from the document by tools that ordinarily process HTML. Typically, the <code>class</code> and <code>id</code> attributes can be used to query the document using <a class='ref' href='#w3c:REC-CSS2-20110607'>CSS</a>-style selectors. The metadata scheme <span class='rfc2119'>SHOULD</span> be designed such that the element name is not required in order to select a given piece of data. Instead, any element that can contain text can be used for a given <code>class</code> or <code>id</code> to be selected. The value of the data contained by the selected element(s) consists of the concatenation of all of the text from all of the child nodes of the selected element or elements. The metadata scheme <span class='rfc2119'>MUST</span> allow unambiguous selection.</p>
+      <p id='metadata-p-2'>The <code>id</code> attribute is used to identify pieces of data that are guaranteed to be unique across the document. Any element with an <code>id</code> attribute can also be used as a fragment target in a URI by starting with the base URI of the document, then appending "#" (U+0023: NUMBER SIGN) and the value of the <code>id</code> attribute. In CSS, the element with a given <code>id</code> attribute value is selected by prepending the value with "#" (U+0023: NUMBER SIGN). For example, the following HTML in a document with the URI <code>http://example.com/index.html</code>:</p>
+      <pre class='code language-html'>&lt;div id='example'&gt;Important Text&lt;/div&gt;</pre>
+      <p id='metadata-p-4'>Can be targeted directly with the URL <code>http://example.com/index.html#example</code>, and the CSS selector <code>#example</code>.</p>
+      <p id='metadata-p-5'>The <code>class</code> attribute is a catch-all tagging mechanism for everything in the documnet that might not be unique. Multiple classes may be defined on a single element by setting the <code>class</code> attribute to a space-separated list of classes. All of the elements with a given class name can be selected in CSS by prepending the class name with "." (U+002E: FULL STOP).</p>
+      <div class='section' id='docinfo'>
+        <h3><a class='self-ref' href='#docinfo'>4.1.</a> Document Information</h3>
+        <p id='docinfo-p-1'>Information about the document as a whole </p>
+      </div>
+      <div class='section' id='md_author'>
+        <h3><a class='self-ref' href='#md_author'>4.2.</a> Author</h3>
+        <p class='note rfceditor-remove' id='md_author-p-1'>NOTE: this document currently uses the approach specified by "<a href='http://microformats.org/wiki/hcard'>hCard</a>". The author recommends that the <a href='http://datatracker.ietf.org/wg/vcarddav/charter/'>vcarddav</a> Working Group of the IETF be tasked to propose an approach for HTML embedding of vCard that is aligned with <a class='ref' href='#rfc:6350'>RFC 6350</a>.</p>
+        <p id='md_author-p-2' />
+      </div>
+      <div class='section' id='bibliographical'>
+        <h3><a class='self-ref' href='#bibliographical'>4.3.</a> Bibliographical Information</h3>
+        <p id='bibliographical-p-1'>References</p>
       </div>
     </div>
     <div class='section' id='examples'>
-      <h2><a class='self-ref' href='#examples'>4.</a> Examples</h2>
+      <h2><a class='self-ref' href='#examples'>5.</a> Examples</h2>
       <div id='self-example' class='section'>
-        <h3><a class='self-ref' href='#self-example'>4.1.</a> Self</h3>
+        <h3><a class='self-ref' href='#self-example'>5.1.</a> Self</h3>
         <p id='self-example-p-1'>This draft itself is a good example of how to use the format. Please view-source.</p>
       </div>
       <div class='section' id='ascii-art-code-samples'>
-        <h3><a class='self-ref' href='#ascii-art-code-samples'>4.2.</a> ASCII Art, code samples</h3>
-        <pre class='code'>
+        <h3><a class='self-ref' href='#ascii-art-code-samples'>5.2.</a> Code Sample</h3>
+        <pre class='code language-c'>
 #include &lt;stdio.h&gt;
 int main(int argc, char **argv)
 {
@@ -364,48 +702,49 @@ int main(int argc, char **argv)
     return 0;
 }</pre>
       </div>
-      <div class='section' id='image-sample'>
-        <h3><a class='self-ref' href='#image-sample'>4.3.</a> Images</h3>
-        <p id='image-sample-p-1'>Include an <code>img</code> tag with a <code>src</code> attribute, which specifies a file name relative to the source document, or a http(s) URL for an image of type png, jpg, or gif. The image will be retrieved and converted to a data: URI as specified in <a class='ref' href='#rfc:2397'>RFC2397</a>. The <code>alt</code> attribute is <span class='rfc2119'>REQUIRED</span>, and <span class='rfc2119'>MUST</span> be a complete, accessible description for any diagram intended to be normative.</p>
-        <pre class='code'>&lt;img src='nit-flow.png' alt='A description of the diagram'/&gt;</pre>
-        <img src='nit-flow.png' alt='A description of the diagram' width='236' height='176' />
-      </div>
       <div class='section' id='websequencediagram-sample'>
-        <h3><a class='self-ref' href='#websequencediagram-sample'>4.4.</a> Sequence Diagrams</h3>
-        <p id='websequencediagram-sample-p-1'>Include an image tag with <code>class='sequence'</code>, where the alt text is the <a href='http://www.websequencediagrams.com/'>WebSequenceDiagrams.com</a> source for the diagram. A reminder: in the alt text the author <span class='rfc2119'>MUST</span> escape all less-than (&lt; to &amp;lt;), greater-than (&gt; to &amp;gt;), and ampersand (&amp; to &amp;amp;) characters, in the same manner normally required by HTML.</p>
+        <h3><a class='self-ref' href='#websequencediagram-sample'>5.3.</a> Sequence Diagrams</h3>
+        <p id='websequencediagram-sample-p-1'>Include an image tag with <code>class='sequence'</code>, where the alt text is the <a href='http://www.websequencediagrams.com/'>WebSequenceDiagrams.com</a> source for the diagram.</p>
+        <p class='note rfceditor-remove' id='websequencediagram-sample-p-2'>Before publication, this approach will be replaced by something more well-specified and not requiring third-party software.</p>
         <pre class='code'>
-&lt;img class='sequence' alt='
+&lt;figure&gt;
+  &lt;img class='sequence' alt='
 title Authentication Sequence
 Alice-&amp;gt;Bob: Authentication Request
 note right of Bob: Bob thinks about it
-Bob-&amp;gt;Alice: Authentication Response' /&gt;</pre>
-        <img class='sequence' alt='
+Bob-&amp;gt;Alice: Authentication Response' /&gt;
+  &lt;figcaption&gt;A sample sequence diagram&lt;/figcaption&gt;
+&lt;/figure&gt;</pre>
+        <figure id='fig-sequence'>
+          <img class='sequence' alt='
 title Authentication Sequence
 Alice-&gt;Bob: Authentication Request
 note right of Bob: Bob thinks about it
 Bob-&gt;Alice: Authentication Response' id='e2320f07051d02b11826f58879667940d61462f0' src='wsd-e2320f07051d02b11826f58879667940d61462f0.png' width='375' height='266' />
+          <figcaption><a class='self-ref' href='#fig-sequence'>Figure 5.</a> A sample sequence diagram</figcaption>
+        </figure>
       </div>
       <div class='section' id='abnf'>
-        <h3><a class='self-ref' href='#abnf'>4.5.</a> ABNF</h3>
-        <p id='abnf-p-1'>Augmented Backus-Naur Form is a way of describing formal syntax. Include ABNF (without indentation) in a <code>&lt;pre&gt;</code> element, with CSS class "code" and "abnf". For example:</p>
-        <pre class='code'>&lt;pre class='code abnf'&gt;
-jid           = [ localpart "@" ] domainpart [ "/" resourcepart ]
-localpart     = 1*(nodepoint)
-domainpart    = IP-literal / IPv4address / ifqdn
-ifqdn         = 1*(namepoint)
-resourcepart  = 1*(resourcepoint)
+        <h3><a class='self-ref' href='#abnf'>5.4.</a> ABNF</h3>
+        <p id='abnf-p-1'>Augmented Backus-Naur Form is a way of describing formal syntax, described in <a class='ref' href='#rfc:5234'>RFC5234</a>. Include ABNF (without extra indentation) in a <code>&lt;pre&gt;</code> element, with CSS class "code" and "language-abnf". For example:</p>
+        <pre class='code'>&lt;pre class='code language-abnf'&gt;
+label        = top-level *4section-num
+top-level    = section-num / appendix-let
+section-num  = 1*DIGIT "."
+appendix-let = 1*CAP "."
+CAP          = %x41-5A ; A-Z
+DIGIT        = %x30-39 ; 0-9
 &lt;/pre&gt;</pre>
-        <pre class='code abnf'>
-jid           = [ localpart "@" ] domainpart [ "/" resourcepart ]
-localpart     = 1*(nodepoint)
-domainpart    = IP-literal / IPv4address / ifqdn
-ifqdn         = 1*(namepoint)
-resourcepart  = 1*(resourcepoint)
+        <p id='abnf-p-3'>Is rendered as:</p>
+        <pre class='code language-abnf'>
+label        = top-level *4section-num
+top-level    = section-num / appendix-let
+section-num  = 1*DIGIT "."
+appendix-let = 1*CAP "."
+CAP          = %x41-5A ; A-Z
+DIGIT        = %x30-39 ; 0-9
 </pre>
       </div>
-    </div>
-    <div id='workflow' class='section'>
-      <h2><a class='self-ref' href='#workflow'>5.</a> Workflow</h2>
     </div>
     <div class='section' id='security'>
       <h2><a class='self-ref' href='#security'>6.</a> Security Considerations</h2>
@@ -494,77 +833,728 @@ resourcepart  = 1*(resourcepoint)
             <span class='date'>November 2008</span>
             <span>.</span>
           </li>
+          <li id='w3c:REC-CSS2-20110607' class='ref'>
+            <span id='W3C.REC-CSS2-20110607'>[W3C.REC-CSS2-20110607]</span>
+            <span class='author'>Çelik, T.</span>
+            <span>,</span>
+            <span class='title'>"Cascading Style Sheets Level 2 Revision 1 (CSS 2.1) Specification"</span>
+            <span class='reflinks'>
+              <span>[<a href='http://www.w3.org/TR/2011/REC-CSS2-20110607'>HTML</a>]</span>
+            </span>
+            <span>,</span>
+            <span class='series-info'>World Wide Web Consortium Recommendation REC-CSS2-20110607</span>
+            <span>,</span>
+            <span class='date'>June 2011</span>
+            <span>.</span>
+          </li>
+          <li id='w3c:REC-SVG11-20110816' class='ref'>
+            <span id='W3C.REC-SVG11-20110816'>[W3C.REC-SVG11-20110816]</span>
+            <span class='author'>Watt, J.</span>
+            <span>,</span>
+            <span class='title'>"Scalable Vector Graphics (SVG) 1.1 (Second Edition)"</span>
+            <span class='reflinks'>
+              <span>[<a href='http://www.w3.org/TR/2011/REC-SVG11-20110816'>HTML</a>]</span>
+            </span>
+            <span>,</span>
+            <span class='series-info'>World Wide Web Consortium Recommendation REC-SVG11-20110816</span>
+            <span>,</span>
+            <span class='date'>August 2011</span>
+            <span>.</span>
+          </li>
+          <li id='rfc:2083' class='ref'>
+            <span id='RFC2083'>[RFC2083]</span>
+            <span class='author'>
+              <a href='mailto:boutell@boutell.com' title='Boutell.Com, Inc.'>Boutell, T.</a>
+            </span>
+            <span>,</span>
+            <span class='title'>"PNG (Portable Network Graphics) Specification Version 1.0"</span>
+            <span class='reflinks'>
+              <span>[<a href='http://www.rfc-editor.org/rfc/rfc2083.txt'>TXT</a>]</span>
+            </span>
+            <span>,</span>
+            <span class='series-info'>RFC 2083</span>
+            <span>,</span>
+            <span class='date'>March 1997</span>
+            <span>.</span>
+          </li>
+          <li id='rfc:5646' class='ref'>
+            <span id='RFC5646'>[RFC5646]</span>
+            <span class='author'>Phillips, A.</span>
+            <span>,</span>
+            <span class='title'>"Tags for Identifying Languages"</span>
+            <span class='reflinks'>
+              <span>[<a href='http://www.rfc-editor.org/rfc/rfc5646.txt'>TXT</a>]</span>
+            </span>
+            <span>,</span>
+            <span class='series-info'>BCP 47, RFC 5646</span>
+            <span>,</span>
+            <span class='date'>September 2009</span>
+            <span>.</span>
+          </li>
+          <li id='rfc:3979' class='ref'>
+            <span id='RFC3979'>[RFC3979]</span>
+            <span class='author'>Bradner, S.</span>
+            <span>,</span>
+            <span class='title'>"Intellectual Property Rights in IETF Technology"</span>
+            <span class='reflinks'>
+              <span>[<a href='http://www.rfc-editor.org/rfc/rfc3979.txt'>TXT</a>]</span>
+            </span>
+            <span>,</span>
+            <span class='series-info'>BCP 79, RFC 3979</span>
+            <span>,</span>
+            <span class='date'>March 2005</span>
+            <span>.</span>
+          </li>
+          <li id='rfc:5378' class='ref'>
+            <span id='RFC5378'>[RFC5378]</span>
+            <span class='author'>Bradner, S.</span>
+            <span>,</span>
+            <span class='title'>"Rights Contributors Provide to the IETF Trust"</span>
+            <span class='reflinks'>
+              <span>[<a href='http://www.rfc-editor.org/rfc/rfc5378.txt'>TXT</a>]</span>
+            </span>
+            <span>,</span>
+            <span class='series-info'>BCP 78, RFC 5378</span>
+            <span>,</span>
+            <span class='date'>November 2008</span>
+            <span>.</span>
+          </li>
         </ul>
       </div>
       <div id='informative' class='section'>
         <h3><a class='self-ref' href='#informative'>7.2.</a> Informative References</h3>
+        <ul>
+          <li id='rfc:5234' class='ref'>
+            <span id='RFC5234'>[RFC5234]</span>
+            <span class='author'>Crocker, D.</span>
+            <span>,</span>
+            <span class='title'>"Augmented BNF for Syntax Specifications: ABNF"</span>
+            <span class='reflinks'>
+              <span>[<a href='http://www.rfc-editor.org/rfc/rfc5234.txt'>TXT</a>]</span>
+            </span>
+            <span>,</span>
+            <span class='series-info'>STD 68, RFC 5234</span>
+            <span>,</span>
+            <span class='date'>January 2008</span>
+            <span>.</span>
+          </li>
+          <li id='rfc:6350' class='ref'>
+            <span id='RFC6350'>[RFC6350]</span>
+            <span class='author'>Perreault, S.</span>
+            <span>,</span>
+            <span class='title'>"vCard Format Specification"</span>
+            <span class='reflinks'>
+              <span>[<a href='http://www.rfc-editor.org/rfc/rfc6350.txt'>TXT</a>]</span>
+            </span>
+            <span>,</span>
+            <span class='series-info'>RFC 6350</span>
+            <span>,</span>
+            <span class='date'>August 2011</span>
+            <span>.</span>
+          </li>
+        </ul>
       </div>
-      <ul />
     </div>
     <div id='authors' class='section'>
       <h2><a class='self-ref' href='#authors'>8.</a> Authors' Addresses</h2>
-      <address class='vcard' id='jhildebr-cisco.com'>
-        <span class='vcardline'>
-          <span class='fn'>Joe Hildebrand</span>
-          <span class='role'>(editor)</span>
-          <span class='n hidden'>
-            <span class='initial'>J.</span>
-            <span class='family-name'>Hildebrand</span>
-            <span class='given-name'>Joe</span>
-          </span>
+      <address class='vcard'>
+        <span class='n hidden'>
+          <span class='family-name'>Hildebrand</span>
+          <span class='given-name'>Joe</span>
         </span>
-        <span class='org vcardline'>Cisco Systems, Inc.</span>
-        <span class='adr'>
-          <span class='street-address vcardline'>1899 Wynkoop St, Suite 600</span>
-          <span class='vcardline'> <span class='locality'>Denver</span>, <span class='region'>CO</span> <span class='postal-code'>80202</span> </span>
-          <span class='country-name vcardline'>United States</span>
-        </span>
-        <span class='vcardline'>
-          <span>Email: </span>
-          <a href='mailto:jhildebr@cisco.com'>
-            <span class='email'>jhildebr@cisco.com</span>
-          </a>
-        </span>
+        <span class='nickname hidden'>hildjj</span>
+        <span class='fn'>Joe Hildebrand</span>
+        <span class='org'>Cisco Systems, Inc.</span>
+        <a class='email' href='jhildebr@cisco.com'>jhildebr@cisco.com</a>
+        <div class='adr'>
+          <div class='street-address'>1899 Wynkoop St, Suite 600</div>
+          <div><span class='locality'>Denver</span>, <span class='region'>CO</span> <span class='postal-code'>80202</span></div>
+          <div class='country-name'>United States</div>
+        </div>
       </address>
-      <address class='vcard' id='julian.reschke-greenbytes.de'>
-        <span class='vcardline'>
-          <span class='fn'>Julian F. Reschke</span>
-          <span class='n hidden'>
-            <span class='initial'>J.</span>
-            <span class='family-name'>Reschke</span>
-            <span class='given-name'>Julian F.</span>
-          </span>
-        </span>
-        <span class='org vcardline'>greenbytes GmbH</span>
-        <span class='adr'>
-          <span class='street-address vcardline'>Hafenweg 16</span>
-          <span class='vcardline'> <span class='locality'>Muenster</span>, <span class='region'>NW</span> <span class='postal-code'>48155</span> </span>
-          <span class='country-name vcardline'>Germany</span>
-        </span>
-        <span class='vcardline tel'>
-          <span>Phone: </span>
-          <a href='tel:+492512807760'>
-            <span class='value'>+49 251 2807760</span>
-          </a>
-        </span>
-        <span class='vcardline tel'>
-          <span class='type'>Fax</span>
-          <span>: </span>
-          <a href='fax:+492512807761'>
-            <span class='value'>+49 251 2807761</span>
-          </a>
-        </span>
-        <span class='vcardline'>
-          <span>Email: </span>
-          <a href='mailto:julian.reschke@greenbytes.de'>
-            <span class='email'>julian.reschke@greenbytes.de</span>
-          </a>
-        </span>
-        <span class='vcardline'>
-          <span>URI: </span>
-          <a class='url' href='http://greenbytes.de/tech/webdav/'>http://greenbytes.de/tech/webdav/</a>
-        </span>
-      </address>
+    </div>
+    <div class='appendix' id='html-subset'>
+      <h2><a class='self-ref' href='#html-subset'>Appendix A.</a> Allowable Subset of HTML</h2>
+      <p id='html-subset-p-1'>This section collects all of the elements that are allowed in the HTML RFC format. Each element is listed with a set of allowed attributes, and a list of the parent elements in which the element may be placed. The attributes <code>class</code> and <code>id</code> are allowed on all elements. All other elements, attributes, and nesting approaches <span class='rfc2119'>MUST NOT</span> be used.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>Attributes</th>
+            <th>Parents</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>a</td>
+            <td>href, title</td>
+            <td>address, div, figcaption, h2, h3, h4, h5, li, p, span, td</td>
+          </tr>
+          <tr>
+            <td>address</td>
+            <td>
+            </td>
+            <td>div</td>
+          </tr>
+          <tr>
+            <td>blockquote</td>
+            <td>
+            </td>
+            <td>div</td>
+          </tr>
+          <tr>
+            <td>body</td>
+            <td>
+            </td>
+            <td>html</td>
+          </tr>
+          <tr>
+            <td>br</td>
+            <td>
+            </td>
+            <td>td, th</td>
+          </tr>
+          <tr>
+            <td>code</td>
+            <td>
+            </td>
+            <td>li, p, td</td>
+          </tr>
+          <tr>
+            <td>div</td>
+            <td>
+            </td>
+            <td>address, body, div, li</td>
+          </tr>
+          <tr>
+            <td>ellipse</td>
+            <td>cx, cy, fill, rx, ry, stroke</td>
+            <td>g</td>
+          </tr>
+          <tr>
+            <td>em</td>
+            <td>
+            </td>
+            <td>p</td>
+          </tr>
+          <tr>
+            <td>figcaption</td>
+            <td>
+            </td>
+            <td>figure</td>
+          </tr>
+          <tr>
+            <td>figure</td>
+            <td>
+            </td>
+            <td>div</td>
+          </tr>
+          <tr>
+            <td>g</td>
+            <td>transform</td>
+            <td>g, svg</td>
+          </tr>
+          <tr>
+            <td>h1</td>
+            <td>
+            </td>
+            <td>body</td>
+          </tr>
+          <tr>
+            <td>h2</td>
+            <td>
+            </td>
+            <td>div</td>
+          </tr>
+          <tr>
+            <td>h3</td>
+            <td>
+            </td>
+            <td>div</td>
+          </tr>
+          <tr>
+            <td>h4</td>
+            <td>
+            </td>
+            <td>div</td>
+          </tr>
+          <tr>
+            <td>h5</td>
+            <td>
+            </td>
+            <td>div</td>
+          </tr>
+          <tr>
+            <td>head</td>
+            <td>
+            </td>
+            <td>html</td>
+          </tr>
+          <tr>
+            <td>html</td>
+            <td>lang</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>img</td>
+            <td>alt, height, src, width</td>
+            <td>figure</td>
+          </tr>
+          <tr>
+            <td>li</td>
+            <td>
+            </td>
+            <td>ol, ul</td>
+          </tr>
+          <tr>
+            <td>link</td>
+            <td>href, rel, type</td>
+            <td>head</td>
+          </tr>
+          <tr>
+            <td>meta</td>
+            <td>content, http-equiv, name</td>
+            <td>head</td>
+          </tr>
+          <tr>
+            <td>ol</td>
+            <td>
+            </td>
+            <td>div</td>
+          </tr>
+          <tr>
+            <td>p</td>
+            <td>
+            </td>
+            <td>blockquote, div, td</td>
+          </tr>
+          <tr>
+            <td>path</td>
+            <td>d, fill, stroke</td>
+            <td>g</td>
+          </tr>
+          <tr>
+            <td>polygon</td>
+            <td>fill, points, stroke</td>
+            <td>g</td>
+          </tr>
+          <tr>
+            <td>pre</td>
+            <td>
+            </td>
+            <td>div, figure</td>
+          </tr>
+          <tr>
+            <td>span</td>
+            <td>
+            </td>
+            <td>address, div, li, p, span</td>
+          </tr>
+          <tr>
+            <td>strong</td>
+            <td>
+            </td>
+            <td>p, pre</td>
+          </tr>
+          <tr>
+            <td>svg</td>
+            <td>height, viewbox, width, xmlns</td>
+            <td>figure</td>
+          </tr>
+          <tr>
+            <td>table</td>
+            <td>
+            </td>
+            <td>div, figure</td>
+          </tr>
+          <tr>
+            <td>tbody</td>
+            <td>
+            </td>
+            <td>table</td>
+          </tr>
+          <tr>
+            <td>td</td>
+            <td>colspan</td>
+            <td>tr</td>
+          </tr>
+          <tr>
+            <td>text</td>
+            <td>text-anchor, x, y</td>
+            <td>g</td>
+          </tr>
+          <tr>
+            <td>th</td>
+            <td>colspan</td>
+            <td>tr</td>
+          </tr>
+          <tr>
+            <td>thead</td>
+            <td>
+            </td>
+            <td>table</td>
+          </tr>
+          <tr>
+            <td>title</td>
+            <td>
+            </td>
+            <td>g, head</td>
+          </tr>
+          <tr>
+            <td>tr</td>
+            <td>
+            </td>
+            <td>tbody, thead</td>
+          </tr>
+          <tr>
+            <td>ul</td>
+            <td>
+            </td>
+            <td>div, li, td</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class='appendix' id='html-classes'>
+      <h2><a class='self-ref' href='#html-classes'>Appendix B.</a> CSS Classes with Special Meaning</h2>
+      <p id='html-classes-p-1'>Although the author can add class information to any element, the following class names have special meaning in an HTML RFC:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>adr</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>appendix</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>ascii</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>author</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>authors</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>code</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>company</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>country-name</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>date</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>edge</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>email</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>expires</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>family-name</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>fn</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>given-name</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>graph</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>hidden</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>identifiers</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>initial</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>language-abnf</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>language-c</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>language-html</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>locality</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>n</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>nickname</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>node</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>note</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>org</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>pdu</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>postal-code</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>published</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>ref</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>reflinks</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>region</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>rfc2119</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>rfceditor-remove</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>section</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>self-ref</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>sequence</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>series</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>series-info</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>status</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>street-address</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>surname</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>title</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>toc</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>trust200902</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>vcard</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>version</td>
+            <td>
+            </td>
+          </tr>
+          <tr>
+            <td>workgroup</td>
+            <td>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class='appendix' id='html-ids'>
+      <h2><a class='self-ref' href='#html-ids'>Appendix C.</a> Element IDs with Special Meaning</h2>
+      <p id='html-ids-p-1'>Although the author can add an <code>id</code> attribute to any element, the following id values <span class='rfc2119'>SHOULD NOT</span> be used except for the role defined for each below:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>document</td>
+            <td>Data about the document, including dates, name, version, etc.</td>
+          </tr>
+          <tr>
+            <td>title</td>
+            <td>The title of the document, usually applied to a <code>&lt;h1&gt;</code> element.</td>
+          </tr>
+          <tr>
+            <td>abstract</td>
+            <td>The abstract for the document, usually applied to a <code>&lt;div&gt;</code> element that contains a heading and paragraphs of text.</td>
+          </tr>
+          <tr>
+            <td>ipr</td>
+            <td>
+              <p id='html-ids-p-0'>The Intellectual Property Rights associated with the document. The <code>class</code> attribute of the same element will contain a machine-readable IPR statement name from this list:</p>
+              <ul>
+                <li><code>trust200902</code>: This is appropriate for most drafts, where the entire content of the draft is written by the draft's authors, or all authors of other material have given explicit permission to use their work.</li>
+                <li><code>noModificationTrust200902</code>: This is appropriate for drafts where the authors wish to place the additional condition that if the draft is published as an RFC, it must have no changes other than formatting. An example might be a document published by another organization that permits copying but not modification.</li>
+                <li><code>noDerivativesTrust200902</code>: This is appropriate for drafts not intended to be published as RFCs.</li>
+                <li><code>pre5378Trust200902</code>: This is appropriate for drafts that include material submitted to the IETF prior to <a class='ref' href='#rfc:5378'>RFC 5378</a> (10 Nov 2008), where the authors of that material have not given explicit permission to use their work in this draft. An example might be a draft using material from an RFC whose author has died or cannot be located, or who thinks your draft is stupid.</li>
+              </ul>
+              <p id='html-ids-p-2'>The element with this id will contain all of the IPR and status boilerplate text</p>
+              <p id='html-ids-p-3'>Note: an IANA registry may be required for this attribute in the future.</p>
+            </td>
+          </tr>
+          <tr>
+            <td>venue</td>
+            <td>The venue for discussion. Inside the element tagged with this id will be one or more <code>&lt;a&gt;</code> elements that describe the discussion venue for Internet-Drafts.</td>
+          </tr>
+          <tr>
+            <td>toc</td>
+            <td>The Table of Contents</td>
+          </tr>
+          <tr>
+            <td>references</td>
+            <td>The <a href='#sections'>section</a> containing bibliographical data, including sections for normative and informative references.</td>
+          </tr>
+          <tr>
+            <td>normative</td>
+            <td>The <a href='#sections'>section</a> containing normative document references.</td>
+          </tr>
+          <tr>
+            <td>informative</td>
+            <td>The <a href='#sections'>section</a> containing informative document references.</td>
+          </tr>
+          <tr>
+            <td>authors</td>
+            <td>The <a href='#sections'>section</a> containing data about the authors of the document.</td>
+          </tr>
+          <tr>
+            <td>security</td>
+            <td>The <a href='#sections'>section</a> containing the Security Considerations for the document.</td>
+          </tr>
+          <tr>
+            <td>acknowledgments</td>
+            <td>The <a href='#sections'>section</a> containing the author's acknowledgments.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class='appendix' id='acknowledgments'>
+      <h2><a class='self-ref' href='#acknowledgments'>Appendix D.</a> Acknowledgments</h2>
+      <p id='acknowledgments-p-1'>The author gratefully acknowledges the contributions of: Heather Flanagan and Patrick Linskey</p>
     </div>
   </body>
 </html>

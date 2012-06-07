@@ -1,0 +1,5 @@
+digraph nit_flow {
+	original -> canonical [label="nit"];
+	canonical -> canonical [label="nit (no-op)"];
+	canonical -> original [label="edit"];
+}
