@@ -37,11 +37,13 @@ exports.nit = function(env) {
                 var top = $("div.section#references");
                 if (top.length === 0) {
                     top = $("<div id='references' class='section'>");
+                    top.append($("<h2>References</h2>"))
                     $("body").append(top);
                 }
                 var norm = $("div.section#normative", top);
                 if (norm.length === 0) {
                     norm = $("<div id='normative' class='section'>");
+                    norm.append($("<h3>Normative References</h3>"))
                     top.prepend(norm);
                 }
                 var ul = $("ul", norm);
@@ -49,7 +51,7 @@ exports.nit = function(env) {
                     ul = $("<ul>")
                     norm.append(ul);
                 }
-                $("<li id='" + ref_id + "' class='ref'>").appendTo(norm);
+                $("<li id='" + ref_id + "' class='ref'>").appendTo(ul);
             }
             if (only_check) {
                 return s;
