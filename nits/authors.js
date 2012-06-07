@@ -6,12 +6,17 @@ exports.nit = function(env) {
         return env.error("No authors");
     }
 
-    var hauth = $(".ietf .authors");
+    var hauth = $("#document .authors");
     hauth.empty();
     hauth.comment("Automatically generated from $('.section#authors address')");
     authors.each(function() {
         var author = $("<div>").addClass("author");
-        $("<span>").addClass("initial").text($(".initial", this).text()).appendTo(author);
+        // Note: "initial" is not a valid RFC 6350 property name.
+        var initial = $(".initial", this).text();
+        if (initial.length === 0) {
+            initial = $(".given-name", this).text().slice(0,1) + ".";
+        }
+        $("<span>").addClass("initial").text(initial).appendTo(author);
         $("<span>").addClass("surname").text($(".family-name", this).text()).appendTo(author);
         $("<span>").addClass("company").text($(".org", this).text()).appendTo(author);
         author.appendTo(hauth);

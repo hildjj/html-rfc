@@ -3,11 +3,11 @@ var path = require('path');
 exports.nit = function(env) {
     var $ = env.$;
     // Title is required
-    var h1 = $("div#title h1");
+    var h1 = $("#title");
     if (h1.length === 0) {
         env.log.warn("No Title.  Adding one that needs to be edited.");
-        $("div.ietf").after($("<div id='title'><h1>Template</h1></div>"));
-        h1 = $("div#title h1");
+        h1 = $("<h1 id='title'>Template</h1>");
+        $("#document").after(h1);
     }
     var txt = h1.text();
     $("html > head > title").text(txt);
