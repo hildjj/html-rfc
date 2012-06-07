@@ -1,8 +1,19 @@
-function f($, divs, depth, parnum) {
+function numToAppendix(n) {
+    var az = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var i = n;
+    var ret = "";
+    while (i > 0) {
+        ret = az.charAt((i-1)  % 26) + ret;
+        i = Math.floor((i-1) / 26);
+    }
+    return ret;
+}
+
+function f($, ul, divs, depth, parnum) {
     if (!divs.length) {
         return null;
     }
-    var ul = $("<ul>").addClass("toc");
+
     divs.each(function(i) {
         var div = $(this);
         var li = $("<li>").addClass("toc");
@@ -12,8 +23,13 @@ function f($, divs, depth, parnum) {
             h.text(div.attr('id'));
             div.prepend(h);
         }
-        var num = parnum + (i+1) + ".";
-        var htxt = h.text().replace(/^[\d\.]+\s+/, "");
+        var num;
+        if (parnum === "Appendix ") {
+            num = parnum + numToAppendix(i+1) + ".";
+        } else {
+            num = parnum + (i+1) + ".";
+        }
+        var htxt = h.text().replace(/^(Appendix [A-Z]+\.)?([\d\.]+)?\s+/, "");
         h.empty();
         h.text(" " + htxt);
         var id = $(div).attr('id');
@@ -25,7 +41,11 @@ function f($, divs, depth, parnum) {
         ldiv.append($("<a>").text(htxt).
             attr("href", "#" + id));
         li.append(ldiv);
-        li.append(f($, $("> div.section", div), depth+1, num));
+
+        var subs = $("> div.section", div);
+        if (subs.length > 0) {
+            li.append(f($, $("<ul>").addClass("toc"), $("> div.section", div), depth+1, num));
+        }
         ul.append(li);
     });
     return ul;
@@ -42,7 +62,10 @@ exports.nit = function(env) {
     toc.empty();
     toc.comment(" Please do not edit the table of contents.\n     It was automatically generated. ");
     toc.append($("<h2>").text("Table of Contents"));
-    toc.append(f($, $("body > div.section"), 2, ""));
+    var ul = $("<ul>").addClass("toc");
+    toc.append(f($, ul, $("body > div.section"), 2, ""));
+    toc.append(f($, ul, $("body > div.appendix"), 2, "Appendix "));
+    toc.append(ul);
 }
 
 exports.requires = "div-number.js";
