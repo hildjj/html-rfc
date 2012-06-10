@@ -128,4 +128,4 @@ exports.nit = function(env) {
     return $.when.apply($, prom);
 }
 
-exports.requires = 'sequencediagrams.js';
+exports.requires = ['sequencediagrams.js', 'formula.js'];

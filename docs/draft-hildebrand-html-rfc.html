@@ -16,8 +16,8 @@
         <div class='workgroup'>Network Working Group</div>
         <div class='series'>Internet-Draft</div>
         <div class='status'>Standards Track</div>
-        <div class='published'>2012-06-06</div>
-        <div class='expires'>2012-12-06</div>
+        <div class='published'>2012-06-09</div>
+        <div class='expires'>2012-12-09</div>
         <div class='version'>00</div>
       </div>
       <div class='authors'>
@@ -39,7 +39,7 @@
       <p>This Internet-Draft is submitted in full conformance with the provisions of <a class='ref' href='#rfc:5378'>BCP 78</a> and <a class='ref' href='#rfc:3979'>BCP 79</a>.</p>
       <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF). Note that other groups may also distribute working documents as Internet-Drafts. The list of current Internet-Drafts is at <a href='http://datatracker.ietf.org/drafts/current/'>http://datatracker.ietf.org/drafts/current/</a>.</p>
       <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time. It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-      <p>This Internet-Draft will expire on December 06, 2012.</p>
+      <p>This Internet-Draft will expire on December 09, 2012.</p>
       <h2>Copyright Notice</h2>
       <p>Copyright © 2012 IETF Trust and the persons identified as the document authors. All rights reserved.</p>
       <p>This document is subject to <a class='ref' href='#rfc:5378'>BCP 78</a> and the IETF Trust's Legal Provisions Relating to <a href='http://trustee.ietf.org/license-info'>IETF Documents</a> in effect on the date of publication of this document. Please review these documents carefully, as they describe your rights and restrictions with respect to this document. Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -147,10 +147,7 @@
                   <div>3.3.5. <a href='#ascii-art'>ASCII Art</a></div>
                 </li>
                 <li class='toc'>
-                  <div>3.3.6. <a href='#math'>Mathematical Formulae</a></div>
-                </li>
-                <li class='toc'>
-                  <div>3.3.7. <a href='#pdu'>Packet Formats</a></div>
+                  <div>3.3.6. <a href='#pdu'>Packet Formats</a></div>
                 </li>
               </ul>
             </li>
@@ -184,6 +181,9 @@
             </li>
             <li class='toc'>
               <div>5.4. <a href='#abnf'>ABNF</a></div>
+            </li>
+            <li class='toc'>
+              <div>5.5. <a href='#math'>Mathematical Formulae</a></div>
             </li>
           </ul>
         </li>
@@ -529,7 +529,7 @@
         </div>
         <div class='section' id='ascii-art'>
           <h4><a class='self-ref' href='#ascii-art'>3.3.5.</a> ASCII Art</h4>
-          <p id='ascii-art-p-1'>ASCII art is still preferred by some authors in preference to an image or SVG. The RFC Editor may decide to prefer images or SVG, or may decide to prohibit ASCII art in the future, depending on the needs of the community at the time of publishing. Until that time, to include ASCII art, wrap a <code>&lt;pre&gt;</code> element with <code>class='ascii'</code> in a <code>&lt;figure&gt;</code> along with a <code>&lt;figcaption&gt;</code>, as if the <code>&lt;pre&gt;</code> element were an image, as specified in the <a href='#images'>Images section</a>. For example:</p>
+          <p id='ascii-art-p-1'>ASCII art is still preferred by some authors in preference to an image or SVG. The RFC Editor may decide to prefer <a href='#images'>images</a> or <a class='ref' href='#w3c:REC-SVG11-20110816'>SVG</a>, or may decide to prohibit ASCII art in the future, depending on the needs of the community at the time of publishing. Until that time, to include ASCII art, wrap a <code>&lt;pre&gt;</code> element with <code>class='ascii'</code> in a <code>&lt;figure&gt;</code> along with a <code>&lt;figcaption&gt;</code>, as if the <code>&lt;pre&gt;</code> element were an image, as specified in the <a href='#images'>Images section</a>. For example:</p>
           <pre class='code language-html'>
 &lt;figure&gt;
   &lt;pre class='ascii'&gt;
@@ -565,17 +565,13 @@
             <figcaption><a class='self-ref' href='#fig-ascii'>Figure 3.</a> Sample ASCII art</figcaption>
           </figure>
         </div>
-        <div class='section' id='math'>
-          <h4><a class='self-ref' href='#math'>3.3.6.</a> Mathematical Formulae</h4>
-          <p id='math-p-1' />
-        </div>
         <div class='section' id='pdu'>
-          <h4><a class='self-ref' href='#pdu'>3.3.7.</a> Packet Formats</h4>
+          <h4><a class='self-ref' href='#pdu'>3.3.6.</a> Packet Formats</h4>
           <p id='pdu-p-1'>Packet format descriptions can be encoded as a <code>&lt;table&gt;</code> element wrapped in a <code>&lt;figure&gt;</code> along with a <code>&lt;figcaption&gt;</code>, as if the <code>&lt;pre&gt;</code> element were an image, as specified in the <a href='#images'>Images section</a>. For consistent formatting, the <code>&lt;table&gt;</code> element should have class <code>pdu</code>. For example:</p>
           <pre class='code language-html'>
 &lt;figure&gt;
   &lt;figcaption&gt;Sample packet format&lt;/figcaption&gt;
-  &lt;table class='pdu' /&gt;
+  &lt;table class='pdu'&gt; [table describing the packet] &lt;/table&gt;
 &lt;/figure&gt;</pre>
           <p id='pdu-p-3'>Would be rendered as:</p>
           <figure id='fig-4'>
@@ -744,6 +740,18 @@ appendix-let = 1*CAP "."
 CAP          = %x41-5A ; A-Z
 DIGIT        = %x30-39 ; 0-9
 </pre>
+      </div>
+      <div class='section' id='math'>
+        <h3><a class='self-ref' href='#math'>5.5.</a> Mathematical Formulae</h3>
+        <p id='math-p-1'>For now, just use an image (as specified in the <a href='#images'>Images</a> section), with the alt text being a <a href='http://www.latex-project.org/'>LaTeX</a> formula that would produce the image. For example:</p>
+        <figure id='fig-6'>
+          <!-- Note: for idemponit, set the height to your desired size and the alt text. -->
+          <img alt='\Re{z} =\frac{n\pi \frac{\theta +\psi}{2}}{
+\left(\frac{\theta +\psi}{2}\right)^2 + \left( \frac{1}{2}
+\log \left\lvert\frac{B}{A}\right\rvert\right)^2}' class='formula' height='75' />
+          <figcaption><a class='self-ref' href='#fig-6'>Figure 6.</a> A sample formula</figcaption>
+        </figure>
+        <p id='math-p-3'>Future versions of this document will likely favor <a class='ref' href='#w3c:REC-SVG11-20110816'>SVG</a> or <a class='ref' href='#w3c:REC-MathML3-20101021'>MathML</a> representations of formulae.</p>
       </div>
     </div>
     <div class='section' id='security'>
@@ -950,6 +958,20 @@ DIGIT        = %x30-39 ; 0-9
             <span class='series-info'>RFC 6350</span>
             <span>,</span>
             <span class='date'>August 2011</span>
+            <span>.</span>
+          </li>
+          <li id='w3c:REC-MathML3-20101021' class='ref'>
+            <span id='W3C.REC-MathML3-20101021'>[W3C.REC-MathML3-20101021]</span>
+            <span class='author'>Ion, P.</span>
+            <span>,</span>
+            <span class='title'>"Mathematical Markup Language (MathML) Version 3.0"</span>
+            <span class='reflinks'>
+              <span>[<a href='http://www.w3.org/TR/2010/REC-MathML3-20101021'>HTML</a>]</span>
+            </span>
+            <span>,</span>
+            <span class='series-info'>World Wide Web Consortium Recommendation REC-MathML3-20101021</span>
+            <span>,</span>
+            <span class='date'>October 2010</span>
             <span>.</span>
           </li>
         </ul>
