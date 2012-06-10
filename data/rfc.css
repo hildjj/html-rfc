@@ -87,6 +87,9 @@ code, .code {
   border-radius: 4px;
   float: left;
 }
+figure .code {
+  margin-left: 0px;
+}
 .code + * {
   clear: both;
 }
