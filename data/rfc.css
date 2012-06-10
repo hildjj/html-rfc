@@ -21,7 +21,7 @@ body {
   clear: both;
 }
 #document .workgroup:before {
-  content:  "Workgroup: ";
+  content:  "Working Group: ";
   font-weight: bold;
 }
 #document .series:before {
