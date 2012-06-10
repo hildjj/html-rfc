@@ -1,14 +1,5 @@
 exports.nit = function(env) {
     var $ = env.$;
-    $.fn.extend({
-        textNodes: function() {
-            return $($.map(this, function(n) {
-                return $.grep(n.childNodes, function(n) {
-                    return n.nodeType == 3;
-                });
-            }));
-        }
-    });
 
     // TODO: add BCP, and parse http://www.rfc-editor.org/bcp-index.html
     // as needed.

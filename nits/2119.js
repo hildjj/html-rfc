@@ -1,14 +1,5 @@
 exports.nit = function(env) {
     var $ = env.$;
-    $.fn.extend({
-        textNodes: function() {
-            return $($.map(this, function(n) {
-                return $.grep(n.childNodes, function(n) {
-                    return n.nodeType == 3;
-                });
-            }));
-        }
-    });
 
     var m = $("div#mustard");
     if (m.text().trim().length === 0) {
