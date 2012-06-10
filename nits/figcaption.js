@@ -1,3 +1,5 @@
+// Fixup figcaption elements, ensuring they start with a figure number that
+// links to the figure they are a part of.
 exports.nit = function figcaption(env) {
     var $ = env.$;
     var num = 1;
