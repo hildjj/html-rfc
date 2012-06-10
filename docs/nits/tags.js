@@ -9,7 +9,7 @@ Tag.prototype.add = function add(t) {
     for (var i=0; i<t.attributes.length; i++) {
         var at = t.attributes[i];
         var nm = at.name.toLowerCase();
-        if ((nm === "class") || (nm === "id")) {
+        if (["class", "id", "xmlns", "lang"].indexOf(nm) !== -1) {
             continue;
         }
         var cur = this.attr[nm];
@@ -39,6 +39,10 @@ exports.nit = function tags(env) {
     var $ = env.$;
     var all = {};
     $('*').each(function() {
+        var that = $(this);
+        if (that.parents("svg").length > 0) {
+            return; // continue
+        }
         var nm = this.nodeName.toLowerCase();
         var i = all[nm];
         if (!i) {
