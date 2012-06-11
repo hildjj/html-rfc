@@ -9,6 +9,8 @@ String.prototype.endsWith = function (s) {
   return this.length >= s.length && this.substr(this.length - s.length) == s;
 };
 
+// Don't use the generic img processing in images.js, since the URL that
+// is returned from websequencediagrams.com is short-lived.
 function getDiagram(that, message, sum, file, env, def) {
     env.log.trace("Sequence diagram: '%s'", message.trim().split("\n")[0]);
     wsd.diagram(message, "modern-blue", "png", function(er, buf, typ) {
@@ -37,14 +39,14 @@ function getDiagram(that, message, sum, file, env, def) {
     });
 }
 
-exports.nit = function(env) {
+exports.nit = function sequencediagrams(env) {
     var $ = env.$;
     var prom = [];
 
     $("img.sequence[alt]").each(function() {
         var that = $(this);
         var alt = that.attr('alt');
-        if (!alt) {
+        if (!alt) { // [attr] checks don't seem to work.
             return;
         }
         shasum = crypto.createHash('sha1');
@@ -53,7 +55,7 @@ exports.nit = function(env) {
         var asrc  = 'wsd-' + altsum + '.png';
 
         var def = $.Deferred();
-        prom.push(def);
+        prom.push(def.promise());
 
         var src = that.attr('src')
         if (((src === asrc) || (src.slice(0,5) === "data:")) &&

@@ -16,8 +16,8 @@
         <div class='workgroup'>Network Working Group</div>
         <div class='series'>Internet-Draft</div>
         <div class='status'>Standards Track</div>
-        <div class='published'>2012-06-10</div>
-        <div class='expires'>2012-12-10</div>
+        <div class='published'>2012-06-11</div>
+        <div class='expires'>2012-12-11</div>
         <div class='version'>00</div>
       </div>
       <div class='authors'>
@@ -39,7 +39,7 @@
       <p>This Internet-Draft is submitted in full conformance with the provisions of <a class='ref' href='#rfc:5378'>BCP 78</a> and <a class='ref' href='#rfc:3979'>BCP 79</a>.</p>
       <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF). Note that other groups may also distribute working documents as Internet-Drafts. The list of current Internet-Drafts is at <a href='http://datatracker.ietf.org/drafts/current/'>http://datatracker.ietf.org/drafts/current/</a>.</p>
       <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time. It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-      <p>This Internet-Draft will expire on December 10, 2012.</p>
+      <p>This Internet-Draft will expire on December 11, 2012.</p>
       <h2>Copyright Notice</h2>
       <p>Copyright © 2012 IETF Trust and the persons identified as the document authors. All rights reserved.</p>
       <p>This document is subject to <a class='ref' href='#rfc:5378'>BCP 78</a> and the IETF Trust's Legal Provisions Relating to <a href='http://trustee.ietf.org/license-info'>IETF Documents</a> in effect on the date of publication of this document. Please review these documents carefully, as they describe your rights and restrictions with respect to this document. Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -191,18 +191,21 @@
           <div>6. <a href='#security'>Security Considerations</a></div>
         </li>
         <li class='toc'>
-          <div>7. <a href='#references'>References</a></div>
+          <div>7. <a href='#iana'>IANA Considerations</a></div>
+        </li>
+        <li class='toc'>
+          <div>8. <a href='#references'>References</a></div>
           <ul class='toc'>
             <li class='toc'>
-              <div>7.1. <a href='#normative'>Normative References</a></div>
+              <div>8.1. <a href='#normative'>Normative References</a></div>
             </li>
             <li class='toc'>
-              <div>7.2. <a href='#informative'>Informative References</a></div>
+              <div>8.2. <a href='#informative'>Informative References</a></div>
             </li>
           </ul>
         </li>
         <li class='toc'>
-          <div>8. <a href='#authors'>Authors' Addresses</a></div>
+          <div>9. <a href='#authors'>Authors' Addresses</a></div>
         </li>
         <li class='toc'>
           <div>Appendix A. <a href='#html-subset'>Allowable Subset of HTML</a></div>
@@ -763,7 +766,7 @@ DIGIT        = %x30-39 ; 0-9
 <!-- Note: for idemponit, set the height to your desired size and the alt text. -->
           <img alt='\Re{z} =\frac{n\pi \frac{\theta +\psi}{2}}{
 \left(\frac{\theta +\psi}{2}\right)^2 + \left( \frac{1}{2}
-\log \left\lvert\frac{B}{A}\right\rvert\right)^2}' class='formula' height='75' src='http://chart.googleapis.com/chart?cht=tx&amp;chl=%5CRe%7Bz%7D%20%3D%5Cfrac%7Bn%5Cpi%20%5Cfrac%7B%5Ctheta%20%2B%5Cpsi%7D%7B2%7D%7D%7B%0A%5Cleft(%5Cfrac%7B%5Ctheta%20%2B%5Cpsi%7D%7B2%7D%5Cright)%5E2%20%2B%20%5Cleft(%20%5Cfrac%7B1%7D%7B2%7D%0A%5Clog%20%5Cleft%5Clvert%5Cfrac%7BB%7D%7BA%7D%5Cright%5Crvert%5Cright)%5E2%7D&amp;chs=75' width='181' />
+\log \left\lvert\frac{B}{A}\right\rvert\right)^2}' class='formula' height='75' src='imgsrc-f5a901455d415ad66205e7089d2feb58c9be4206.png' width='181' id='http://chart.googleapis.com/chart?cht=tx&amp;chl=%5CRe%7Bz%7D%20%3D%5Cfrac%7Bn%5Cpi%20%5Cfrac%7B%5Ctheta%20%2B%5Cpsi%7D%7B2%7D%7D%7B%0A%5Cleft(%5Cfrac%7B%5Ctheta%20%2B%5Cpsi%7D%7B2%7D%5Cright)%5E2%20%2B%20%5Cleft(%20%5Cfrac%7B1%7D%7B2%7D%0A%5Clog%20%5Cleft%5Clvert%5Cfrac%7BB%7D%7BA%7D%5Cright%5Crvert%5Cright)%5E2%7D&amp;chs=75' />
           <figcaption><a class='self-ref' href='#fig-7'>Figure 7.</a> A sample formula</figcaption>
         </figure>
         <p id='math-p-3'>Future versions of this document will likely favor <a class='ref' href='#w3c:REC-SVG11-20110816'>SVG</a> or <a class='ref' href='#w3c:REC-MathML3-20101021'>MathML</a> representations of formulae, if browser support and accessibility concerns are addressed.</p>
@@ -773,10 +776,14 @@ DIGIT        = %x30-39 ; 0-9
       <h2><a class='self-ref' href='#security'>6.</a> Security Considerations</h2>
       <p id='security-p-1'>Since RFCs are sometimes exchanged outside the normal Web sandboxing mechanism (e.g. rsync to a mirror) then loaded from a local file, more care must be taken with the HTML than is ordinary on the Web. In particular, the intent with the format is to forbid any embedded code such as JavaScript as well as all mechanisms that could be used to execute code outside of the browser such as plugins or non-static media (such as video).</p>
     </div>
+    <div class='section' id='iana'>
+      <h2><a class='self-ref' href='#iana'>7.</a> IANA Considerations</h2>
+      <p id='iana-p-1'>TBD</p>
+    </div>
     <div id='references' class='section'>
-      <h2><a class='self-ref' href='#references'>7.</a> References</h2>
+      <h2><a class='self-ref' href='#references'>8.</a> References</h2>
       <div id='normative' class='section'>
-        <h3><a class='self-ref' href='#normative'>7.1.</a> Normative References</h3>
+        <h3><a class='self-ref' href='#normative'>8.1.</a> Normative References</h3>
         <ul>
           <li id='rfc:2083' class='ref'>
             <span id='RFC2083'>[RFC2083]</span>
@@ -945,7 +952,7 @@ DIGIT        = %x30-39 ; 0-9
         </ul>
       </div>
       <div id='informative' class='section'>
-        <h3><a class='self-ref' href='#informative'>7.2.</a> Informative References</h3>
+        <h3><a class='self-ref' href='#informative'>8.2.</a> Informative References</h3>
         <ul>
           <li id='rfc:5234' class='ref'>
             <span id='RFC5234'>[RFC5234]</span>
@@ -993,7 +1000,7 @@ DIGIT        = %x30-39 ; 0-9
       </div>
     </div>
     <div id='authors' class='section'>
-      <h2><a class='self-ref' href='#authors'>8.</a> Authors' Addresses</h2>
+      <h2><a class='self-ref' href='#authors'>9.</a> Authors' Addresses</h2>
       <address class='vcard'>
         <span class='n hidden'>
           <span class='family-name'>Hildebrand</span>
@@ -1572,6 +1579,10 @@ DIGIT        = %x30-39 ; 0-9
           <tr>
             <td>security</td>
             <td>The <a href='#sections'>section</a> containing the Security Considerations for the document.</td>
+          </tr>
+          <tr>
+            <td>iana</td>
+            <td>The <a href='#sections'>section</a> containing the IANA Considerations for the document.</td>
           </tr>
           <tr>
             <td>acknowledgments</td>
