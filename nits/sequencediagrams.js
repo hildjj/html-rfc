@@ -49,7 +49,7 @@ exports.nit = function sequencediagrams(env) {
         if (!alt) { // [attr] checks don't seem to work.
             return;
         }
-        shasum = crypto.createHash('sha1');
+        var shasum = crypto.createHash('sha1');
         shasum.update(alt);
         var altsum = shasum.digest('hex');
         var asrc  = 'wsd-' + altsum + '.png';
