@@ -5,9 +5,8 @@ var https = require('https');
 var path = require('path');
 var url = require('url');
 
-var mime = require('mime');
+var resolver = require('../lib/resolver');
 var Canvas = require('canvas');
-var bstream = require('../lib/bstream.js')
 
 var PREFIX = "imgsrc-";
 var PREFIX_RE = new RegExp("^" + PREFIX + "(.*)$");
@@ -75,89 +74,19 @@ function get_img(that, env, def) {
     if (!def) {
         def = $.Deferred();
     }
-    var u = url.parse(src);
 
-    switch (u.protocol) {
-        case 'http:':
-            env.log.trace("Getting image: '%s'", isrc);
-            http.get(u, function(res) {
-                new bstream().readStream(res, function(er, buf) {
-                    if (er) {
-                        env.error(def, er);
-                    } else {
-                        parse_buffer(def, buf, res.headers['content-type'], that, env, true);
-                    }
-                });
-            }).on('error', function(er) {
-                env.error(def, er);
-            });
-            break;
-        case 'https:':
-            env.log.trace("Getting image: '%s'", isrc);
-            https.get(u, function(res) {
-                new bstream().readStream(res, function(er, buf) {
-                    if (er) {
-                        env.error(def, er);
-                    } else {
-                        parse_buffer(def, buf, res.headers['content-type'], that, env, true);
-                    }
-                });
-            }).on('error', function(er) {
-                env.error(def, er);
-            });
-            break;
-        case "file:":
-            src = url.pathname;
-            // fall through
-        case undefined:
-            src = path.resolve(path.dirname(env.path), src);
-            path.exists(src, function(exists) {
-                if (exists && that.attr('width') && that.attr('height')) {
-                    def.resolve();
-                    return;
+    resolver.get(src, path.dirname(env.path), function(er, res) {
+        if (er) {
+            if (res.protocol === 'file:') {
+                // re-download
+                if (!check_src_for_url(that, env, def)) {
+                    env.error(def, er);
                 }
-                var str = fs.createReadStream(src);
-                new bstream().readStream(str, function(er, buf) {
-                    if (er) {
-                        // re-download the file if possible
-                        if (!check_src_for_url(that, env, def)) {
-                            env.error(def, er);
-                        }
-                    } else {
-                        parse_buffer(def, buf, mime.lookup(src), that, env, false);
-                    }
-                });
-            });
-            break;
-        case "data:":
-            if (that.attr('width') && that.attr('height')) {
-                def.resolve();
-                return;
             }
-            // data: that didn't have a height or width.  Re-parse the image.
-            var m = src.match(/^data:([^;,]+)(;base64)?,(.*)/);
-            if (!m) {
-                env.error(def, "Invalid data URI: '%s'", isrc);
-                return; // continue
-            }
-            var buf;
-            switch (m[2]) {
-                case ';base64':
-                    buf = new Buffer(m[3], 'base64');
-                    break;
-                case undefined:
-                    buf = new Buffer(decodeURI(m[3]));
-                    break;
-                default:
-                    env.error(def, "Invalid data: URI encoding: ", m[2]);
-                    return; // continue
-            }
-            parse_buffer(def, buf, m[1], that, env, false);
-            break;
-        default:
-            env.error(er, "Unknown image source URI scheme: ", u.protocol);
-            break;
-    }
+        } else {
+            parse_buffer(def, res.buffer, res.contentType, that, env, res.remote);
+        }
+    });
 
     return def.promise();
 }
