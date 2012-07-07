@@ -5,7 +5,7 @@
     <meta name='description' content='HTML RFC Format' />
     <meta name='keywords' content='RFC, HTML' />
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-<!-- non-standard, but makes this work for extra devices -->
+<!-- non-standard, but makes this work for extra devices, such as smartphones -->
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <link rel='stylesheet' type='text/css' href='../data/rfc.css' />
     <link rel='stylesheet' type='text/css' href='local.css' />
@@ -227,14 +227,14 @@
       <h2><a class='self-ref' href='#introduction'>1.</a> Introduction</h2>
       <div class='section' id='background'>
         <h3><a class='self-ref' href='#background'>1.1.</a> Background</h3>
-        <p id='background-p-1'>The RFC Series has been in existence for over 40 years. During much of that time, the limitations of character set, line and page length, and graphics restrictions of RFC documents met the most immediate needs of the majority of authors and readers. As technology changed, new formats that allowed for a richer set of features when editing, reading, searching, and displaying documents came in to use and tools were created to convert the plain ASCII documents in to other desired formats such as HTML, PDF, and Microsoft Word. While the converted versions of the RFC are widely available, the canonical display format remains the plain text, ASCII, line-printer structured one. The canonical source format is nroff.</p>
+        <p id='background-p-1'>The RFC Series has been in existence for over 40 years. During much of that time, the limitations of character set, line and page length, and graphics restrictions of RFC documents met the most immediate needs of the majority of authors and readers. As technology changed, new formats that allowed for a richer set of edit, search and display features came in to use, and tools were created to convert the plain ASCII documents to other desired formats such as HTML, PDF, and Microsoft Word. While the converted versions of the RFCs are widely available, the canonical display format remains the plain text, ASCII, line-printer structured one. The canonical source format is nroff.</p>
         <p id='background-p-2'>Canonical source and display versions of an RFC exists for several reasons:</p>
         <ul>
-          <li>to provide verification of the content of a RFC in case inconsistencies are created when a document is converted to another format or mirrored to another location</li>
+          <li>to provide verification of the content of an RFC in case inconsistencies are created when a document is converted to another format or mirrored to another location</li>
           <li>to verify the final content of a document in cases of legal dispute</li>
           <li>to aid in the conversion of the RFC in to formats requested by the community</li>
         </ul>
-        <p id='background-p-4'>The very basic format of RFC source and display documents have two persistent characteristics that are considered by the RFC Series Editor to be critical to the RFC Series, including:</p>
+        <p id='background-p-4'>The current basic format of RFC source and display documents have two characteristics that are considered by the RFC Series Editor to be critical to the RFC Series, including:</p>
         <ul>
           <li>persistence (tools to read, edit, and print the documents remain easily accessible to everyone)</li>
           <li>convertibility (the plain text version is simple to convert to other formats)</li>
@@ -244,11 +244,12 @@
           <li>ASCII art is considered by some to be a major limitation in expressing visually-oriented information</li>
           <li>the internationalization of the authorship and the Internet is introducing <a class='ref' href='#unicode:6.1'>Unicode</a> codepoints not expressible in 7-bit ASCII</li>
           <li>the more common forms of display (web pages, smaller devices) make the limitations of page and line length a hindrance to the reading of an RFC</li>
+          <li>modern accessibility tools for people with visual impairments stumble over the page-oriented structure of the current format</li>
         </ul>
       </div>
       <div class='section' id='overview'>
         <h3><a class='self-ref' href='#overview'>1.2.</a> Overview</h3>
-        <p id='overview-p-1'>This memo describes a format that can be used both as the canonical input format to the RFC Series Editor (RSE), as well as an archival format. Some document authors will author documents directly in this format (perhaps with tooling to generate the more repetitive tasks), and some authors will prefer other formats as their original source, all of which <span class='rfc2119'>MUST</span> be able to generate the format described in this memo.</p>
+        <p id='overview-p-1'>This memo describes a format that can be used both as the canonical input format to the RFC Series Editor (RSE), as well as an archival format. Some document authors will write documents directly in this format (perhaps with tooling to generate the more repetitive tasks), and some authors will prefer other formats as their original source, all of which <span class='rfc2119'>MUST</span> be able to generate the format described in this memo.</p>
         <p id='overview-p-2'>This memo has the following goals:</p>
         <ol>
           <li>Define a strict subset of HTML appropriate for Internet-Draft and RFC Series documents</li>
@@ -273,14 +274,14 @@
       <p class='note' id='accessibility-p-4'>NOTE: designing for these consumers does not preclude the use of features they cannot use, but does require that key semantic data is not lost when read using the tools and settings that are required by a given constituency.</p>
     </div>
     <div id='format' class='section'>
-      <h2><a class='self-ref' href='#format'>3.</a> HTML Format</h2>
-      <p id='format-p-1'>The format specified here is a subset of HTML, deemed to be widely-implemented by common browsers at the time that the specification was created, likely to continue to be widely-implemented for in the future, and unlikely to cause security issues.</p>
+      <h2><a class='self-ref' href='#format'>2.</a> HTML Format</h2>
+      <p id='format-p-1'>The format specified here is a subset of HTML, deemed to be widely-implemented by common browsers at the time that the specification was created, likely to continue to be widely-implemented in the future, and unlikely to cause security issues.</p>
       <div id='syntax' class='section'>
         <h3><a class='self-ref' href='#syntax'>3.1.</a> Syntax</h3>
         <p id='syntax-p-1'>The following rules <span class='rfc2119'>SHALL</span> be enforced before submittal.</p>
         <ul>
           <li>The HTML source <span class='rfc2119'>MUST</span> be encoded as UTF-8, as specified in <a class='ref' href='#rfc:3629'>RFC3629</a>.</li>
-          <li>The HTML source <span class='rfc2119'>MUST</span> be formatted in the manner of well-formed <a class='ref' href='#w3c:REC-xml-20081126'>XML</a>, with all elements start tags having matching end tags (or <code>&lt;element /&gt;</code> for empty elements), with all elements properly nested. HTML "boolean" attributes <span class='rfc2119'>MUST</span> be formatted in the <code>attr='attr'</code> style.</li>
+          <li>The HTML source <span class='rfc2119'>MUST</span> be formatted in the manner of well-formed <a class='ref' href='#w3c:REC-xml-20081126'>XML</a>, with all element start tags having matching end tags (or <code>&lt;element /&gt;</code> for empty elements), and all elements properly nested. HTML "boolean" attributes <span class='rfc2119'>MUST</span> be formatted in the <code>attr='attr'</code> style.</li>
           <li>HTML <span class='rfc2119'>SHALL</span> be pretty-printed, using spaces (not tabs) for indentation.</li>
           <li>Single quotes (U+0027 APOSTROPHE: <code>'</code>) <span class='rfc2119'>MUST</span> be used to quote attribute values. Unquoted attribute values <span class='rfc2119'>MUST NOT</span> be used.</li>
           <li>Two spaces <span class='rfc2119'>MUST</span> be used for each level of indentation</li>
