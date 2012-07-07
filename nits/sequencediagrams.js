@@ -61,7 +61,7 @@ exports.nit = function sequencediagrams(env) {
         if (((src === asrc) || (src.slice(0,5) === "data:")) &&
             (that.attr('id') === altsum)) {
             var src_file = path.join(env.argv.outdir, asrc);
-            path.exists(src_file, function(exists) {
+            fs.exists(src_file, function(exists) {
                 // Only get the file if the source has changed, or the
                 // file got deleted
                 if (exists) {

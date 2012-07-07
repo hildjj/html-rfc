@@ -99,7 +99,7 @@ if (argv.nitdir) {
 whenEver(ndirs, function(p) {
     // which of the nit dirs exist?
     var def = jQuery.Deferred();
-    path.exists(p, function(exists) {
+    fs.exists(p, function(exists) {
         def.resolve(exists ? p : null);
     });
     return def;

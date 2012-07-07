@@ -15,7 +15,7 @@
     "url": "git://github.com/IETF-Formatters/html-rfc.git"
   },
   "engines": {
-    "node": "~0.6.15"
+    "node": "~0.8.1"
   },
   "dependencies": {
     "jsdom": "~0.2.14",
@@ -28,7 +28,8 @@
     "graphviz": "~0.0.6",
     "jQuery": "git://github.com/linuxwolf/node-jquery.git",
     "dateformat": "~1",
-    "abnf": "~0.0.2"
+    "abnf": "~0.0.3", 
+    "http-get": "~0.4.1"
   },
   "directories": {
     "bin": "bin",
