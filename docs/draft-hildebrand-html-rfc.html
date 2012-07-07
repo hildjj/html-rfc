@@ -274,7 +274,7 @@
       <p class='note' id='accessibility-p-4'>NOTE: designing for these consumers does not preclude the use of features they cannot use, but does require that key semantic data is not lost when read using the tools and settings that are required by a given constituency.</p>
     </div>
     <div id='format' class='section'>
-      <h2><a class='self-ref' href='#format'>2.</a> HTML Format</h2>
+      <h2><a class='self-ref' href='#format'>3.</a> HTML Format</h2>
       <p id='format-p-1'>The format specified here is a subset of HTML, deemed to be widely-implemented by common browsers at the time that the specification was created, likely to continue to be widely-implemented in the future, and unlikely to cause security issues.</p>
       <div id='syntax' class='section'>
         <h3><a class='self-ref' href='#syntax'>3.1.</a> Syntax</h3>
@@ -289,7 +289,7 @@
           <li>Other than \n (U+000A: LINE FEED), code points less than " " (U+0020: SPACE) (otherwise known as "control characters") <span class='rfc2119'>MUST NOT</span> be used. Any character references that would generate these code points (e.g. ) <span class='rfc2119'>MUST NOT</span> be used. NOTE: this rule explicitly forbids \t (U+0009: CHARACTER TABULATION), \f (U+000C: FORM FEED), and \r (U+000D: CARRIAGE RETURN) from appearing in the source.</li>
           <li>Unicode codepoints that are unassigned at the time of publication <span class='rfc2119'>MUST</span> not be used.</li>
           <li>Any Unicode codepoint higher than ~ (U+007E: TILDE) <span class='rfc2119'>MUST</span> serve an explicit purpose that enhances the understanding of the document. Author names and examples are two known cases. The intent is that the document <span class='rfc2119'>MUST</span> be understandable by a reader with the ability to read technical English.</li>
-          <li>Each text-containing element such as headings (<code>&lt;h1&gt;</code>-<code>&lt;h6&gt;</code>), paragraphs (<code>&lt;p&gt;</code>), or list items (<code>&lt;li&gt;</code>), MUST be serialized as a single line without wrapping.</li>
+          <li>Each text-containing element such as headings (<code>&lt;h1&gt;</code>-<code>&lt;h6&gt;</code>), paragraphs (<code>&lt;p&gt;</code>), or list items (<code>&lt;li&gt;</code>), <span class='rfc2119'>MUST</span> be serialized as a single line without wrapping.</li>
         </ul>
         <p id='syntax-p-3' class='note'>NOTE: none of these rules affect the rendered output of the HTML, but are intended to increase the chance that multiple tools that process the format will generate identical syntax. In turn, this will make difference tools that operate on the HTML source easier to write.</p>
       </div>
