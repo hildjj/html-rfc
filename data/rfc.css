@@ -87,11 +87,20 @@ code, .code {
   border-radius: 4px;
   float: left;
 }
+@media screen {
+  .code {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+}
 figure .code {
   margin-left: 0px;
 }
 .code + * {
   clear: both;
+}
+.todo {
+  color: red;
 }
 a.self-ref {
   color: rgba(0, 0, 0, 0.65);
