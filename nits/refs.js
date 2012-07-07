@@ -66,8 +66,7 @@ exports.nit = function(env) {
                             } else {
                                 author.append(nm);
                             }
-
-                            $('<span>').text(',').appendTo(ref);
+                            ref.append(", ");
                             $('<span>').addClass('title').text('"' + $('title', data).text() + '"')
                                 .appendTo(ref);
 
@@ -80,7 +79,7 @@ exports.nit = function(env) {
                                     .append(']')
                                     .appendTo(reflinks);
                             });
-                            $('<span>').text(',').appendTo(ref);
+                            ref.append(", ");
                             var series = [];
                             $('seriesInfo', data).each(function() {
                                 var t = $(this);
@@ -90,12 +89,12 @@ exports.nit = function(env) {
                                 .addClass('series-info')
                                 .text(series.join(', '))
                                 .appendTo(ref);
-                            $('<span>').text(',').appendTo(ref);
+                            ref.append(", ");
                             $('<span>')
                                 .addClass('date')
                                 .text($('date', data).attr('month') + "\u00a0" + $('date', data).attr('year'))
                                 .appendTo(ref);
-                            $('<span>').text('.').appendTo(ref);
+                            ref.append(".");
                         }));
     });
     return $.when.apply($, prom);
