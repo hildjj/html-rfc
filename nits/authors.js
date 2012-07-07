@@ -11,14 +11,17 @@ exports.nit = function(env) {
     hauth.comment("Automatically generated from $('.section#authors address')");
     authors.each(function() {
         var author = $("<div>").addClass("author");
+        // Only pull out the default (hopefully English-ified) name from the
+        // author information into the header.
+
         // Note: "initial" is not a valid RFC 6350 property name.
-        var initial = $(".initial", this).text();
+        var initial = $(".initial[lang='']", this).text();
         if (initial.length === 0) {
-            initial = $(".given-name", this).text().slice(0,1) + ".";
+            initial = $(".n .given-name[lang='']", this).text().slice(0,1) + ".";
         }
         $("<span>").addClass("initial").text(initial).appendTo(author);
-        $("<span>").addClass("surname").text($(".family-name", this).text()).appendTo(author);
-        $("<span>").addClass("company").text($(".org", this).text()).appendTo(author);
+        $("<span>").addClass("surname").text($(".n .family-name[lang='']", this).text()).appendTo(author);
+        $("<span>").addClass("company").text($(".org[lang='']", this).text()).appendTo(author);
         author.appendTo(hauth);
     });
 };
