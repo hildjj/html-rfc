@@ -16,7 +16,7 @@ function f($, ul, divs, depth, parnum) {
 
     divs.each(function(i) {
         var div = $(this);
-        var li = $("<li>").addClass("toc");
+        var li = $("<li>");
         var h = $("h" + depth, div);
         if (!h.length) {
             h = $("<h" + depth + ">");
@@ -44,7 +44,7 @@ function f($, ul, divs, depth, parnum) {
 
         var subs = $("> div.section", div);
         if (subs.length > 0) {
-            li.append(f($, $("<ul>").addClass("toc"), $("> div.section", div), depth+1, num));
+            li.append(f($, $("<ul>"), $("> div.section", div), depth+1, num));
         }
         ul.append(li);
     });

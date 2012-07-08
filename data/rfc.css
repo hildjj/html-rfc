@@ -63,7 +63,7 @@ body {
 .authors .author .company:after {
   content:  ")";
 }
-ul.toc {
+#toc ul {
   list-style-type: none;
 }
 .section {
