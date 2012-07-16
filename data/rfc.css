@@ -109,7 +109,7 @@ a.self-ref {
 div#toc {
   page-break-before: always;
 }
-div:not(#toc) li {
+div.section li:not(.ref) {
   text-align: justify;
   padding: 4px;
 }
