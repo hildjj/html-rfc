@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+<!DOCTYPE html SYSTEM 'about:legacy-compat'>
 <html lang='en'>
   <head>
-    <title>HTML RFC Format</title>
+    <title>HyperText Markup Language Request For Comments Format</title>
     <meta name='description' content='HTML RFC Format' />
     <meta name='keywords' content='RFC, HTML' />
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
@@ -16,8 +16,8 @@
         <div class='workgroup'>Network Working Group</div>
         <div class='series'>Internet-Draft</div>
         <div class='status'>Standards Track</div>
-        <div class='published'>2012-07-16</div>
-        <div class='expires'>2013-01-16</div>
+        <div class='published'>2012-07-29</div>
+        <div class='expires'>2013-01-29</div>
         <div class='docName'>draft-hildebrand-html-rfc</div>
         <div class='version'>01</div>
       </div>
@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-    <h1 id='title'>HTML RFC Format</h1>
+    <h1 id='title'>HyperText Markup Language Request For Comments Format</h1>
     <div id='abstract'>
       <h2>Abstract</h2>
       <p id='abstract-p-1'>This document defines an HTML format that can be used for the production of Internet-Drafts and RFCs.</p>
@@ -40,7 +40,7 @@
       <p>This Internet-Draft is submitted in full conformance with the provisions of <a class='ref' href='#rfc:5378'>BCP 78</a> and <a class='ref' href='#rfc:3979'>BCP 79</a>.</p>
       <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF). Note that other groups may also distribute working documents as Internet-Drafts. The list of current Internet-Drafts is at <a href='http://datatracker.ietf.org/drafts/current/'>http://datatracker.ietf.org/drafts/current/</a>.</p>
       <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time. It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-      <p>This Internet-Draft will expire on January 16, 2013.</p>
+      <p>This Internet-Draft will expire on January 29, 2013.</p>
       <h2>Copyright Notice</h2>
       <p>Copyright © 2012 IETF Trust and the persons identified as the document authors. All rights reserved.</p>
       <p>This document is subject to <a class='ref' href='#rfc:5378'>BCP 78</a> and the IETF Trust&apos;s Legal Provisions Relating to <a href='http://trustee.ietf.org/license-info'>IETF Documents</a> in effect on the date of publication of this document. Please review these documents carefully, as they describe your rights and restrictions with respect to this document. Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -299,16 +299,20 @@
         <h3><a class='self-ref' href='#syntax'>3.1.</a> Syntax</h3>
         <p id='syntax-p-1'>The following rules <span class='rfc2119'>SHALL</span> be enforced before submittal.</p>
         <ul>
+          <li>The intent is that the HTML source is a well-formed XML 1.0 serialization of a conforming HTML5 document with additional constraints on both the XML syntax and the subset of allowed HTML.</li>
           <li>The HTML source <span class='rfc2119'>MUST</span> be encoded as UTF-8, as specified in <a class='ref' href='#rfc:3629'>RFC3629</a>.</li>
           <li>The HTML source <span class='rfc2119'>MUST</span> be formatted in the manner of well-formed <a class='ref' href='#w3c:REC-xml-20081126'>XML</a>, with all element start tags having matching end tags (or <code>&lt;element /&gt;</code> for empty elements), and all elements properly nested. HTML "boolean" attributes <span class='rfc2119'>MUST</span> be formatted in the <code>attr=&apos;attr&apos;</code> style.</li>
           <li>Single quotes (U+0027 APOSTROPHE: <code>&apos;</code>) <span class='rfc2119'>MUST</span> be used to quote attribute values. Unquoted attribute values <span class='rfc2119'>MUST NOT</span> be used.</li>
-          <li>HTML <span class='rfc2119'>SHALL</span> be indented using spaces (not tabs).</li>
-          <li>Each child element <span class='rfc2119'>SHALL</span> be indented two spaces more than its parent element, unless the child element is mixed with non-whitespace-only text children of the same parent element.</li>
           <li>Each logical line <span class='rfc2119'>MUST</span> be terminated solely with a \n (U+000A: LINE FEED), otherwise known as "Unix-style" line endings.</li>
           <li>Other than \n (U+000A: LINE FEED), code points less than " " (U+0020: SPACE) (otherwise known as "control characters") <span class='rfc2119'>MUST NOT</span> be used. Any character references that would generate these code points (e.g. ) <span class='rfc2119'>MUST NOT</span> be used. NOTE: this rule explicitly forbids \t (U+0009: CHARACTER TABULATION), \f (U+000C: FORM FEED), and \r (U+000D: CARRIAGE RETURN) from appearing in the source.</li>
-          <li>Unicode codepoints that are unassigned at the time of publication <span class='rfc2119'>MUST</span> not be used.</li>
+          <li>Unicode codepoints that are unassigned at the time of publication <span class='rfc2119'>SHOULD NOT</span> be used. The RFC editor will exercise prudence in what codepoints are allowed.</li>
           <li>Any Unicode codepoint higher than ~ (U+007E: TILDE) <span class='rfc2119'>MUST</span> serve an explicit purpose that enhances the understanding of the document. Author names and examples are two known cases. The intent is that the document <span class='rfc2119'>MUST</span> be understandable by a reader with the ability to read technical English.</li>
           <li>Each text-containing element such as headings (<code>&lt;h1&gt;</code>-<code>&lt;h6&gt;</code>), paragraphs (<code>&lt;p&gt;</code>), or list items (<code>&lt;li&gt;</code>), <span class='rfc2119'>MUST</span> be serialized as a single line without wrapping.</li>
+          <li>The contents of <code>&lt;pre&gt;</code> elements <span class='rfc2119'>MUST NOT</span> be modified by processing tools. The following rules apply to all elements except for <code>&lt;pre&gt;</code>:</li>
+          <ul>
+            <li>HTML <span class='rfc2119'>SHALL</span> be indented using spaces (not tabs).</li>
+            <li>Each child element <span class='rfc2119'>SHALL</span> be indented two spaces more than its parent element, unless the child element is mixed with non-whitespace-only text children of the same parent element.</li>
+          </ul>
         </ul>
         <p id='syntax-p-3' class='note'>NOTE: none of these rules affect the rendered output of the HTML, but are intended to increase the chance that multiple tools that process the format will generate identical syntax. In turn, this will make difference tools that operate on the HTML source easier to write.</p>
       </div>
@@ -316,12 +320,12 @@
         <h3><a class='self-ref' href='#structure'>3.2.</a> Basic Structure</h3>
         <div class='section' id='html5'>
           <h4><a class='self-ref' href='#html5'>3.2.1.</a> HTML5</h4>
-          <p id='html5-p-1'>The HTML comprising the document <span class='rfc2119'>MUST</span> be valid according to the latest version of the HTML specification at the publishing, starting with the version commonly known as <a class='ref' href='#w3c:WD-html5-20120329'>HTML5</a>. Although the HTML specification mandates several of syntax and structure rules in this document, they are called out here for emphasis.</p>
+          <p id='html5-p-1'>The HTML comprising the document <span class='rfc2119'>MUST</span> be valid according to the latest version of the HTML specification at the time of publishing, starting with the version commonly known as <a class='ref' href='#w3c:WD-html5-20120329'>HTML5</a>. Although the HTML specification mandates several of syntax and structure rules in this document, they are called out here for emphasis.</p>
         </div>
         <div class='section' id='doctype'>
           <h4><a class='self-ref' href='#doctype'>3.2.2.</a> DOCTYPE</h4>
-          <p id='doctype-p-1'>The DOCTYPE of the document <span class='rfc2119'>MUST</span> be "html", which declares that the document is compliant with <a href='#w3c:WD-html5-20120329' class='ref'>HTML5</a>. For example, the document will start with exactly this string:</p>
-          <pre class='code language-html'>&lt;!DOCTYPE html&gt;</pre>
+          <p id='doctype-p-1'>The DOCTYPE of the document <span class='rfc2119'>MUST</span> be "html", which declares that the document is compliant with <a href='#w3c:WD-html5-20120329' class='ref'>HTML5</a>. For better backward-compatibility, the <code>about:legacy-compat</code> system DTD should be specified. Therefore the document will start with exactly this string:</p>
+          <pre class='code language-html'>&lt;!DOCTYPE html SYSTEM &apos;about:legacy-compat&apos;&gt;</pre>
         </div>
         <div class='section' id='root'>
           <h4><a class='self-ref' href='#root'>3.2.3.</a> Root Element</h4>
@@ -329,8 +333,8 @@
         </div>
         <div class='section' id='charset'>
           <h4><a class='self-ref' href='#charset'>3.2.4.</a> Charset Declaration</h4>
-          <p id='charset-p-1'>In order to be correctly processed by browsers that load the HTML using a mechanism that does not provide a valid MIME content-type or charset, the HTML <code>&lt;head&gt;</code> element <span class='rfc2119'>MUST</span> contain a <code>&lt;meta&gt;</code> element, with the attributes <code>http-equiv=&apos;Content-Type&apos;</code> and <code>content=&apos;text/html; charset=utf-8&apos;</code>. This will look like:</p>
-          <pre class='code language-html'>&lt;meta http-equiv=&apos;Content-Type&apos; content=&apos;text/html; charset=utf-8&apos; /&gt;</pre>
+          <p id='charset-p-1'>In order to be correctly processed by browsers that load the HTML using a mechanism that does not provide a valid MIME content-type or charset, the HTML <code>&lt;head&gt;</code> element <span class='rfc2119'>MUST</span> contain a <code>&lt;meta&gt;</code> element, with <code>charset</code> attribute with value <code>utf-8</code>. This will look like:</p>
+          <pre class='code language-html'>&lt;meta charset="utf-8" /&gt;</pre>
         </div>
         <div class='section' id='style'>
           <h4><a class='self-ref' href='#style'>3.2.5.</a> Style</h4>
@@ -350,7 +354,7 @@
         </div>
         <div class='section' id='emphasis'>
           <h4><a class='self-ref' href='#emphasis'>3.2.6.</a> Emphasis</h4>
-          <p id='emphasis-p-1'>Words or phrases may be emphasized using the <code>&lt;strong&gt;</code> element for "<strong>bold</strong>", and the <code>&lt;em&gt;</code> element for "<em>italics</em>". Underlining <span class='rfc2119'>MUST NOT</span> be used except for links, to avoid visual confusion. Text-only emphasis <span class='rfc2119'>MUST NOT</span> be used.</p>
+          <p id='emphasis-p-1'>Words or phrases may be emphasized using the <code>&lt;em&gt;</code> element, usually rendered as <em>italics</em>. Strong emphasis may be donated with the <code>&lt;strong&gt;</code> element, which is usually rendered as <strong>boldface</strong>. Underlining <span class='rfc2119'>MUST NOT</span> be used except for links, to avoid visual confusion. Text-only emphasis such as "*bold*" <span class='rfc2119'>MUST NOT</span> be used.</p>
           <p id='emphasis-p-2'>The RFC Editor will set a policy that reflects the current feelings of the community as to whether this emphasis markup is allowed in documents that are submitted for publication in the RFC series.</p>
         </div>
         <div class='section' id='comments'>
@@ -379,6 +383,17 @@
     &lt;p&gt;This is a description of the nested section.&lt;/p&gt;
     &lt;p&gt;This is the second description paragraph.&lt;/p&gt;
   &lt;/div&gt;
+&lt;/div&gt;</pre>
+          <p id='sections-p-10'>Parent sections that contain child sections <span class='rfc2119'>MUST NOT</span> contain "normal" paragraphs after a sub-section. For example, the following is <em>invalid</em>:</p>
+          <pre class='code invalid languag-hmtl'>
+&lt;div class=&apos;section&apos; id=&apos;example&apos;&gt;
+  &lt;h2&gt;&lt;a class=&apos;self-ref&apos; href=&apos;#example&apos;&gt;1.&lt;/a&gt; Example Section&lt;/h2&gt;
+  &lt;p&gt;This is a description of the example&lt;/p&gt;
+  &lt;div class=&apos;section&apos; id=&apos;nested&apos;&gt;
+    &lt;h3&gt;&lt;a class=&apos;self-ref&apos; href=&apos;#nested&apos;&gt;1.1.&lt;/a&gt; Nested Section&lt;/h3&gt;
+    &lt;p&gt;This is a description of the nested section.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;p&gt;<strong>BAD PROSE!</strong>&lt;/p&gt;
 &lt;/div&gt;</pre>
         </div>
         <div class='section' id='appendices'>
@@ -454,7 +469,7 @@
           <div class='section' id='external-references'>
             <h5><a class='self-ref' href='#external-references'>3.2.12.3.</a> Other External References</h5>
             <p id='external-references-p-1'>References to other documents that are not standards <span class='rfc2119'>SHOULD</span> be linked using the <code>http:</code> or <code>https:</code> URI scheme, and <span class='rfc2119'>MUST</span> be linked using a a URI scheme that is widely-deployed at the time that the document is published, and which does not raise any security or stability issues. In particular, <code>javascript:</code> references <span class='rfc2119'>MUST NOT</span> be used. Links using the <code>mailto:</code> scheme <span class='rfc2119'>SHOULD</span> be limited to the author&apos;s address information.</p>
-            <p id='external-references-p-3'>For example:</p>
+            <p id='external-references-p-2'>For example:</p>
             <pre class='code language-html'>&lt;a href=&apos;http://example.com/&apos;&gt;Example&lt;/a&gt;</pre>
           </div>
         </div>
