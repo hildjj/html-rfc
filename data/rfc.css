@@ -1,6 +1,7 @@
 body {
   font-family: sans-serif;
   margin: 0 40px 0 20px;
+  background-color: #fff;
 }
 .alt {
   display: none;
@@ -86,6 +87,9 @@ code, .code {
   border: 1px solid rgba(0, 0, 0, 0.20);
   border-radius: 4px;
   float: left;
+}
+.invalid {
+  background-color: rgba(200,0,0,0.20);
 }
 @media screen {
   .code {
