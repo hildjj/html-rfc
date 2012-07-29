@@ -4,7 +4,7 @@
     <title>HyperText Markup Language Request For Comments Format</title>
     <meta name='description' content='HTML RFC Format' />
     <meta name='keywords' content='RFC, HTML' />
-    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <meta charset='utf-8'>
 <!-- non-standard, but makes this work for extra devices, such as smartphones -->
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <link rel='stylesheet' type='text/css' href='../data/rfc.css' />
@@ -334,7 +334,7 @@
         <div class='section' id='charset'>
           <h4><a class='self-ref' href='#charset'>3.2.4.</a> Charset Declaration</h4>
           <p id='charset-p-1'>In order to be correctly processed by browsers that load the HTML using a mechanism that does not provide a valid MIME content-type or charset, the HTML <code>&lt;head&gt;</code> element <span class='rfc2119'>MUST</span> contain a <code>&lt;meta&gt;</code> element, with <code>charset</code> attribute with value <code>utf-8</code>. This will look like:</p>
-          <pre class='code language-html'>&lt;meta charset="utf-8" /&gt;</pre>
+          <pre class='code language-html'>&lt;meta charset='utf-8' /&gt;</pre>
         </div>
         <div class='section' id='style'>
           <h4><a class='self-ref' href='#style'>3.2.5.</a> Style</h4>
