@@ -129,6 +129,3 @@ whenEver(ndirs, function(p) {
         return process_rfc(input, output, nits);
     }
 }).fail(logErr);
-
-
-
