@@ -17,7 +17,7 @@ exports.nit = function(env) {
   "<title></title>" +
   "<meta name='description' content='None' />" +
   "<meta name='keywords' content='RFC' />" +
-  "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />" +
+  "<meta charset='utf-8' />" +
   "<!-- non-standard, but makes this work for extra devices -->" +
   "<meta name='viewport' content='width=device-width; initial-scale=1.0' />" +
   "<style type='text/css' />" +
@@ -33,11 +33,9 @@ exports.nit = function(env) {
         if ($("meta[name=keywords]", head).length < 1) {
             head.append("<meta name='keywords' content='RFC' />");
         }
-        var ct = $("meta[http-equiv=Content-Type]", head);
+        var ct = $("meta[charset]", head);
         if (ct.length < 1) {
-            head.append("<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />");
-        } else {
-            ct.attr('content', 'text/html; charset=utf-8');
+            head.append("<meta charset='utf-8' />");
         }
         if ($("meta[name='viewport']", head).length < 1) {
             head.comment(" non-standard, but makes this work for extra devices ");
