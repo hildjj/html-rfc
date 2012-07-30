@@ -1,7 +1,8 @@
 body {
-  font-family: sans-serif;
-  margin: 0 40px 0 20px;
+  font-family: Palatino, serif;
+  margin: 0 5% 0 5%;
   background-color: #fff;
+  color: #000;
 }
 .alt {
   display: none;
@@ -11,10 +12,11 @@ body {
 }
 #document {
   float: right;
-  border: 1px solid rgba(0, 0, 0, 0.20);
+  border: 1px solid #ccc;
   border-radius: 10px;
   padding: 10px;
-  background: rgba(0, 0, 0, .05);
+  background: transparent;
+  background-color: #eee;
   margin-left: 20px;
 }
 #document > .identifiers * {
@@ -75,7 +77,7 @@ body {
   font-weight: bold;
 }
 code, .code {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: #eee;
   font-family: 'Lucida Console', Monaco, monospace;
   font-size: 90%;
   line-height: 1.15em;
@@ -84,12 +86,15 @@ code, .code {
   margin-left: 40px;
   margin-right: 40px;
   padding: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.20);
+  border: 1px solid #ccc;
   border-radius: 4px;
   float: left;
 }
 .invalid {
-  background-color: rgba(200,0,0,0.20);
+  background-color: #F99;
+}
+figcaption {
+  background-color: yellow;
 }
 @media screen {
   .code {
@@ -107,7 +112,7 @@ figure .code {
   color: red;
 }
 a.self-ref {
-  color: rgba(0, 0, 0, 0.65);
+  color: #000;
   text-decoration: none;
 }
 div#toc {
@@ -121,6 +126,16 @@ p {
   text-align: justify;
   orphans: 3;
   widows: 3;
+  line-height: 120%;
+}
+li {
+  line-height: 120%;  
+}
+li.ref {
+  list-style-type: none;
+  text-indent: -50px;
+  padding-left: 50px;
+  padding-bottom: 10px;
 }
 @media screen {
   /* this isn't good enough, but without JavaScript... */
@@ -210,13 +225,13 @@ table.pdu th {
 }
 table.pdu tr:nth-child(1) th:nth-child(2), table.pdu tr:nth-child(2) th:nth-child(1), table.pdu tr:nth-child(2) th:nth-child(2) {
     text-align: center;
-    font-family: sans-serif;
+    font-family: Palatino, serif;
     background-color: rgba(0, 0, 0, 0.05);
     font-size: 95%;
 }
 table.pdu tr:first-child th:first-child {
   /* upper left corner */
-    font-family: sans-serif;
+    font-family: Palatino, serif;
     font-style: italic;
     font-weight: normal;
     background-color: #fff;
