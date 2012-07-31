@@ -68,4 +68,4 @@ exports.nit = function(env) {
     toc.append(ul);
 }
 
-exports.requires = "div-number.js";
+exports.requires = ["div-number.js", "depth.js"];
