@@ -7,6 +7,10 @@ exports.nit = function(env) {
     }
 
     var hauth = $("#document .authors");
+    if (hauth.length < 1) {
+        hauth = $("<div class='authors'/>");
+        hauth.appendTo($("#document"));
+    }
     hauth.empty();
     hauth.comment("Automatically generated from $('.section#authors address')");
     authors.each(function() {
