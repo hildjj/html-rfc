@@ -1,3 +1,5 @@
+NOTE: This repo is entirely overcome by events, but is archived here in case any of the ideas resurface later.
+
 IETF RFCs with the authoring, archival, and reading formats all being HTML.
 
 A prototype, for now.
